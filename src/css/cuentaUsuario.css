@@ -1,0 +1,119 @@
+/* SERIA LA PARTE ADMIN */
+
+/* .conteiner-cuenta {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    flex-direction: column;
+    align-items: center;
+    border: 1px white solid;
+}
+
+.conteiner-cuenta .img-perfil img {
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    justify-content: center;
+}
+
+.conteiner-cuenta .datos-usuario {
+    border: 1px white solid;
+    max-width: 360px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: auto auto;
+
+
+}
+
+
+.conteiner-cuenta .datos-usuario p {
+    color: red;
+}
+
+.botonera {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.botonera .btn,
+.btn2 {
+    width: 40%;
+}
+
+.botonera .btn .btn-pass,
+button {
+    width: 100%;
+
+}
+
+.botonera .btn .btn-pass {
+    margin-top: 0.5rem;
+    color: black;
+    background-color: pink;
+}
+
+.botonera .btn2 {
+    margin-top: 1.5rem;
+    border: 1px solid red;
+}
+
+.botonera .btn2 a {
+    color: red;
+} */
+
+
+/* HASTA ACA... SIGUE ABAJO PERO NO VA.... */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .botonera .btn-edit,
+.btn-pass,
+.btn-eliminar {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.botonera .btn-edit button {
+    background: orange;
+}
+
+.botonera .btn-pass button {
+    margin-top: 0.5rem;
+    background: blue;
+}
+
+
+
+.botonera .btn-eliminar a {
+    margin-top: 1rem;
+    color: red;
+} */

@@ -1,0 +1,168 @@
+.tabla {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    margin: auto auto;
+    border-collapse: collapse;
+    border: 2px solid white;
+}
+
+.tabla caption {
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+}
+
+.tabla tr {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    overflow: hidden;
+    width: 100%;
+    background: rgb(213, 213, 241);
+    flex-wrap: nowrap;
+    margin-bottom: 0px;
+    /* border-bottom: 2px solid rgb(14, 14, 116); */
+}
+
+.tabla th,
+.tabla td {
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+    margin: auto;
+}
+
+.js-borrar,
+.js-editar {
+    border-radius: 1rem;
+    width: 4rem;
+    margin: 2px;
+    padding: .3rem;
+    overflow: hidden;
+    text-align: center;
+}
+
+.btn-editar-borrar .fondo-btn:hover {
+    background: rgb(185, 185, 241);
+}
+
+.js-editar {
+    background-color: darkorange;
+}
+
+.js-borrar {
+    background-color: red;
+}
+
+.tabla thead th {
+    text-transform: uppercase;
+    background-color: rgb(226, 103, 103);
+    padding: 4px;
+    border: 1px white solid;
+}
+
+.tabla tbody tr:hover {
+    background: rgb(185, 185, 241);
+}
+
+.tabla tbody td:hover {
+    background: rgb(132, 132, 250);
+}
+
+/*--------------------------------------"RESPONSIVE X 570px"---------------------------*/
+
+
+
+@media all and (max-width:570px) {
+
+    .tabla {
+        border: 0px;
+    }
+
+    .tabla caption {
+        font-size: 22px;
+    }
+
+    .tabla thead {
+        display: none;
+    }
+
+    .tabla tr {
+        display: block;
+        margin-bottom: 0px;
+        /* border-bottom: 2px solid rgb(14, 14, 116); */
+        border-bottom: 2px solid white;
+
+    }
+
+    .tabla th,
+    .tabla td {
+        font-size: 12px;
+    }
+
+    .tabla td {
+        text-align: center;
+    }
+
+    .tabla td::before {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+
+}
+
+
+
+/*--------------------------------------"RESPONSIVE" X 700px -----------------------------*/
+@media screen and (max-width:700px) {
+
+
+    .tabla caption {
+        width: 100%;
+        color: white;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: auto auto;
+    }
+
+    .js-borrar,
+    .js-editar {
+        border-radius: 1rem;
+        width: 70%;
+        margin: 2px;
+        padding: .3rem;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .tabla tr {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        overflow: hidden;
+        width: 100%;
+        background: rgb(213, 213, 241);
+        flex-wrap: nowrap;
+    }
+
+    .tabla tr {
+        margin-bottom: 0px;
+        /* border-bottom: 2px solid rgb(14, 14, 116); */
+        border-bottom: 2px solid white;
+    }
+
+    .tabla th,
+    .tabla td {
+        font-size: 14px;
+    }
+
+
+
+}

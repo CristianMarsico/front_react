@@ -73,7 +73,7 @@ const General_Navbar_Component = () => {
                             sitio="Galeria"
                         />
                         <Navbar.Text style={{ marginRight: '1.5rem' }}>
-                            <NavLink className="links" exact to="" onClick={cerrarSesion}>Cerra Sesion</NavLink>
+                            <NavLink className="links" to="" onClick={cerrarSesion}>Cerra Sesion</NavLink>
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>

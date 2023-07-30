@@ -6,7 +6,7 @@ const NavegacionNav = ({ style, nombreClase, redirec, sitio }) => {
     const isExactMatch = true;
     return (
         <Navbar.Text style={style}>
-            <NavLink className={nombreClase} exact={isExactMatch} to={redirec}>{sitio}</NavLink>
+            <NavLink className={nombreClase} to={redirec}>{sitio}</NavLink>
         </Navbar.Text>
     )
 }

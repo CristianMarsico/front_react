@@ -17,8 +17,8 @@ const Home = () => {
 
     return (
         <>
-            {/* <TablaUsuariosGeneral_Component datos={userData} /> */}
-            <h1>Hola</h1>
+            <TablaUsuariosGeneral_Component datos={userData} />
+
         </>
     )
 }
@@ -28,13 +28,13 @@ export default Home
 
 export const LoaderHome = async () => {
 
-    let token = await RequiereTokenHelpers()
+    // let token = await RequiereTokenHelpers()
     const GETALL = "http://localhost:3000/api/getAll";
     try {
         let res = await fetch(GETALL, {
             "headers": {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
+                // "Authorization": `Bearer ${token}`,
             },
         })
 

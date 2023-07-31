@@ -2,7 +2,7 @@ import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
 //imports pages
-import Home, { LoaderHome } from '../pages/Home'
+import Home from '../pages/Home'
 import About from '../pages/About'
 import Faq from '../pages/Faq'
 import Contact from '../pages/Contact'
@@ -122,8 +122,8 @@ export const router = createBrowserRouter(
 
                 {
                     path: RUTAS.home,
-                    element: < Home />,
-                    loader: LoaderHome
+                    element: < Home />
+
                 },
                 {
                     path: RUTAS.about,

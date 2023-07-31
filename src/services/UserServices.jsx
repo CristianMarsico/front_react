@@ -4,3 +4,9 @@ export async function eliminarUsuario(id) {
 
     return await axios.delete(URL_DELETE, { withCredentials: true });
 }
+
+export async function getAllUsarios() {
+    const URL_GETALL = "http://localhost:3000/api/getAll";
+
+    return await axios.get(URL_GETALL, { withCredentials: true });
+}

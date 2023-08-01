@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { eliminarUsuario, getAllUsarios } from '../../services/UserServices';
+import { editarUsuario, eliminarUsuario, getAllUsarios } from '../../services/UserServices';
 
 //COMPONENTES
 import BotonesTablaUsuarios from './components_internos/BotonesTablaUsuarios';
@@ -7,12 +7,15 @@ import BotonesTablaUsuarios from './components_internos/BotonesTablaUsuarios';
 //IMAGENES
 import Lupa from "../../images/search.png";
 import useAuth from '../../helpers/auth/useAuth';
+// import EditUserModal_Component from './components_internos/EditUserModal_Component';
 
 const TablaUsuarioComponent = () => {
 
     const [users, setUsers] = useState([]);
     const [searchUser, setSearchUser] = useState('');
     let { user } = useAuth()
+    // const [isOpenChangeEditModal, openChangeEditModal, closeChangeEditModal] = EditUserModal_Component()
+
 
     useEffect(() => {
         fetchUsers();
@@ -40,12 +43,12 @@ const TablaUsuarioComponent = () => {
         }
     };
 
-    const handleEditUser = async (userId) => {
+    const handleEditUser = async (user) => {
         try {
-            console.log(userId)
+            await editarUsuario(user)
             fetchUsers();
         } catch (error) {
-            console.error('Error deleting user:', error);
+            console.error('Error editar user:', error);
         }
     };
 

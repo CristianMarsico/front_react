@@ -1,0 +1,24 @@
+.contenedor_compraVenta {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+}
+
+.contenedor_compraVenta .hijo {
+    width: 40rem;
+}
+
+form {
+    width: 60%;
+    background-color: #3b476e;
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    font-size: 18px;
+    color: #fff;
+    padding: 10px;
+    border: 2px solid #fff;
+    border-radius: 15px;
+}

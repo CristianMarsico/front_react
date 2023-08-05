@@ -1,10 +1,10 @@
 import RUTAS from '../../helpers/RutasHelpers';
-import { NavLink, Navigate } from 'react-router-dom';
+import { NavLink, Navigate, Link } from 'react-router-dom';
 import { LogoutServices } from '../../services/LogoutServices';
 import useAuth from '../../helpers/auth/useAuth';
 import ImagesComponents from '../ImagesComponents';
-import Logo from "../../images/male_avatar.svg"
-import { Container, Navbar, Card } from 'react-bootstrap';
+import Logo from "../../images/logo.svg"
+import { Container, Navbar, Card, NavDropdown, Nav } from 'react-bootstrap';
 import NavegacionNav from './componentes_internos/NavegacionNav';
 
 
@@ -21,60 +21,64 @@ const General_Navbar_Component = () => {
 
     return (
         <>
-            < Navbar className="bg-body-tertiary bg_fondo" >
+            < Navbar expand="sm" className="bg-body-tertiary bg_fondo" style={{ backgroundColor: 'red' }}>
                 <Container>
                     <Navbar.Brand href="home">
-                        <Card.Img variant="top" src={Logo} style={{ width: '3rem' }} />
-                        {/* <ImagesComponents src={Logo} style={{ width: '3rem' }} className="logoNav" href={RUTAS.login} /> */}
+                        <Card.Img variant="top" src={Logo} style={{ width: '7rem' }} />
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
-                        {/* style, nombreClase, redirec, sitio */}
-                        <NavegacionNav
-                            style={customStyle}
-                            nombreClase="links"
-                            redirec="home"
-                            sitio="Home"
-                        />
+                        <Nav>
+                            <NavegacionNav
 
-                        <NavegacionNav
-                            style={customStyle}
-                            nombreClase="links"
-                            redirec="help"
-                            sitio="Help"
-                        />
-                        {
-                            (tieneRol("admin") || tieneRol("super_admin")) && (
-                                <>
-                                    <NavegacionNav
-                                        style={customStyle}
-                                        nombreClase="links"
-                                        redirec="admin"
-                                        sitio="Adminstración"
-                                    />
+                                style={customStyle}
+                                nombreClase="links"
+                                redirec="home"
+                                sitio="Home"
+                            />
 
-                                    {
-                                        tieneRol("super_admin") && (
-                                            <NavegacionNav
-                                                style={customStyle}
-                                                nombreClase="links"
-                                                redirec="superAdmin"
-                                                sitio="Super Administrador"
-                                            />
-                                        )
-                                    }
-                                </>
-                            )
-                        }
-                        <NavegacionNav
-                            style={customStyle}
-                            nombreClase="links"
-                            redirec="galeria"
-                            sitio="Galeria"
-                        />
-                        <Navbar.Text style={{ marginRight: '1.5rem' }}>
-                            <NavLink className="links" to="" onClick={cerrarSesion}>Cerra Sesion</NavLink>
-                        </Navbar.Text>
+                            <NavegacionNav
+                                style={customStyle}
+                                nombreClase="links"
+                                redirec="help"
+                                sitio="Help"
+                            />
+                            <>
+                                {
+                                    tieneRol("super_admin") && (
+                                        <NavegacionNav
+                                            style={customStyle}
+                                            nombreClase="links"
+                                            redirec="superAdmin"
+                                            sitio="Fomularios"
+                                        />
+                                    )
+                                }
+                            </>
+                            <NavegacionNav
+                                style={customStyle}
+                                nombreClase="links"
+                                redirec="galeria"
+                                sitio="Galeria"
+                            />
+                            <NavDropdown title="Menu" id="basic-nav-dropdown">
+                                <NavDropdown.Item href="#action/3.2">
+                                    <Navbar.Text>
+                                        <NavegacionNav
+                                            style={customStyle}
+                                            nombreClase="links"
+                                            redirec="admin"
+                                            sitio="Mi Perfil"
+                                        />
+                                    </Navbar.Text>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.2">
+                                    <Navbar.Text>
+                                        <NavLink className="links" to="" onClick={cerrarSesion}>Cerrar Sesion</NavLink>
+                                    </Navbar.Text>
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar >

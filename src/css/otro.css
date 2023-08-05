@@ -16,7 +16,13 @@
      /* margin: 0;
     padding: 20px;
     font-family: "Poppins"; */
-     background: var(--secondary);
+     /* background: var(--secondary); */
+     background-image: url('../images/img-background.jpg');
+     background-size: cover;
+     /* Ajustar la imagen al tamaño del cuerpo */
+     background-repeat: no-repeat;
+     /* Evitar que la imagen se repita */
+
 
  }
 
@@ -91,3 +97,15 @@ form textarea {
 form label span {
     margin-bottom: 10px;
 } */
+
+ /* POSICION DEL SVG DE AGREGAR MP */
+ .css-tj5bde-Svg {
+     display: inline-block !important;
+     /* fill: currentColor !important;  */
+     /* line-height: 0 !important; */
+     /* stroke: currentColor !important; */
+     /* stroke-width: 0 !important; */
+     transform: translate(0, 0);
+     position: relative !important;
+     color: #5b5d61 !important;
+ }

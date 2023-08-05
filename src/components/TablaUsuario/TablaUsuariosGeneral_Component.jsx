@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react';
 import { editarUsuario, eliminarUsuario, getAllUsarios } from '../../services/UserServices';
+import useAuth from '../../helpers/auth/useAuth';
 
 //COMPONENTES
 import BotonesTablaUsuarios from './components_internos/BotonesTablaUsuarios';
 
 //IMAGENES
 import Lupa from "../../images/search.png";
-import useAuth from '../../helpers/auth/useAuth';
-// import EditUserModal_Component from './components_internos/EditUserModal_Component';
+import { Table } from 'react-bootstrap';
+
 
 const TablaUsuarioComponent = () => {
 
     const [users, setUsers] = useState([]);
     const [searchUser, setSearchUser] = useState('');
-    let { user } = useAuth()
-    // const [isOpenChangeEditModal, openChangeEditModal, closeChangeEditModal] = EditUserModal_Component()
-
+    let { user, tieneRol } = useAuth()
 
     useEffect(() => {
         fetchUsers();
@@ -58,51 +57,61 @@ const TablaUsuarioComponent = () => {
     );
 
     return (
-        < div >
-            <form action="" className='search'>
+        <>
+            {/* <form action="" className='search'>
                 <input value={searchUser}
                     onChange={(e) => setSearchUser(e.target.value)}
                     type="text"
                     placeholder='search'>
                 </input>
                 <button type='submit'><img src={Lupa}></img></button>
-            </form>
+            </form> */}
+            < div className='contenedor-tabla' >
+                <div className='contenedor-tabla-hijo'>
 
-            <table className="tabla">
-                <caption>LISTA DE USUARIOS</caption>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Rol Usuario</th>
-                        <th>Usuario</th>
-                        <th>Usuario</th>
-                        <th>Botones</th>
-                    </tr>
-                </thead>
-                <tbody id="lista">
-                    {
-                        users.length > 0 ?
-                            filteredUsers.map((u) =>
-                                user.usuario != u.usuario &&
-                                <tr key={u.id}>
-                                    <td>{u.nombre}</td>
-                                    <td>{u.email}</td>
-                                    <td>{u.usuario}</td>
-                                    <td>{u.nombre}</td>
-                                    <BotonesTablaUsuarios user={u}
-                                        handleDeleteUser={handleDeleteUser}
-                                        handleEditUser={handleEditUser}
-                                    />
-                                </tr>
-                            )
-                            :
-                            <tr key={-1}>
-                                <td>No hay usuarios en la base de datos</td>
+
+                    <Table striped bordered variant="dark" className="tabla">
+                        <caption>LISTA DE USUARIOS</caption>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Usuario</th>
+                                <th>Email</th>
+                                {
+                                    tieneRol("super_admin") &&
+                                    < th > Botones</th>
+                                }
                             </tr>
-                    }
-                </tbody>
-            </table>
-        </div >
+                        </thead>
+                        <tbody>
+                            {
+                                users.length > 0
+                                    ?
+                                    filteredUsers.map((u) =>
+                                        user.usuario != u.usuario &&
+                                        <tr key={u.id}>
+                                            <td>{u.nombre}</td>
+                                            <td>{u.usuario}</td>
+                                            <td>{u.email}</td>
+                                            {
+                                                tieneRol("super_admin") &&
+                                                <BotonesTablaUsuarios user={u}
+                                                    handleDeleteUser={handleDeleteUser}
+                                                    handleEditUser={handleEditUser}
+                                                />
+                                            }
+                                        </tr>
+                                    )
+                                    :
+                                    <tr key={-1}>
+                                        <td>No hay usuarios en la base de datos</td>
+                                    </tr>
+                            }
+                        </tbody>
+                    </Table>
+                </div>
+            </div >
+        </>
     )
 }
 

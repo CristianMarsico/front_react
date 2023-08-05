@@ -1,16 +1,12 @@
-
 import { useEffect, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
-
 
 const EditUserModal_Component = ({ isOpen, close, user, handleEditUser }) => {
 
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
     const existenModificaciones = !!Object.keys(dirtyFields).length;
-    const [usuario, setUsuario] = useState(user.nombre)
-
-    console.log(usuario)
+    const [usuario, setUsuario] = useState(user.nombre);
 
     useEffect(() => {
         if (!isOpen) {

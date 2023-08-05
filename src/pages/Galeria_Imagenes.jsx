@@ -9,6 +9,7 @@ const Galeria_Imagenes = () => {
     let [userData, setUserData] = useState([]);
     const data = useLoaderData()
     let datos = data.data.response;
+    console.log(datos)
 
     useEffect(() => {
         setUserData(datos)

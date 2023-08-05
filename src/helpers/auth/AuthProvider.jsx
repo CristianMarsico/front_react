@@ -33,7 +33,7 @@ export default function AuthProvider({ children }) {
 
     const getRoleUser = () => {
         let str = localStorage.getItem("Rol")
-        let arr = str.split(',');
+        let arr = str?.split(',');
         return arr
     };
 

@@ -5,10 +5,14 @@ const SuperAdmin_Layout = () => {
     return (
         <div className="help-layout">
             <nav>
-                <NavLink to={RUTAS.compra}>Comprar MP</NavLink>
-                <NavLink to={RUTAS.venta}>Vender Hilado</NavLink>
+                <NavLink to={RUTAS.compra}>Registrar Materia Prima</NavLink>
+                <NavLink to={RUTAS.venta}>Registrar Venta de Hilado</NavLink>
             </nav>
-            <Outlet />
+            <div className="contenedor_compraVenta">
+                <div className="hijo" >
+                    <Outlet />
+                </div>
+            </div>
         </div>
     )
 }

@@ -9,7 +9,7 @@ const RUTAS = {
     faq: "faq",
     contact: "contact",
 
-    admin: "admin",
+    perfil: "perfil",
 
     carrers: "carrers",
     carrersId: ":id",
@@ -19,6 +19,9 @@ const RUTAS = {
     superAdmin: "superAdmin",
     compra: "compra",
     venta: "venta",
+    administracion: "administracion",
+    listaMP: "listaMP",
+    listaProductos: "listaProductos"
 
 }
 

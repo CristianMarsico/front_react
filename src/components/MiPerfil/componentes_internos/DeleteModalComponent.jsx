@@ -1,9 +1,9 @@
 import { Modal, Alert, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
-import useAuth from "../../helpers/auth/useAuth"
-import { RequiereTokenHelpers } from "../../helpers/RequiereTokenHelpers"
-import { DeleteUser } from "../../services/DeleteUser"
-import { LogoutServices } from "../../services/LogoutServices"
+import useAuth from "../../../helpers/auth/useAuth"
+import { RequiereTokenHelpers } from "../../../helpers/RequiereTokenHelpers"
+// import { DeleteUser } from "../../services/DeleteUser"
+import { LogoutServices } from "../../../services/LogoutServices"
 
 const DeleteModalComponent = ({ isOpen, close }) => {
 

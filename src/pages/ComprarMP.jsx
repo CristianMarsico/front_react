@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../helpers/auth/useAuth';
-import { getAll } from '../services/MateriaPrima';
+import { getMPByName } from '../services/MateriaPrima';
 import GeneralCompra_Component from '../components/Compra/GeneralCompra_Component';
 
 
@@ -12,12 +12,12 @@ const ComprarMP = () => {
     if (!tieneToken()) deleteUserLocal();
 
     useEffect(() => {
-        getAllMP();
+        getMPPorNombre();
     }, [])
 
-    async function getAllMP() {
+    async function getMPPorNombre() {
         try {
-            let response = await getAll();
+            let response = await getMPByName();
             let mp = response.data.response;
             setProductos(mp);
         } catch (err) {
@@ -31,7 +31,7 @@ const ComprarMP = () => {
     return (
         <>
             <GeneralCompra_Component
-                getAllMP={getAllMP}
+                getMPPorNombre={getMPPorNombre}
                 productos={productos}
             />
         </>

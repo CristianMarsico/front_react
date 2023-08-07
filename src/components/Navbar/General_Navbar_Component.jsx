@@ -52,9 +52,17 @@ const General_Navbar_Component = () => {
                                             redirec="superAdmin"
                                             sitio="Fomularios"
                                         />
+
                                     )
                                 }
                             </>
+                            <NavegacionNav
+                                style={customStyle}
+                                nombreClase="links"
+                                redirec="administracion"
+                                sitio="Administración"
+                            />
+
                             <NavegacionNav
                                 style={customStyle}
                                 nombreClase="links"
@@ -67,7 +75,7 @@ const General_Navbar_Component = () => {
                                         <NavegacionNav
                                             style={customStyle}
                                             nombreClase="links"
-                                            redirec="admin"
+                                            redirec="perfil"
                                             sitio="Mi Perfil"
                                         />
                                     </Navbar.Text>

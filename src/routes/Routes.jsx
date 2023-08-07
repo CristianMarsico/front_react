@@ -12,7 +12,7 @@ import CarreraError from '../pages/CarreraError'
 import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
 import Registro from '../pages/Registro'
-import Admin from '../pages/Admin'
+import Perfil from '../pages/Perfil'
 import Galeria_Imagenes, { LoaderGaleriaImagen } from '../pages/Galeria_Imagenes'
 import ComprarMP from '../pages/ComprarMP'
 import Venta_Hilado from '../pages/Venta_Hilado'
@@ -30,9 +30,13 @@ import LayoutLoginAndRegister from '../layouts/LayoutLoginAndRegister'
 import LayoutCarreras from '../layouts/LayoutCarreras'
 import LayoutsAyuda from '../layouts/LayoutsAyuda'
 import SuperAdmin_Layout from '../layouts/SuperAdmin_Layout'
+import LayoutAdministracion from '../layouts/LayoutAdministracion'
 
 import ROLES from '../helpers/RolesHelpers'
 import RUTAS from '../helpers/RutasHelpers'
+import ListaMP from '../pages/ListaMP'
+import ListaProductos from '../pages/ListaProductos'
+import ListaUsuarios from '../pages/ListaUsuarios'
 
 export const router = createBrowserRouter(
     [
@@ -133,11 +137,34 @@ export const router = createBrowserRouter(
 
 
                 {
-                    path: RUTAS.admin,
+                    path: RUTAS.perfil,
+                    element:
+                        <Perfil />
+                },
+
+                {
+                    path: RUTAS.administracion,
                     element:
                         < PrivateRoutes props={{ super: ROLES.super, admin: ROLES.admin }}  >
-                            <Admin />
-                        </PrivateRoutes>
+                            <LayoutAdministracion />
+                        </PrivateRoutes>,
+                    children: [
+                        {
+                            path: RUTAS.listaMP,
+                            element:
+                                < ListaMP />
+                        },
+                        {
+                            path: RUTAS.listaProductos,
+                            element:
+                                < ListaProductos />
+                        },
+                        {
+                            path: RUTAS.listaUsuarios,
+                            element:
+                                < ListaUsuarios />
+                        },
+                    ]
                 },
             ]
         }

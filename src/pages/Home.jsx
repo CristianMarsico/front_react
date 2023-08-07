@@ -1,13 +1,10 @@
 import React from 'react';
 // import { RequiereTokenHelpers } from '../helpers/RequiereTokenHelpers'
-import TablaUsuariosGeneral_Component from '../components/TablaUsuario/TablaUsuariosGeneral_Component';
-
 const Home = () => {
 
     return (
         <>
-            <TablaUsuariosGeneral_Component />
-
+            <h1>Hola</h1>
         </>
     )
 }

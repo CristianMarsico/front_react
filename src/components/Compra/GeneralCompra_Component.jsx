@@ -9,7 +9,7 @@ import customStylesTagSelect from '../../helpers/customStyles/customStylesTagSel
 import InputCompraVenta from '../Inputs/Compra_Venta/InputCompraVenta';
 
 
-const GeneralCompra_Component = ({ getAllMP, productos }) => {
+const GeneralCompra_Component = ({ getMPPorNombre, productos }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     // let navigate = useNavigate();
@@ -49,7 +49,7 @@ const GeneralCompra_Component = ({ getAllMP, productos }) => {
         try {
             let response = await CompraServices(datosEnviados);
             mostrarAlertCompraSuccess(response.data);
-            getAllMP();
+            getMPPorNombre();
             e.target.reset();
             return;
         } catch (err) {
@@ -62,71 +62,75 @@ const GeneralCompra_Component = ({ getAllMP, productos }) => {
 
     return (
         <>
-            <Form style={{ color: "#fff", fontSize: "18px", border: "2px solid #fff", padding: "10px" }} onSubmit={handleSubmit(enviarDatos)}>
-                <div className="d-flex justify-content-center">
-                    <Button onClick={toggleShowPwd} variant="primary" size="mg">{btnText}</Button>
-                </div>
-                {!showInput ? (
-                    <InputCompraVenta
-                        type="text"
-                        name="producto"
-                        label="Producto"
-                        placeholder="Ingrese el producto*"
-                        register={register}
-                        required={true}
-                        getDatos={getDatos}
-                        errors={errors}
-                    />
-                ) : (
-                    <Form.Group controlId="producto">
-                        <Form.Label>Buscar en mis productos</Form.Label>
-                        <Select
-                            placeholder="Buscar..."
-                            name='producto'
-                            styles={customStylesTagSelect}
-                            value={opciones.find(opcion => opcion.value === datos.producto)}
-                            options={opciones}
-                            onChange={(opcion) => setDatos({ ...datos, producto: opcion ? opcion.value : "" })}
+
+            <div className="contenedor_compraVenta">
+                <div className="hijo" >
+                    <Form style={{ color: "#fff", fontSize: "18px", border: "2px solid #fff", padding: "10px" }} onSubmit={handleSubmit(enviarDatos)}>
+                        <div className="d-flex justify-content-center">
+                            <Button onClick={toggleShowPwd} variant="primary" size="mg">{btnText}</Button>
+                        </div>
+                        {!showInput ? (
+                            <InputCompraVenta
+                                type="text"
+                                name="producto"
+                                label="Producto"
+                                placeholder="Ingrese el producto*"
+                                register={register}
+                                required={true}
+                                getDatos={getDatos}
+                                errors={errors}
+                            />
+                        ) : (
+                            <Form.Group controlId="producto">
+                                <Form.Label>Buscar en mis productos</Form.Label>
+                                <Select
+                                    placeholder="Buscar..."
+                                    name='producto'
+                                    styles={customStylesTagSelect}
+                                    value={opciones.find(opcion => opcion.value === datos.producto)}
+                                    options={opciones}
+                                    onChange={(opcion) => setDatos({ ...datos, producto: opcion ? opcion.value : "" })}
+                                />
+                                <small className='fail'>{errors?.producto?.message}</small>
+                            </Form.Group>
+                        )}
+
+                        <InputCompraVenta
+                            type="number"
+                            name="cantidad"
+                            label="Cantidad"
+                            placeholder="Ingrese cantidad*"
+                            register={register}
+                            required={true}
+                            getDatos={getDatos}
+                            errors={errors}
                         />
-                        <small className='fail'>{errors?.producto?.message}</small>
-                    </Form.Group>
-                )}
-
-                <InputCompraVenta
-                    type="number"
-                    name="cantidad"
-                    label="Cantidad"
-                    placeholder="Ingrese cantidad*"
-                    register={register}
-                    required={true}
-                    getDatos={getDatos}
-                    errors={errors}
-                />
-                <InputCompraVenta
-                    type="number"
-                    name="precio_unitario"
-                    label="Precio por unidad"
-                    placeholder="Ingrese precio unitario*"
-                    register={register}
-                    required={true}
-                    getDatos={getDatos}
-                    errors={errors}
-                />
-                <InputCompraVenta
-                    type="date"
-                    name="fecha"
-                    label="Fecha"
-                    placeholder="YYYY/MM/DD"
-                    register={register}
-                    required={true}
-                    getDatos={getDatos}
-                    errors={errors}
-                />
-                <div className="d-flex justify-content-center">
-                    <Button variant="primary" type="submit" size="lg">Comprar</Button>
+                        <InputCompraVenta
+                            type="number"
+                            name="precio_unitario"
+                            label="Precio por unidad"
+                            placeholder="Ingrese precio unitario*"
+                            register={register}
+                            required={true}
+                            getDatos={getDatos}
+                            errors={errors}
+                        />
+                        <InputCompraVenta
+                            type="date"
+                            name="fecha"
+                            label="Fecha"
+                            placeholder="YYYY/MM/DD"
+                            register={register}
+                            required={true}
+                            getDatos={getDatos}
+                            errors={errors}
+                        />
+                        <div className="d-flex justify-content-center">
+                            <Button variant="primary" type="submit" size="lg">Comprar</Button>
+                        </div>
+                    </Form>
                 </div>
-            </Form>
-
+            </div>
         </>
     )
 }

@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { useModal } from "../../../helpers/hooks/useModal";
+import { useModal } from "../../../../helpers/hooks/useModal";
 import EditUserModal_Component from "./EditUserModal_Component"
 
 const BotonesTablaUsuarios = ({ user, handleDeleteUser, handleEditUser }) => {
@@ -8,7 +8,7 @@ const BotonesTablaUsuarios = ({ user, handleDeleteUser, handleEditUser }) => {
 
     return (
         <>
-            <td >
+            <td className="dimensionBtn">
                 <Button
                     variant="danger"
                     onClick={() => { handleDeleteUser(user.id) }}

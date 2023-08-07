@@ -1,13 +1,13 @@
 import useAuth from "../helpers/auth/useAuth"
-import DeleteModalComponent from "../components/Admin/DeleteModalComponent"
-import CambiarPassModalComponent from "../components/Admin/CambiarPassModalComponent"
+import DeleteModalComponent from "../components/MiPerfil/componentes_internos/DeleteModalComponent"
+import CambiarPassModalComponent from "../components/MiPerfil/componentes_internos/CambiarPassModalComponent"
 import { useModal } from '../helpers/hooks/useModal';
-import Edit_User_Modal_Component from "../components/Admin/Edit_User_Modal_Component";
-import Perfil from "../images/male_avatar.svg"
+import Edit_User_Modal_Component from "../components/MiPerfil/componentes_internos/Edit_User_Modal_Component";
+import Foto from "../images/male_avatar.svg"
 import { Button } from "react-bootstrap"
 import Card from 'react-bootstrap/Card';
 
-const Admin = () => {
+const Perfil = () => {
 
     let { user, getRoleUser } = useAuth()
 
@@ -20,18 +20,20 @@ const Admin = () => {
     return (
         <>
             <Card style={{ width: '25rem', margin: "auto auto", background: "transparent", border: "none" }}>
-                <Card.Img variant="top" src={Perfil} style={{ width: '15rem', margin: "auto auto" }} />
+                <Card.Img variant="top" src={Foto} style={{ width: '15rem', margin: "auto auto" }} />
                 <Card.Body>
                     <Card.Title style={{ textAlign: "center", fontSize: "24px", color: "#fff" }}>{user.usuario}</Card.Title>
                     <Card.Text style={{ textAlign: "center", color: "#fff" }}>
                         {
                             getRoleUser().map((user, index) => (
-                                user === "super_admin" ?
-                                    <li key={index}> Super Administrador</li>
-                                    :
-                                    <li key={index}> Administrador</li>
-                            )
-                            )
+                                user === "super_admin" ? (
+                                    <li key={index}>Super Administrador</li>
+                                ) : user === "administrador" ? (
+                                    <li key={index}>Administrador</li>
+                                ) : (
+                                    <li key={index}>Rol de Usuario</li>
+                                )
+                            ))
                         }
                     </Card.Text>
                     <div className="d-flex justify-content-center">
@@ -68,4 +70,4 @@ const Admin = () => {
     )
 }
 
-export default Admin
+export default Perfil

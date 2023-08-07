@@ -50,77 +50,80 @@ const GeneralVenta_component = ({ getProductos, productos }) => {
 
 
     return (
+        <div className="contenedor_compraVenta">
+            <div className="hijo" >
+                <Form onSubmit={handleSubmit(enviarDatos)}>
+                    <Form.Group controlId="id">
+                        <Form.Label>Buscar en mis productos</Form.Label>
+                        <Select
+                            placeholder="Buscar..."
+                            name='id'
+                            styles={customStylesTagSelect}
+                            value={opciones.find(opcion => opcion.value === datos.id)}
+                            options={opciones}
+                            onChange={(opcion) => setDatos({ ...datos, id: opcion ? opcion.value : "" })}
+                        />
+                        <small className='fail'>{errors?.value?.message}</small>
+                    </Form.Group>
 
-        <Form onSubmit={handleSubmit(enviarDatos)}>
-            <Form.Group controlId="id">
-                <Form.Label>Buscar en mis productos</Form.Label>
-                <Select
-                    placeholder="Buscar..."
-                    name='id'
-                    styles={customStylesTagSelect}
-                    value={opciones.find(opcion => opcion.value === datos.id)}
-                    options={opciones}
-                    onChange={(opcion) => setDatos({ ...datos, id: opcion ? opcion.value : "" })}
-                />
-                <small className='fail'>{errors?.value?.message}</small>
-            </Form.Group>
-
-            <InputCompraVenta
-                type="number"
-                name="cantidad"
-                label="Cantidad"
-                placeholder="Ingrese cantidad*"
-                register={register}
-                required={true}
-                getDatos={getDatos}
-                errors={errors}
-            />
+                    <InputCompraVenta
+                        type="number"
+                        name="cantidad"
+                        label="Cantidad"
+                        placeholder="Ingrese cantidad*"
+                        register={register}
+                        required={true}
+                        getDatos={getDatos}
+                        errors={errors}
+                    />
 
 
 
-            <Form.Group>
-                <Form.Label>Seleccionar Ciudad</Form.Label>
-                <Form.Select aria-label="Default select example"
-                    name='origen'
+                    <Form.Group>
+                        <Form.Label>Seleccionar Ciudad</Form.Label>
+                        <Form.Select aria-label="Default select example"
+                            name='origen'
 
-                    {...register('origen', {
-                        required: {
-                            value: true,
-                            message: "Debe seleccionar una ciudad*"
-                        }
-                    })}
-                >
-                    <option value="">Selecciona Ciudad</option>
-                    <option value="stock_BuenosAires">Ciudad Buenos Aires</option>
-                    <option value="stock_loberia">Ciudad Lobería</option>
-                </Form.Select>
-                <small className='fail'>{errors?.origen?.message}</small>
-            </Form.Group>
+                            {...register('origen', {
+                                required: {
+                                    value: true,
+                                    message: "Debe seleccionar una ciudad*"
+                                }
+                            })}
+                        >
+                            <option value="">Selecciona Ciudad</option>
+                            <option value="stock_BuenosAires">Ciudad Buenos Aires</option>
+                            <option value="stock_loberia">Ciudad Lobería</option>
+                        </Form.Select>
+                        <small className='fail'>{errors?.origen?.message}</small>
+                    </Form.Group>
 
-            <Form.Group>
-                <Form.Label>Tipo de venta</Form.Label>
-                <Form.Select aria-label="Default select example"
-                    name='tipo_venta'
-                    type="text"
-                    as="select"
-                    {...register('tipo_venta', {
-                        required: {
-                            value: true,
-                            message: "Debe seleccionar una ciudad*"
-                        }
-                    })}
-                >
-                    <option value="">Selecciona tipo consumidor</option>
-                    <option value="precio_venta_mayorista">Venta mayorista</option>
-                    <option value="precio_venta_minorista">Venta minorista</option>
-                </Form.Select>
-                <small className='fail'>{errors?.tipo_venta?.message}</small>
-            </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Tipo de venta</Form.Label>
+                        <Form.Select aria-label="Default select example"
+                            name='tipo_venta'
+                            type="text"
+                            as="select"
+                            {...register('tipo_venta', {
+                                required: {
+                                    value: true,
+                                    message: "Debe seleccionar una ciudad*"
+                                }
+                            })}
+                        >
+                            <option value="">Selecciona tipo consumidor</option>
+                            <option value="precio_venta_mayorista">Venta mayorista</option>
+                            <option value="precio_venta_minorista">Venta minorista</option>
+                        </Form.Select>
+                        <small className='fail'>{errors?.tipo_venta?.message}</small>
+                    </Form.Group>
 
-            <div className="d-flex justify-content-center">
-                <Button variant="primary" type="submit" size="lg">Registrar Venta</Button>
+                    <div className="d-flex justify-content-center">
+                        <Button variant="primary" type="submit" size="lg">Registrar Venta</Button>
+                    </div>
+                </Form>
             </div>
-        </Form>
+        </div>
     )
 }
 

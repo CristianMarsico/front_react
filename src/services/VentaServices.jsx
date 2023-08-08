@@ -1,10 +1,10 @@
 import axios from 'axios';
-// import { RequiereTokenHelpers } from '../helpers/RequiereTokenHelpers';
+import { RequiereTokenHelpers } from '../helpers/RequiereTokenHelpers';
 
 export async function VentaServices(datosEnviados, e) {
     const URL_VENTA = "http://localhost:3000/api/venta";
 
-    // let token = await RequiereTokenHelpers();
+    let token = await RequiereTokenHelpers();
 
     let userData = {
         producto_id: datosEnviados.id,
@@ -13,14 +13,10 @@ export async function VentaServices(datosEnviados, e) {
         tipo_venta: datosEnviados.tipo_venta,
 
     };
-    console.log("userData")
-
-    console.log(userData)
-
     return await axios.post(URL_VENTA, userData, {
-        // headers: {
-        //     'Authorization': `Bearer ${token}`
-        // },
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
         withCredentials: true
     });
 }

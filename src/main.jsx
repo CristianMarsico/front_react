@@ -12,7 +12,6 @@ import './css/login.css'
 // import './css/tabla.css'
 // import './css/inputSearch.css'
 import './css/listaImagenes.css'
-import './css/compra_venta.css'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

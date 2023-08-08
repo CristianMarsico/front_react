@@ -7,12 +7,14 @@ import { mostrarAlertSuccess, mostrarAlertError } from '../helpers/sweetAlerts/A
 import InputsLoginComponent from '../components/Inputs/Login/InputsLoginComponent';
 import InputRegitroComponent from '../components/Inputs/Login/InputRegitroComponent';
 import { RegistroService } from '../services/RegistroService';
+import BtnConfirmar_Components from '../components/botones/BtnConfirmar_Components';
+
 
 
 const Registro = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { tieneToken, saveUsuerLocal, deleteUserLocal, saveToken } = useAuth();
+    const { tieneToken, deleteUserLocal } = useAuth();
     let navigate = useNavigate();
 
     const [showPwd, setShowPwd] = useState(false);
@@ -35,10 +37,8 @@ const Registro = () => {
     if (!tieneToken()) deleteUserLocal();
 
     let enviarDatos = async (datosEnviados, e) => {
-        console.log(datosEnviados)
         try {
             let response = await RegistroService(datosEnviados, e);
-            console.log(response);
             mostrarAlertSuccess(response.data);
             setTimeout(() => {
                 navigate("/")
@@ -125,9 +125,12 @@ const Registro = () => {
                     <div className="d-flex justify-content-end">
                         <p className="d-inline-block m-0 pe-2 pt-2 fst-italic fw-semibold pointer forgot-text"><Link to="/">Volver al Login </Link></p>
                     </div>
-                    <div className="px-5">
-                        <button className="text-white btn-purple mt-3 text-center py-2 fw-semibold fs-4 rounded-3 w-100 border border-4 border-white shadow">Registrar</button>
-                    </div>
+                    <BtnConfirmar_Components
+                        variant="primary"
+                        width="12rem"
+                        nombreAccion="Registrarse"
+                        fontSize="24px"
+                    />
                 </form>
             </div>
         </>

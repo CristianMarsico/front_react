@@ -33,10 +33,8 @@ const GeneralVenta_component = ({ getProductos, productos }) => {
             datosEnviados.id = datos.id;
         try {
             let response = await VentaServices(datosEnviados);
-            console.log(response)
-            mostrarAlertCompraSuccess(response.data);
-
-            // getProductos();
+            mostrarAlertCompraSuccess(response.data)
+            getProductos();
             e.target.reset();
             return;
         } catch (err) {
@@ -44,7 +42,6 @@ const GeneralVenta_component = ({ getProductos, productos }) => {
                 return mostrarAlertError(err.response.data.error);
             else
                 mostrarAlertError("Error de red. Inténtalo más tarde.");
-            console.log("error")
         }
     }
 

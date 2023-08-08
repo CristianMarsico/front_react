@@ -3,6 +3,7 @@
     justify-content: center;
     gap: 10px;
     margin: 5px 0 5px 0;
+    flex-wrap: wrap;
 }
 
 .help-layout nav a {
@@ -22,4 +23,11 @@
 .help-layout nav a.active {
     background: rgb(240, 156, 0);
     color: white;
+}
+
+@media all and (max-width:500px) {
+    .help-layout nav {
+        display: flex;
+        flex-direction: column;
+    }
 }

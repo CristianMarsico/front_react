@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-// import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { CompraServices } from '../../services/CompraServices';
 import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../helpers/sweetAlerts/Alerts';
@@ -10,10 +9,8 @@ import InputCompraVenta from '../Inputs/Compra_Venta/InputCompraVenta';
 
 
 const GeneralCompra_Component = ({ getMPPorNombre, productos }) => {
+
     const { register, handleSubmit, formState: { errors } } = useForm();
-
-    // let navigate = useNavigate();
-
     const [showInput, setShowInput] = useState(false);
     const [btnText, setBtnText] = useState('Buscar en mis productos');
 
@@ -29,9 +26,9 @@ const GeneralCompra_Component = ({ getMPPorNombre, productos }) => {
     const toggleShowPwd = () => {
         setShowInput(!showInput);
         if (showInput)
-            setBtnText('Buscar en mis productos');
+            setBtnText('Buscar Materia Prima');
         else
-            setBtnText('Ingresar Nuevo');
+            setBtnText('Ingresar Nueva');
     };
 
     let getDatos = (e) => {

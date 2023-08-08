@@ -3,7 +3,6 @@ import { Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 const NavegacionNav = ({ style, nombreClase, redirec, sitio }) => {
-    const isExactMatch = true;
     return (
         <Navbar.Text style={style}>
             <NavLink className={nombreClase} to={redirec}>{sitio}</NavLink>

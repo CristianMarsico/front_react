@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 const InputCompraVenta = ({ type, name, label, placeholder, register, required, getDatos, errors }) => {
     return (
         <Form.Group >
-            <Form.Label>{label}</Form.Label>
+            <Form.Label className='label-modal'>{label}</Form.Label>
             <Form.Control
                 type={type}
                 placeholder={placeholder}

@@ -1,4 +1,4 @@
-.contenedor_compraVenta {
+/* .contenedor_compraVenta {
     max-width: 1200px;
     display: flex;
     flex-direction: row;
@@ -21,4 +21,36 @@ form {
     padding: 10px;
     border: 2px solid #fff;
     border-radius: 15px;
+} */
+
+:root {
+    --texto: rgb(61, 57, 57);
+    --cabezera: rgb(230, 192, 121);
+    --primario: rgb(236, 216, 179);
+    --secundario: rgb(252, 237, 210);
+    --terciario: rgb(250, 245, 233);
+}
+
+.header-modal {
+    background-color: var(--cabezera);
+}
+
+.modal-body {
+
+    padding: 0 !important;
+}
+
+.label-modal {
+    /* display: inline-block; */
+    color: var(--texto) !important;
+}
+
+.form-modal {
+    display: flex;
+    flex-direction: column;
+    background-image: url('../images/img-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 2px solid var(--cabezera);
+    padding: 15px !important;
 }

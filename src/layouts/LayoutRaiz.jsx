@@ -8,6 +8,7 @@ import Breadcrumbs_Component from '../components/Breadcrumbs/Breadcrumbs_Compone
 const LayoutRaiz = () => {
 
     let load = useNavigation()
+
     let { tieneToken } = useAuth()
 
 

@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import '../../../css/tabla.css'
 import useAuth from '../../../helpers/auth/useAuth';
-import { Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { getAllMP } from '../../../services/MateriaPrima';
 import BotonesTablaUsuarios from '../TablaUsuario/components_internos/BotonesTablaUsuarios';
-import Lupa from '../../../images/search.png'
+import { useModal } from '../../../helpers/hooks/useModal';
+import ModalCompraMP_Components from '../../ModalCompraMP_Components';
 
 const GeneralTablaMP_Components = () => {
     const [materiaPrima, setMateriaPrima] = useState([]);
     const [searchMP, setSearchMP] = useState('');
-    let { user, tieneRol } = useAuth()
+    let { tieneRol } = useAuth()
+    const [isOpenAddMPModal, openChangeAddMPModal, closeChangeAddMPModal] = useModal()
+
 
     useEffect(() => {
         fetchMateriaPrima();
@@ -48,14 +51,17 @@ const GeneralTablaMP_Components = () => {
 
     //realizo la busqueda de usuarios 
     const filteredMP = materiaPrima.filter((mp) =>
-
         mp.nombre?.toLowerCase().includes(searchMP.toLowerCase())
     );
 
     return (
         <>
+
             <div className="table">
                 <section className="table__header">
+                    <Button variant="primary" style={{ width: '15rem' }} onClick={openChangeAddMPModal}>
+                        Agregar Materia Prima
+                    </Button>
                     <h3>Listado de Materia Prima</h3>
                     <div className="input-group">
                         <input
@@ -100,6 +106,12 @@ const GeneralTablaMP_Components = () => {
                     </table>
                 </section>
             </div>
+            <ModalCompraMP_Components
+                isOpen={isOpenAddMPModal}
+                close={closeChangeAddMPModal}
+                fetchMateriaPrima={fetchMateriaPrima}
+                materiaPrima={materiaPrima}
+            />
         </>
     )
 }

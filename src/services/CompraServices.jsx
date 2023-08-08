@@ -1,10 +1,10 @@
 import axios from 'axios';
-// import { RequiereTokenHelpers } from '../helpers/RequiereTokenHelpers';
+import { RequiereTokenHelpers } from '../helpers/RequiereTokenHelpers';
 
 export async function CompraServices(datosEnviados, e) {
     const URL_COMPRA = "http://localhost:3000/api/compra";
 
-    // let token = await RequiereTokenHelpers();
+    let token = await RequiereTokenHelpers();
 
     let userData = {
         producto: datosEnviados.producto,
@@ -15,9 +15,9 @@ export async function CompraServices(datosEnviados, e) {
     };
 
     return await axios.post(URL_COMPRA, userData, {
-        // headers: {
-        //     'Authorization': `Bearer ${token}`
-        // },
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
         withCredentials: true
     });
 }

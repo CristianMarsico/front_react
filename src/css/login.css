@@ -3,7 +3,7 @@
     --cabezera: rgb(250, 184, 61);
     --primario: rgb(236, 216, 179);
     --secundario: rgb(252, 237, 210);
-    --terciario: rgb(250, 245, 233);
+    --terciario: rgb(250, 246, 237);
 }
 
 .contenedor-login {
@@ -23,11 +23,10 @@
 }
 
 .form-container-lavender {
-    border: 10px solid red;
     background-color: var(--terciario);
     width: 25rem;
     padding: 3rem;
-    /* border-radius: var(--bs-border-radius-2xl); */
+    border-radius: var(--bs-border-radius-2xl);
     --bs-border-width: 4px;
     --bs-border-opacity: 1;
     border: var(--bs-border-width) var(--bs-border-style) var(--cabezera);

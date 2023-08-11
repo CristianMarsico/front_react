@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 
 const EditUserModal_Component = ({ isOpen, close, user, handleEditUser }) => {
 
+
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
     const existenModificaciones = !!Object.keys(dirtyFields).length;
     const [usuario, setUsuario] = useState(user.nombre);

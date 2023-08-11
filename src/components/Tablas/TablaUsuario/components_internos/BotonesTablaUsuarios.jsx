@@ -2,26 +2,27 @@ import { Button } from "react-bootstrap";
 import { useModal } from "../../../../helpers/hooks/useModal";
 import EditUserModal_Component from "./EditUserModal_Component"
 
-const BotonesTablaUsuarios = ({ user, handleDeleteUser, handleEditUser }) => {
+const BotonesTablaUsuarios = ({ user, handleDeleteUser, handleEditUser, moverStock }) => {
 
     const [isOpenChangeEditModal, openChangeEditModal, closeChangeEditModal] = useModal();
 
+
+
     return (
         <>
-            <td className="dimensionBtn">
-                <Button
+            <td className="td_btn">
+                <Button className="dimensionBtn"
                     variant="danger"
                     onClick={() => { handleDeleteUser(user.id) }}
-                    style={{ margin: '4px' }}
                 >Eliminar
                 </Button>
-                <Button
+
+                <Button className="dimensionBtn"
                     variant="primary"
-                    className="ml-5"
                     onClick={openChangeEditModal}
                 >Editar
                 </Button>
-            </td>
+            </td >
 
             <EditUserModal_Component
                 isOpen={isOpenChangeEditModal}

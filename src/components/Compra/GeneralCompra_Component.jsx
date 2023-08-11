@@ -5,7 +5,7 @@ import { CompraServices } from '../../services/CompraServices';
 import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../helpers/sweetAlerts/Alerts';
 import Select from 'react-select';
 import customStylesTagSelect from '../../helpers/customStyles/customStylesTagSelect';
-import InputCompraVenta from '../Inputs/Compra_Venta/InputCompraVenta';
+
 
 
 const GeneralCompra_Component = ({ getMPPorNombre, productos }) => {
@@ -67,7 +67,7 @@ const GeneralCompra_Component = ({ getMPPorNombre, productos }) => {
                             <Button onClick={toggleShowPwd} variant="primary" size="mg">{btnText}</Button>
                         </div>
                         {!showInput ? (
-                            <InputCompraVenta
+                            <InputBasico_Components
                                 type="text"
                                 name="producto"
                                 label="Producto"
@@ -92,7 +92,7 @@ const GeneralCompra_Component = ({ getMPPorNombre, productos }) => {
                             </Form.Group>
                         )}
 
-                        <InputCompraVenta
+                        <InputBasico_Components
                             type="number"
                             name="cantidad"
                             label="Cantidad"
@@ -102,7 +102,7 @@ const GeneralCompra_Component = ({ getMPPorNombre, productos }) => {
                             getDatos={getDatos}
                             errors={errors}
                         />
-                        <InputCompraVenta
+                        <InputBasico_Components
                             type="number"
                             name="precio_unitario"
                             label="Precio por unidad"
@@ -112,7 +112,7 @@ const GeneralCompra_Component = ({ getMPPorNombre, productos }) => {
                             getDatos={getDatos}
                             errors={errors}
                         />
-                        <InputCompraVenta
+                        <InputBasico_Components
                             type="date"
                             name="fecha"
                             label="Fecha"

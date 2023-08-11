@@ -39,22 +39,17 @@ const General_Navbar_Component = () => {
                             <>
                                 {
                                     tieneRol("super_admin") && (
+
                                         <NavegacionNav
                                             style={customStyle}
                                             nombreClase="links"
-                                            redirec="superAdmin"
-                                            sitio="Fomularios"
+                                            redirec="administracion"
+                                            sitio="Administración"
                                         />
 
                                     )
                                 }
                             </>
-                            <NavegacionNav
-                                style={customStyle}
-                                nombreClase="links"
-                                redirec="administracion"
-                                sitio="Administración"
-                            />
 
                             <NavegacionNav
                                 style={customStyle}

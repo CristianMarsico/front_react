@@ -25,10 +25,10 @@ form {
 
 :root {
     --texto: rgb(61, 57, 57);
-    --cabezera: rgb(230, 192, 121);
+    --cabezera: rgb(250, 184, 61);
     --primario: rgb(236, 216, 179);
     --secundario: rgb(252, 237, 210);
-    --terciario: rgb(250, 245, 233);
+    --terciario: rgb(250, 246, 237);
 }
 
 .header-modal {
@@ -36,7 +36,6 @@ form {
 }
 
 .modal-body {
-
     padding: 0 !important;
 }
 
@@ -48,9 +47,12 @@ form {
 .form-modal {
     display: flex;
     flex-direction: column;
-    background-image: url('../images/img-background.jpg');
+    /* background-image: url('../images/img-background.jpg');
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
+    /* filter: blur(2px); */
+    background-color: var(--terciario);
     border: 2px solid var(--cabezera);
-    padding: 15px !important;
+    padding: 5px 15px !important;
+
 }

@@ -3,16 +3,20 @@ import '../../../css/tabla.css'
 import useAuth from '../../../helpers/auth/useAuth';
 import { Button } from 'react-bootstrap';
 import { getAllMP } from '../../../services/MateriaPrima';
-import BotonesTablaUsuarios from '../TablaUsuario/components_internos/BotonesTablaUsuarios';
 import { useModal } from '../../../helpers/hooks/useModal';
-import ModalCompraMP_Components from '../../ModalCompraMP_Components';
+import ModalCompraMP_Components from './Modal/ModalCompraMP_Components';
+
+import BtnEditarMP from '../../botones/BotonesMateriaPrima/BtnEditarMP';
+import BtnEliminarMP from '../../botones/BotonesMateriaPrima/BtnEliminarMP';
+import BtnDescontarStock from '../../botones/BotonesMateriaPrima/BtnDescontarStock';
+
 
 const GeneralTablaMP_Components = () => {
     const [materiaPrima, setMateriaPrima] = useState([]);
     const [searchMP, setSearchMP] = useState('');
     let { tieneRol } = useAuth()
-    const [isOpenAddMPModal, openChangeAddMPModal, closeChangeAddMPModal] = useModal()
 
+    const [isOpenAddMPModal, openChangeAddMPModal, closeChangeAddMPModal] = useModal()
 
     useEffect(() => {
         fetchMateriaPrima();
@@ -30,23 +34,14 @@ const GeneralTablaMP_Components = () => {
         }
     };
 
-
-    const handleDeleteUser = async (userId) => {
-        try {
-            await eliminarUsuario(userId);
-            fetchUsers();
-        } catch (error) {
-            console.error('Error deleting user:', error);
-        }
-    };
-
-    const handleEditUser = async (user) => {
-        try {
-            await editarUsuario(user)
-            fetchUsers();
-        } catch (error) {
-            console.error('Error editar user:', error);
-        }
+    const editarMP = async (mp) => {
+        console.log(mp)
+        // try {
+        //     await editarUsuario(user)
+        //     fetchUsers();
+        // } catch (error) {
+        //     console.error('Error al editar materia prima:', error);
+        // }
     };
 
     //realizo la busqueda de usuarios 
@@ -56,13 +51,12 @@ const GeneralTablaMP_Components = () => {
 
     return (
         <>
-
             <div className="table">
                 <section className="table__header">
-                    <Button variant="primary" style={{ width: '15rem' }} onClick={openChangeAddMPModal}>
+                    <h3>Listado de Materia Prima</h3>
+                    <Button variant="primary" onClick={openChangeAddMPModal}>
                         Agregar Materia Prima
                     </Button>
-                    <h3>Listado de Materia Prima</h3>
                     <div className="input-group">
                         <input
                             type="search"
@@ -90,14 +84,30 @@ const GeneralTablaMP_Components = () => {
                                 filteredMP.map((mp) => (
                                     <tr key={mp.id}>
                                         <td>{mp.nombre}</td>
-                                        <td>{mp.stock}</td>
+                                        <td className={mp.stock > 0 ? '' : 'sin-stock'}>
+                                            {
+                                                mp.stock > 0 ? mp.stock : <span>sin stock</span>
+
+                                            }
+                                        </td>
                                         <td>{mp.precio}</td>
                                         {
                                             tieneRol("super_admin") &&
-                                            <BotonesTablaUsuarios user={mp}
-                                                handleDeleteUser={handleDeleteUser}
-                                                handleEditUser={handleEditUser}
-                                            />
+                                            <td className="td_btn">
+                                                {/* <BtnEditarMP
+
+                                                /> */}
+
+                                                <BtnEliminarMP
+                                                    mp={mp}
+                                                    fetchMateriaPrima={fetchMateriaPrima}
+                                                />
+
+                                                <BtnDescontarStock
+                                                    mp={mp}
+                                                    fetchMateriaPrima={fetchMateriaPrima}
+                                                />
+                                            </td>
                                         }
                                     </tr>
                                 ))
@@ -115,5 +125,4 @@ const GeneralTablaMP_Components = () => {
         </>
     )
 }
-
 export default GeneralTablaMP_Components

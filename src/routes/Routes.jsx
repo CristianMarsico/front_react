@@ -8,8 +8,7 @@ import Login from '../pages/Login'
 import Registro from '../pages/Registro'
 import Perfil from '../pages/Perfil'
 import Galeria_Imagenes, { LoaderGaleriaImagen } from '../pages/Galeria_Imagenes'
-import ComprarMP from '../pages/ComprarMP'
-import Venta_Hilado from '../pages/Venta_Hilado'
+
 
 //imports rutas publicas y privadas
 import PrivateRoutes from '../routes/PrivateRoutes'
@@ -18,7 +17,6 @@ import PublicRoutes from '../routes/PublicRoutes'
 //imports layouts
 import LayoutRaiz from '../layouts/LayoutRaiz'
 import LayoutLoginAndRegister from '../layouts/LayoutLoginAndRegister'
-import SuperAdmin_Layout from '../layouts/SuperAdmin_Layout'
 import LayoutAdministracion from '../layouts/LayoutAdministracion'
 
 import ROLES from '../helpers/RolesHelpers'
@@ -60,22 +58,22 @@ export const router = createBrowserRouter(
                     loader: LoaderGaleriaImagen
                 },
 
-                {
-                    path: RUTAS.superAdmin,
-                    element: < SuperAdmin_Layout />,
-                    children: [
-                        {
-                            path: RUTAS.compra,
-                            element:
-                                < ComprarMP />
-                        },
-                        {
-                            path: RUTAS.venta,
-                            element:
-                                < Venta_Hilado />
-                        },
-                    ]
-                },
+                // {
+                //     path: RUTAS.superAdmin,
+                //     element: < SuperAdmin_Layout />,
+                //     children: [
+                //         {
+                //             path: RUTAS.compra,
+                //             element:
+                //                 < ComprarMP />
+                //         },
+                //         {
+                //             path: RUTAS.venta,
+                //             element:
+                //                 < Venta_Hilado />
+                //         },
+                //     ]
+                // },
 
 
                 {

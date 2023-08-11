@@ -11,3 +11,19 @@ export async function getAllMP() {
 
     return await axios.get(URL_MP_GETALL, { withCredentials: true });
 }
+
+
+export async function eliminarMateriaPrima(id) {
+    const URL_DELETE = `http://localhost:3000/api/deleteMP/${id}`;
+
+    return await axios.delete(URL_DELETE, { withCredentials: true });
+}
+
+export async function actualizarStock(datos) {
+
+    let CANTIDAD = {
+        cantidad: datos.cantidad
+    }
+    const URL_ACTUALIZAR_STOCK = `http://localhost:3000/api/updateStock/${datos.id}`;
+    return await axios.put(URL_ACTUALIZAR_STOCK, CANTIDAD, { withCredentials: true });
+}

@@ -3,7 +3,7 @@ import { Button, Dropdown, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import Select from 'react-select';
 import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../helpers/sweetAlerts/Alerts';
-import InputCompraVenta from '../Inputs/Compra_Venta/InputCompraVenta'
+
 import customStylesTagSelect from '../../helpers/customStyles/customStylesTagSelect';
 import { VentaServices } from '../../services/VentaServices';
 
@@ -63,7 +63,7 @@ const GeneralVenta_component = ({ getProductos, productos }) => {
                         <small className='fail'>{errors?.value?.message}</small>
                     </Form.Group>
 
-                    <InputCompraVenta
+                    <InputBasico_Components
                         type="number"
                         name="cantidad"
                         label="Cantidad"

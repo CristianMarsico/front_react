@@ -1,19 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
-import { mostrarAlertCompraSuccess, mostrarAlertError } from '../helpers/sweetAlerts/Alerts';
-import { CompraServices } from '../services/CompraServices';
+import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { CompraServices } from '../../../../services/CompraServices';
 import Select from 'react-select';
-import InputCompraVenta from './Inputs/Compra_Venta/InputCompraVenta';
-import customStylesTagSelect from '../helpers/customStyles/customStylesTagSelect';
-import '../css/compra_venta.css'
-import BtnConfirmar_Components from '../components/botones/BtnConfirmar_Components';
-import BtnCancelar_Components from './botones/BtnCancelar_Components';
-// botones / BtnConfirmar_Components
-
-// css / compra_venta.css'
+import customStylesTagSelect from '../../../../helpers/customStyles/customStylesTagSelect';
+import '../../../../css/compra_venta.css'
+import BtnConfirmar_Components from '../../../botones/BtnConfirmar_Components';
+import BtnCancelar_Components from '../../../botones/BtnCancelar_Components';
+import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 
 const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPrima }) => {
+
 
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
     const [showInput, setShowInput] = useState(false);
@@ -85,7 +83,7 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
                         <Button onClick={toggleShowPwd} variant="primary" size="mg">{btnText}</Button>
                     </div>
                     {!showInput ? (
-                        <InputCompraVenta
+                        <InputBasico_Components
                             type="text"
                             name="producto"
                             label="Materia Prima"
@@ -110,7 +108,7 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
                         </Form.Group>
                     )}
 
-                    <InputCompraVenta
+                    <InputBasico_Components
                         type="number"
                         name="cantidad"
                         label="Cantidad"
@@ -120,7 +118,7 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
                         getDatos={getDatos}
                         errors={errors}
                     />
-                    <InputCompraVenta
+                    <InputBasico_Components
                         type="number"
                         name="precio_unitario"
                         label="Precio por unidad"
@@ -130,7 +128,7 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
                         getDatos={getDatos}
                         errors={errors}
                     />
-                    <InputCompraVenta
+                    <InputBasico_Components
                         type="date"
                         name="fecha"
                         label="Fecha"

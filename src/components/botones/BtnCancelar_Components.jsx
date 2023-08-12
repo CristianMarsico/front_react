@@ -10,7 +10,7 @@ const BtnCancelar_Components = ({ variant, width, nombreAccion, padding, close }
                 onClick={close}>
                 {nombreAccion}
             </Button>
-        </div>
+        </div >
     )
 }
 

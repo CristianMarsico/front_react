@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
-const InputCompraVenta = ({ type, name, label, placeholder, register, required, getDatos, errors }) => {
+const InputBasico_Components = ({ type, name, label, placeholder, register, required, getDatos, errors }) => {
     return (
         <Form.Group >
             <Form.Label className='label-modal'>{label}</Form.Label>
@@ -22,4 +22,4 @@ const InputCompraVenta = ({ type, name, label, placeholder, register, required, 
     );
 };
 
-export default InputCompraVenta
+export default InputBasico_Components

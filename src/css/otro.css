@@ -10,6 +10,7 @@
      background-image: url('../images/img-background.jpg');
      background-size: cover;
      background-repeat: no-repeat;
+     height: 100vh;
  }
 
  /* POSICION DEL SVG DE AGREGAR MP */

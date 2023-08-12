@@ -27,3 +27,14 @@ export async function actualizarStock(datos) {
     const URL_ACTUALIZAR_STOCK = `http://localhost:3000/api/updateStock/${datos.id}`;
     return await axios.put(URL_ACTUALIZAR_STOCK, CANTIDAD, { withCredentials: true });
 }
+
+export async function actualizarMP(datos) {
+
+    let DATA = {
+        nombre: datos.nombre,
+        stock: datos.stock,
+        precio: datos.precio,
+    }
+    const URL_ACTUALIZAR_MP = `http://localhost:3000/api/updateMP/${datos.id}`;
+    return await axios.put(URL_ACTUALIZAR_MP, DATA, { withCredentials: true });
+}

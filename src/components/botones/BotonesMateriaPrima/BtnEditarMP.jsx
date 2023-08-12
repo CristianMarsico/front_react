@@ -1,10 +1,27 @@
 
 import React from 'react'
 import { Button } from "react-bootstrap";
-// import { useModal } from '../../../helpers/hooks/useModal';
-// import EditUserModal_Component from '../../Tablas/TablaUsuario/components_internos/EditUserModal_Component';
-const BtnEditarMP = ({ openChangeEditModal }) => {
-    // const [isOpenChangeEditModal, openChangeEditModal, closeChangeEditModal] = useModal();
+import Modal_UpdateMP from '../../Tablas/TablaMateriaPrima/Modal/Modal_UpdateMP';
+import { useModal } from '../../../helpers/hooks/useModal';
+import { actualizarMP } from '../../../services/MateriaPrima';
+import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../helpers/sweetAlerts/Alerts';
+
+const BtnEditarMP = ({ mp, fetchMateriaPrima }) => {
+    const [isOpenChangeEditModal, openChangeEditModal, closeChangeEditModal] = useModal();
+
+    const editarMP = async (datos) => {
+        try {
+            let response = await actualizarMP(datos);
+            mostrarAlertCompraSuccess(response.data);
+            fetchMateriaPrima();
+            return;
+        } catch (err) {
+            if (err.response)
+                return mostrarAlertError(err.response.data.error);
+            else
+                mostrarAlertError("Error de red. Inténtalo más tarde.");
+        }
+    };
     return (
         <>
             <Button className="dimensionBtn"
@@ -13,12 +30,12 @@ const BtnEditarMP = ({ openChangeEditModal }) => {
             >Editar
             </Button>
 
-            {/* <EditUserModal_Component
+            <Modal_UpdateMP
                 isOpen={isOpenChangeEditModal}
                 close={closeChangeEditModal}
-                user={mp}
-                handleEditUser={editarMP}
-            /> */}
+                mp={mp}
+                editarMP={editarMP}
+            />
         </>
     )
 }

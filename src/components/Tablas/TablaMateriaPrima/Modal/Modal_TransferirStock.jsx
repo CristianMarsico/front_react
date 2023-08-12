@@ -87,7 +87,7 @@ const Modal_TransferirStock = ({ isOpen, close, user, moverStock }) => {
                         width="40%"
                         nombreAccion="Mover Stock"
                         padding=".4rem"
-                    // disabled={!existenModificaciones}
+                        disabled={!existenModificaciones}
                     />
                     <BtnCancelar_Components
                         variant="secondary"

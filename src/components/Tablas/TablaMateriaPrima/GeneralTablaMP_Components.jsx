@@ -34,15 +34,7 @@ const GeneralTablaMP_Components = () => {
         }
     };
 
-    const editarMP = async (mp) => {
-        console.log(mp)
-        // try {
-        //     await editarUsuario(user)
-        //     fetchUsers();
-        // } catch (error) {
-        //     console.error('Error al editar materia prima:', error);
-        // }
-    };
+
 
     //realizo la busqueda de usuarios 
     const filteredMP = materiaPrima.filter((mp) =>
@@ -94,9 +86,10 @@ const GeneralTablaMP_Components = () => {
                                         {
                                             tieneRol("super_admin") &&
                                             <td className="td_btn">
-                                                {/* <BtnEditarMP
-
-                                                /> */}
+                                                <BtnEditarMP
+                                                    mp={mp}
+                                                    fetchMateriaPrima={fetchMateriaPrima}
+                                                />
 
                                                 <BtnEliminarMP
                                                     mp={mp}

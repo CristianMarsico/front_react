@@ -74,7 +74,7 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
 
         <Modal show={isOpen} onHide={close}>
             <Modal.Header className='header-modal' closeButton>
-                <Modal.Title>Registrar Materia Prima</Modal.Title>
+                <Modal.Title>  {!showInput ? "Registrar nueva compra" : "Buscar compras registradas"}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
@@ -95,7 +95,7 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
                         />
                     ) : (
                         <Form.Group controlId="producto">
-                            <Form.Label>Busqueda de materia prima</Form.Label>
+                            <Form.Label>Buscar materia prima</Form.Label>
                             <Select
                                 placeholder="Buscar..."
                                 name='producto'
@@ -141,7 +141,7 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
                     <BtnConfirmar_Components
                         variant="primary"
                         width="40%"
-                        nombreAccion="Registrar Materia Prima"
+                        nombreAccion="Registrar"
                         padding=".4rem"
                     // disabled={!existenModificaciones}
                     />

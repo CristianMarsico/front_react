@@ -33,8 +33,14 @@ export async function actualizarMP(datos) {
     let DATA = {
         nombre: datos.nombre,
         stock: datos.stock,
-        precio: datos.precio,
     }
     const URL_ACTUALIZAR_MP = `http://localhost:3000/api/updateMP/${datos.id}`;
     return await axios.put(URL_ACTUALIZAR_MP, DATA, { withCredentials: true });
+}
+
+
+export async function getReporte(datos) {
+
+    const URL_REPORTE = `http://localhost:3000/api/reporteCompra/${datos.fechaMin}/${datos.fechaMax}`;
+    return await axios.get(URL_REPORTE, { withCredentials: true });
 }

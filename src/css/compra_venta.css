@@ -52,7 +52,10 @@ form {
     background-repeat: no-repeat; */
     /* filter: blur(2px); */
     background-color: var(--terciario);
-    border: 2px solid var(--cabezera);
     padding: 5px 15px !important;
 
+}
+
+.modal-footer {
+    background-color: var(--cabezera) !important;
 }

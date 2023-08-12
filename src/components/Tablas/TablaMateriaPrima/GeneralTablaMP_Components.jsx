@@ -9,6 +9,7 @@ import ModalCompraMP_Components from './Modal/ModalCompraMP_Components';
 import BtnEditarMP from '../../botones/BotonesMateriaPrima/BtnEditarMP';
 import BtnEliminarMP from '../../botones/BotonesMateriaPrima/BtnEliminarMP';
 import BtnDescontarStock from '../../botones/BotonesMateriaPrima/BtnDescontarStock';
+import Modal_Reporte from './Modal/Modal_Reporte';
 
 
 const GeneralTablaMP_Components = () => {
@@ -17,6 +18,7 @@ const GeneralTablaMP_Components = () => {
     let { tieneRol } = useAuth()
 
     const [isOpenAddMPModal, openChangeAddMPModal, closeChangeAddMPModal] = useModal()
+    const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
 
     useEffect(() => {
         fetchMateriaPrima();
@@ -34,8 +36,6 @@ const GeneralTablaMP_Components = () => {
         }
     };
 
-
-
     //realizo la busqueda de usuarios 
     const filteredMP = materiaPrima.filter((mp) =>
         mp.nombre?.toLowerCase().includes(searchMP.toLowerCase())
@@ -47,7 +47,11 @@ const GeneralTablaMP_Components = () => {
                 <section className="table__header">
                     <h3>Listado de Materia Prima</h3>
                     <Button variant="primary" onClick={openChangeAddMPModal}>
-                        Agregar Materia Prima
+                        Agregar Compra
+                    </Button>
+
+                    <Button variant="danger" onClick={openChangeAddReporteModal}>
+                        Generar Reporte Compras
                     </Button>
                     <div className="input-group">
                         <input
@@ -63,7 +67,6 @@ const GeneralTablaMP_Components = () => {
                             <tr>
                                 <th> Nombre</th>
                                 <th> Stock</th>
-                                <th> Precio</th>
                                 <th> Acciones</th>
                             </tr>
                         </thead>
@@ -82,7 +85,6 @@ const GeneralTablaMP_Components = () => {
 
                                             }
                                         </td>
-                                        <td>{mp.precio}</td>
                                         {
                                             tieneRol("super_admin") &&
                                             <td className="td_btn">
@@ -114,6 +116,11 @@ const GeneralTablaMP_Components = () => {
                 close={closeChangeAddMPModal}
                 fetchMateriaPrima={fetchMateriaPrima}
                 materiaPrima={materiaPrima}
+            />
+
+            <Modal_Reporte
+                open={isOpenAddReporteModal}
+                close={closeChangeAddReporteModal}
             />
         </>
     )

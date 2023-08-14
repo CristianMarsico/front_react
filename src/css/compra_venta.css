@@ -25,37 +25,37 @@ form {
 
 :root {
     --texto: rgb(61, 57, 57);
-    --cabezera: rgb(250, 184, 61);
+    --cabezera: rgb(252, 206, 120);
     --primario: rgb(236, 216, 179);
     --secundario: rgb(252, 237, 210);
     --terciario: rgb(250, 246, 237);
 }
 
+.modal-content {
+    width: 26rem !important;
+    margin: auto auto !important;
+    background-color: rgb(252, 237, 210) !important;
+}
+
+
 .header-modal {
-    background-color: var(--cabezera);
+    background-color: rgb(252, 206, 120);
+
 }
 
 .modal-body {
-    padding: 0 !important;
+    padding: 10px 30px !important;
 }
 
 .label-modal {
-    /* display: inline-block; */
     color: var(--texto) !important;
 }
 
-.form-modal {
-    display: flex;
-    flex-direction: column;
-    /* background-image: url('../images/img-background.jpg');
-    background-size: cover;
-    background-repeat: no-repeat; */
-    /* filter: blur(2px); */
-    background-color: var(--terciario);
-    padding: 5px 15px !important;
-
+.modal-footer {
+    background-color: rgb(252, 206, 120) !important;
 }
 
-.modal-footer {
-    background-color: var(--cabezera) !important;
+.span-mp-name {
+    text-transform: uppercase;
+    font-weight: bold;
 }

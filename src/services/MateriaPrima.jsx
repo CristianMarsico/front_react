@@ -22,6 +22,7 @@ export async function eliminarMateriaPrima(id) {
 export async function actualizarStock(datos) {
 
     let CANTIDAD = {
+        nombre: datos.nombre,
         cantidad: datos.cantidad
     }
     const URL_ACTUALIZAR_STOCK = `http://localhost:3000/api/updateStock/${datos.id}`;

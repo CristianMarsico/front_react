@@ -1,0 +1,18 @@
+:root {
+    --texto: rgb(61, 57, 57);
+    --cabezera: rgb(230, 192, 121);
+    --primario: rgb(236, 216, 179);
+    --secundario: rgb(252, 210, 210);
+    --terciario: rgb(236, 250, 233);
+}
+
+.custom_title {
+    color: var(--texto) !important;
+    font-size: 27px !important;
+}
+
+.custom_width {
+    width: 25rem !important;
+    background-color: var(--secundario) !important;
+    text-align: center;
+}

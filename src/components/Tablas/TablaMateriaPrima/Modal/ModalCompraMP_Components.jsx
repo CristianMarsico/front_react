@@ -6,8 +6,6 @@ import { CompraServices } from '../../../../services/CompraServices';
 import Select from 'react-select';
 import customStylesTagSelect from '../../../../helpers/customStyles/customStylesTagSelect';
 import '../../../../css/compra_venta.css'
-import BtnConfirmar_Components from '../../../botones/BtnConfirmar_Components';
-import BtnCancelar_Components from '../../../botones/BtnCancelar_Components';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 
 const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPrima }) => {
@@ -42,19 +40,17 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
         });
     }
 
-    let enviarDatos = async (datosEnviados, e) => {
-
-        if (!datosEnviados.producto)
-            datosEnviados.producto = datos.producto;
-
+    let enviarDatos = async (datosEnviados) => {
         try {
+            if (!datosEnviados.producto)
+                datosEnviados.producto = datos.producto;
             let response = await CompraServices(datosEnviados);
             mostrarAlertCompraSuccess(response.data);
             fetchMateriaPrima();
-            e.target.reset();
             close(true)
             return;
         } catch (err) {
+            console.log(err)
             if (err.response)
                 return mostrarAlertError(err.response.data.error);
             else
@@ -80,19 +76,28 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
             <Modal.Body>
                 <Form className='form-modal' onSubmit={handleSubmit(enviarDatos)}>
                     <div className="d-flex justify-content-center">
-                        <Button onClick={toggleShowPwd} variant="primary" size="mg">{btnText}</Button>
+                        <Button onClick={toggleShowPwd} variant="primary" className='confirmar'>{btnText}</Button>
                     </div>
                     {!showInput ? (
-                        <InputBasico_Components
-                            type="text"
-                            name="producto"
-                            label="Materia Prima"
-                            placeholder="Ingrese materia prima*"
-                            register={register}
-                            required={true}
-                            getDatos={getDatos}
-                            errors={errors}
-                        />
+
+                        <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
+                            <Form.Label>Materia Prima</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="producto"
+                                placeholder="Ingrese materia prima*"
+                                onChange={getDatos}
+
+                                {...register('producto', {
+                                    required: {
+                                        value: true,
+                                        message: "*Campo requerido"
+                                    },
+
+                                })}
+                            />
+                            <small className='fail'>{errors?.producto?.message}</small>
+                        </Form.Group>
                     ) : (
                         <Form.Group controlId="producto">
                             <Form.Label>Buscar materia prima</Form.Label>
@@ -108,56 +113,79 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
                         </Form.Group>
                     )}
 
-                    <InputBasico_Components
-                        type="number"
-                        name="cantidad"
-                        label="Cantidad"
-                        placeholder="Ingrese cantidad*"
-                        register={register}
-                        required={true}
-                        getDatos={getDatos}
-                        errors={errors}
-                    />
-                    <InputBasico_Components
-                        type="number"
-                        name="precio_unitario"
-                        label="Precio por unidad"
-                        placeholder="Ingrese precio unitario*"
-                        register={register}
-                        required={true}
-                        getDatos={getDatos}
-                        errors={errors}
-                    />
-                    <InputBasico_Components
-                        type="date"
-                        name="fecha"
-                        label="Fecha"
-                        placeholder="YYYY/MM/DD"
-                        register={register}
-                        required={true}
-                        getDatos={getDatos}
-                        errors={errors}
-                    />
-                    <BtnConfirmar_Components
-                        variant="primary"
-                        width="40%"
-                        nombreAccion="Registrar"
-                        padding=".4rem"
-                    // disabled={!existenModificaciones}
-                    />
-                    <BtnCancelar_Components
-                        variant="secondary"
-                        width="40%"
-                        nombreAccion="Cancelar"
-                        padding=".4rem"
-                        close={close}
-                    />
+                    <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Cantidad</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="cantidad"
+                            placeholder="Ingrese cantidad*"
+                            onChange={getDatos}
+
+                            {...register('cantidad', {
+                                required: {
+                                    value: true,
+                                    message: "*Campo requerido"
+                                },
+
+                            })}
+                        />
+                        <small className='fail'>{errors?.cantidad?.message}</small>
+                    </Form.Group>
+
+                    <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Precio por unidad</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="precio_unitario"
+                            placeholder="Ingrese precio unitario*"
+                            onChange={getDatos}
+
+                            {...register('precio_unitario', {
+                                required: {
+                                    value: true,
+                                    message: "*Campo requerido"
+                                },
+
+                            })}
+                        />
+                        <small className='fail'>{errors?.precio_unitario?.message}</small>
+                    </Form.Group>
+
+                    <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Fecha</Form.Label>
+                        <Form.Control
+                            type="date"
+                            name="fecha"
+                            placeholder="Formato YYYY/MM/DD*"
+                            onChange={getDatos}
+
+                            {...register('fecha', {
+                                required: {
+                                    value: true,
+                                    message: "*Campo requerido"
+                                },
+
+                            })}
+                        />
+                        <small className='fail'>{errors?.fecha?.message}</small>
+                    </Form.Group>
                 </Form>
             </Modal.Body>
 
-            {/* <Modal.Footer>
-                <h1>fdf</h1>
-            </Modal.Footer> */}
+            <Modal.Footer>
+                <Button className="confirmar"
+                    onClick={handleSubmit(enviarDatos)}
+                    type='submit'
+                    variant="primary"
+                    disabled={!existenModificaciones}>
+                    Confirmar
+                </Button>
+                <Button className="cancelar"
+                    variant="secondary"
+                    onClick={close}>
+                    Cancelar
+                </Button>
+            </Modal.Footer>
         </Modal>
     )
 }

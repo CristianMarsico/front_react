@@ -1,15 +1,19 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import { alertWarningDelete } from '../../../helpers/sweetAlerts/Alerts';
 import { eliminarMateriaPrima } from '../../../services/MateriaPrima';
 
 const BtnEliminarMP = ({ mp, fetchMateriaPrima }) => {
 
     const eliminarMP = async (id) => {
         try {
-            await eliminarMateriaPrima(id)
-            fetchMateriaPrima();
+            let isTrue = await alertWarningDelete(mp)
+            if (isTrue) {
+                await eliminarMateriaPrima(id)
+                fetchMateriaPrima();
+            }
         } catch (error) {
-            console.error('Error deleting user:', error);
+            console.error('Error al eliminar Materia prima: ', error);
         }
     };
 

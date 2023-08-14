@@ -1,14 +1,18 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
-const BtnConfirmar_Components = ({ variant, width, nombreAccion, padding, disabled }) => {
+import { useForm } from 'react-hook-form';
+
+const BtnConfirmar_Components = ({ variant, nombreAccion, disabled, enviarDatos }) => {
+    const { handleSubmit } = useForm();
 
     return (
         <div className="d-flex justify-content-center mt-1">
-            <Button
+            <Button className="confirmar"
+                onClick={handleSubmit(enviarDatos)}
                 type='submit'
                 variant={variant}
                 disabled={disabled}
-                style={{ width, padding }}>
+            >
                 {nombreAccion}
             </Button>
         </div>

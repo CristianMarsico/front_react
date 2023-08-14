@@ -1,12 +1,11 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 
-const BtnCancelar_Components = ({ variant, width, nombreAccion, padding, close }) => {
+const BtnCancelar_Components = ({ variant, nombreAccion, close }) => {
     return (
-        <div className="d-flex justify-content-center mt-1">
-            <Button
+        <div className="d-flex justify-content-center mt-2">
+            <Button className="cancelar"
                 variant={variant}
-                style={{ width, padding }}
                 onClick={close}>
                 {nombreAccion}
             </Button>

@@ -1,16 +1,12 @@
 import { useState } from 'react';
-import { Modal, Form } from 'react-bootstrap';
+import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
-import { mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
-import BtnCancelar_Components from '../../../botones/BtnCancelar_Components';
-import BtnConfirmar_Components from '../../../botones/BtnConfirmar_Components';
-import InputBasico_Components from '../../../Inputs/InputBasico_Components';
-
+import { alertWarningStock } from '../../../../helpers/sweetAlerts/Alerts';
 
 const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
-    const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
-    // const [showInput, setShowInput] = useState(false);
 
+    const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
+    const existenModificaciones = !!Object.keys(dirtyFields).length;
     const [datos, setDatos] = useState({
         cantidad: "",
     });
@@ -26,11 +22,15 @@ const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
         try {
             const STOCK = {
                 id: mp.id,
+                nombre: mp.nombre,
                 cantidad: datosEnviados.cantidad
             }
-            descontarStock(STOCK)
-            e.target.reset();
-            close(true)
+            let isTrue = await alertWarningStock(STOCK)
+            if (isTrue) {
+                descontarStock(STOCK)
+                e.target.reset();
+                close(true)
+            }
         } catch (err) {
             return { error: `algo ha salido mal ${err}` }
         }
@@ -39,44 +39,46 @@ const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
     return (
         <Modal show={isOpen} onHide={close}>
             <Modal.Header className='header-modal' closeButton>
-                <Modal.Title>Retirar stock de {mp.nombre}</Modal.Title>
+                <Modal.Title>Retirar stock de: <span className='span-mp-name'>{mp.nombre}</span></Modal.Title>
             </Modal.Header>
-
             <Modal.Body>
                 <Form className='form-modal' onSubmit={handleSubmit(enviarDatos)}>
-                    <InputBasico_Components
-                        type="number"
-                        name="cantidad"
-                        label="Cantidad"
-                        placeholder="Ingrese cantidad que desea retirar*"
-                        register={register}
-                        required={true}
-                        getDatos={getDatos}
-                        errors={errors}
-                    />
-                    <BtnConfirmar_Components
-                        variant="primary"
-                        width="40%"
-                        nombreAccion="Retirar Stock"
-                        padding=".4rem"
-                    // disabled={!existenModificaciones}
-                    />
-                    <BtnCancelar_Components
-                        variant="secondary"
-                        width="40%"
-                        nombreAccion="Cancelar"
-                        padding=".4rem"
-                        close={close}
-                    />
+                    <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Cantidad</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="cantidad"
+                            defaultValue={mp.stock}
+                            placeholder="Ingrese la cantiadad ha retirar"
+                            onChange={getDatos}
+                            {...register('cantidad', {
+                                required: {
+                                    value: true,
+                                    message: "*Campo requerido"
+                                },
+
+                            })}
+                        />
+                        <small className='fail'>{errors?.cantidad?.message}</small>
+                    </Form.Group>
                 </Form>
             </Modal.Body>
 
-            {/* <Modal.Footer>
-                <h1>fdf</h1>
-            </Modal.Footer> */}
+            <Modal.Footer>
+                <Button className="confirmar"
+                    onClick={handleSubmit(enviarDatos)}
+                    type='submit'
+                    variant="primary"
+                    disabled={!existenModificaciones}
+                >Confirmar
+                </Button>
+                <Button className="cancelar"
+                    variant="secondary"
+                    onClick={close}>
+                    Cancelar
+                </Button>
+            </Modal.Footer>
         </Modal>
     )
 }
-
-
 export default Modal_DescontarStock

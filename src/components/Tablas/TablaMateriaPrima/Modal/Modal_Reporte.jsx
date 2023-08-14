@@ -78,23 +78,24 @@ const Modal_Reporte = ({ open, close }) => {
                     />
                     <BtnConfirmar_Components
                         variant="primary"
-                        width="40%"
+                        width="100%"
                         nombreAccion="Descargar Reporte"
                         padding=".4rem"
                     // disabled={!existenModificaciones}
                     />
                     <BtnCancelar_Components
                         variant="secondary"
-                        width="40%"
+                        width="100%"
                         nombreAccion="Cancelar"
                         padding=".4rem"
                         close={close}
                     />
+
                 </Form>
             </Modal.Body>
-
-            {/* <Modal.Footer>
-                <h1>fdf</h1>
+            {/* 
+            <Modal.Footer>
+                
             </Modal.Footer> */}
         </Modal>
     )

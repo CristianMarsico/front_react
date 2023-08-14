@@ -44,6 +44,7 @@ const GeneralTablaMP_Components = () => {
     return (
         <>
             <div className="table">
+
                 <section className="table__header">
                     <h3>Listado de Materia Prima</h3>
                     <Button variant="primary" onClick={openChangeAddMPModal}>
@@ -61,6 +62,7 @@ const GeneralTablaMP_Components = () => {
                             onChange={(e) => setSearchMP(e.target.value)} />
                     </div>
                 </section>
+
                 <section className="table__body">
                     <table>
                         <thead>

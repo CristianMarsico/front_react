@@ -1,9 +1,9 @@
 :root {
     --texto: rgb(61, 57, 57);
-    --cabezera: rgb(230, 192, 121);
+    --cabezera: rgb(252, 206, 120);
     --primario: rgb(236, 216, 179);
     --secundario: rgb(252, 237, 210);
-    --terciario: rgb(250, 245, 233);
+    --terciario: rgb(250, 246, 237);
 }
 
 .table {
@@ -17,6 +17,11 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 20px;
+}
+
+.table__header button {
+    padding: 10px 5px;
 }
 
 .table__header .input-group {
@@ -87,7 +92,7 @@ thead th {
     position: sticky;
     top: 0;
     left: 0;
-    background-color: var(--cabezera) !important;
+    background-color: rgb(252, 206, 120);
     cursor: pointer;
     text-transform: uppercase;
 }
@@ -154,12 +159,63 @@ thead th:hover {
     color: red;
 }
 
-@media all and (max-width:570px) {
+
+
+@media all and (max-width:915px) {
+
+    .table__header {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .table__header button {
+        width: 15rem;
+    }
+
+    .table__header .input-group {
+        width: 15rem;
+    }
+
+    .table__header .input-group:hover {
+        width: 18rem;
+    }
+
+    .dimensionBtn {
+        width: 60%;
+        padding: 5px 0 !important;
+    }
+
+}
+
+@media all and (max-width:500px) {
 
     th,
     td {
         padding: 1rem 0;
     }
 
+    .table__header {
+        padding: 5px 0;
+    }
 
+    .table__header h3 {
+        display: none;
+    }
+
+    .table__header button {
+        width: 100%;
+
+    }
+
+    .table__header .input-group {
+        width: 100%;
+    }
+
+    .dimensionBtn {
+        width: 100%;
+        padding: 5px 0 !important;
+    }
 }

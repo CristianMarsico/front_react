@@ -6,7 +6,7 @@ import { CompraServices } from '../../../../services/CompraServices';
 import Select from 'react-select';
 import customStylesTagSelect from '../../../../helpers/customStyles/customStylesTagSelect';
 import '../../../../css/compra_venta.css'
-import InputBasico_Components from '../../../Inputs/InputBasico_Components';
+// import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 
 const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPrima }) => {
 

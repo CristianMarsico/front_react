@@ -10,6 +10,7 @@ import BtnEditarMP from '../../botones/BotonesMateriaPrima/BtnEditarMP';
 import BtnEliminarMP from '../../botones/BotonesMateriaPrima/BtnEliminarMP';
 import BtnDescontarStock from '../../botones/BotonesMateriaPrima/BtnDescontarStock';
 import Modal_Reporte from './Modal/Modal_Reporte';
+import Modal_EnPorduccion from './Modal/Modal_EnPorduccion';
 
 
 const GeneralTablaMP_Components = () => {
@@ -19,6 +20,7 @@ const GeneralTablaMP_Components = () => {
 
     const [isOpenAddMPModal, openChangeAddMPModal, closeChangeAddMPModal] = useModal()
     const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
+    const [isOpenAddProduccionModal, openChangeAddProduccionModal, closeChangeAddProduccionModal] = useModal()
 
     useEffect(() => {
         fetchMateriaPrima();
@@ -51,8 +53,12 @@ const GeneralTablaMP_Components = () => {
                         Agregar Compra
                     </Button>
 
-                    <Button variant="danger" onClick={openChangeAddReporteModal}>
-                        Generar Reporte Compras
+                    <Button variant="success" onClick={openChangeAddReporteModal}>
+                        Reporte Compras
+                    </Button>
+
+                    <Button variant="success" onClick={openChangeAddProduccionModal}>
+                        Reporte en Producción
                     </Button>
                     <div className="input-group">
                         <input
@@ -124,6 +130,10 @@ const GeneralTablaMP_Components = () => {
                 open={isOpenAddReporteModal}
                 close={closeChangeAddReporteModal}
             />
+
+            <Modal_EnPorduccion
+                open={isOpenAddProduccionModal}
+                close={closeChangeAddProduccionModal} />
         </>
     )
 }

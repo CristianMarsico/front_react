@@ -1,76 +1,56 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
-import { alertWarningStock } from '../../../../helpers/sweetAlerts/Alerts';
+import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { getReporteProduccion } from '../../../../services/MateriaPrima';
 
-const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
-
+const Modal_EnPorduccion = ({ open, close }) => {
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
-    const existenModificaciones = !!Object.keys(dirtyFields).length;
-    const [datos, setDatos] = useState({
-        cantidad: "",
-        fechaProduccion: ""
+    const [fecha, setFecha] = useState({
+        fechaMin: "",
+        fechaMax: "",
     });
 
     let getDatos = (e) => {
-        setDatos({
-            ...datos,
+        setFecha({
+            ...fecha,
             [e.target.name]: e.target.value
         });
     }
+    useEffect(() => {
+        if (!open) {
+            reset()
+        }
+    }, [open])
 
     let enviarDatos = async (datosEnviados) => {
         try {
-            const STOCK = {
-                id: mp.id,
-                nombre: mp.nombre,
-                cantidad: datosEnviados.cantidad,
-                fecha: datosEnviados.fechaProduccion
-            }
-            let isTrue = await alertWarningStock(STOCK)
-            if (isTrue) {
-                descontarStock(STOCK)
-                reset();
-                close(true)
-            }
+            let response = await getReporteProduccion(datosEnviados);
+            mostrarAlertCompraSuccess(response.data);
+            close(true)
+            return;
         } catch (err) {
-            return { error: `algo ha salido mal ${err}` }
+            if (err.response)
+                return mostrarAlertError(err.response.data.error);
+            else
+                mostrarAlertError("Error de red. Inténtalo más tarde.");
         }
     }
-
     return (
-        <Modal show={isOpen} onHide={close}>
+        <Modal show={open} onHide={close}>
             <Modal.Header className='header-modal' closeButton>
-                <Modal.Title>Retirar stock de: <span className='span-mp-name'>{mp.nombre}</span></Modal.Title>
+                <Modal.Title>Materia prima en produccion</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form className='form-modal' onSubmit={handleSubmit(enviarDatos)}>
                     <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Cantidad</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="cantidad"
-                            placeholder="Ingrese la cantiadad a retirar"
-                            onChange={getDatos}
-                            {...register('cantidad', {
-                                required: {
-                                    value: true,
-                                    message: "*Campo requerido"
-                                },
-
-                            })}
-                        />
-                        <small className='fail'>{errors?.cantidad?.message}</small>
-                    </Form.Group>
-
-                    <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Fecha de envio a producción</Form.Label>
+                        <Form.Label>Fecha</Form.Label>
                         <Form.Control
                             type="date"
-                            name="fechaProduccion"
-                            placeholder="Ingrese fecha envio a producción"
+                            name="fechaMin"
+                            placeholder="Ingrese fecha en formato YYYY/MM/DD*"
                             onChange={getDatos}
-                            {...register('fechaProduccion', {
+                            {...register('fechaMin', {
                                 required: {
                                     value: true,
                                     message: "*Campo requerido"
@@ -78,18 +58,33 @@ const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
 
                             })}
                         />
-                        <small className='fail'>{errors?.fechaProduccion?.message}</small>
+                        <small className='fail'>{errors?.fechaMin?.message}</small>
+                    </Form.Group>
+                    <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Fecha Máxima</Form.Label>
+                        <Form.Control
+                            type="date"
+                            name="fechaMax"
+                            placeholder="Ingrese fecha en formato YYYY/MM/DD*"
+                            onChange={getDatos}
+                            {...register('fechaMax', {
+                                required: {
+                                    value: true,
+                                    message: "*Campo requerido"
+                                },
+
+                            })}
+                        />
+                        <small className='fail'>{errors?.fechaMax?.message}</small>
                     </Form.Group>
                 </Form>
             </Modal.Body>
-
             <Modal.Footer>
                 <Button className="confirmar"
                     onClick={handleSubmit(enviarDatos)}
                     type='submit'
                     variant="primary"
-                    disabled={!existenModificaciones}
-                >Confirmar
+                >Generar Reporte
                 </Button>
                 <Button className="cancelar"
                     variant="secondary"
@@ -100,4 +95,5 @@ const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
         </Modal>
     )
 }
-export default Modal_DescontarStock
+
+export default Modal_EnPorduccion

@@ -1,5 +1,13 @@
 .confirmar,
 .cancelar {
-
     padding: .4rem;
+}
+
+.contenedorConfirmarLogin {
+    display: flex;
+    justify-content: center;
+}
+
+.contenedorConfirmarLogin button {
+    width: 60%;
 }

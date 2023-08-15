@@ -28,6 +28,7 @@ const Modal_UpdateMP = ({ isOpen, close, mp, editarMP }) => {
                 editarMP(datos)
                 close(true)
             }
+            return;
         } catch (err) {
             return { error: `algo ha salido mal ${err}` }
         }

@@ -23,8 +23,10 @@ export async function actualizarStock(datos) {
 
     let CANTIDAD = {
         nombre: datos.nombre,
-        cantidad: datos.cantidad
+        cantidad: datos.cantidad,
+        fecha: datos.fecha
     }
+
     const URL_ACTUALIZAR_STOCK = `http://localhost:3000/api/updateStock/${datos.id}`;
     return await axios.put(URL_ACTUALIZAR_STOCK, CANTIDAD, { withCredentials: true });
 }
@@ -43,5 +45,11 @@ export async function actualizarMP(datos) {
 export async function getReporte(datos) {
 
     const URL_REPORTE = `http://localhost:3000/api/reporteCompra/${datos.fechaMin}/${datos.fechaMax}`;
+    return await axios.get(URL_REPORTE, { withCredentials: true });
+}
+
+export async function getReporteProduccion(datos) {
+
+    const URL_REPORTE = `http://localhost:3000/api/reporteProduccion/${datos.fechaMin}/${datos.fechaMax}`;
     return await axios.get(URL_REPORTE, { withCredentials: true });
 }

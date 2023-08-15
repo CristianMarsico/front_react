@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Modal, Form } from 'react-bootstrap';
+import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
 import { getReporte } from '../../../../services/MateriaPrima';
-import BtnCancelar_Components from '../../../botones/BtnCancelar_Components';
-import BtnConfirmar_Components from '../../../botones/BtnConfirmar_Components';
-import InputBasico_Components from '../../../Inputs/InputBasico_Components';
+// import BtnCancelar_Components from '../../../botones/BtnCancelar_Components';
+// import BtnConfirmar_Components from '../../../botones/BtnConfirmar_Components';
+// import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 
 const Modal_Reporte = ({ open, close }) => {
 
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
-    // const [showInput, setShowInput] = useState(false);
-    // const existenModificaciones = !!Object.keys(dirtyFields).length;
 
     const [fecha, setFecha] = useState({
         fechaMin: "",
@@ -25,12 +23,10 @@ const Modal_Reporte = ({ open, close }) => {
         });
     }
 
-    let enviarDatos = async (datosEnviados, e) => {
+    let enviarDatos = async (datosEnviados) => {
         try {
-
             let response = await getReporte(datosEnviados);
             mostrarAlertCompraSuccess(response.data);
-            e.target.reset();
             close(true)
             return;
         } catch (err) {
@@ -52,51 +48,57 @@ const Modal_Reporte = ({ open, close }) => {
             <Modal.Header className='header-modal' closeButton>
                 <Modal.Title>Generar Reporte</Modal.Title>
             </Modal.Header>
-
             <Modal.Body>
                 <Form className='form-modal' onSubmit={handleSubmit(enviarDatos)}>
+                    <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Fecha</Form.Label>
+                        <Form.Control
+                            type="date"
+                            name="fechaMin"
+                            placeholder="Ingrese fecha en formato YYYY/MM/DD*"
+                            onChange={getDatos}
+                            {...register('fechaMin', {
+                                required: {
+                                    value: true,
+                                    message: "*Campo requerido"
+                                },
 
-                    <InputBasico_Components
-                        type="date"
-                        name="fechaMin"
-                        label="Minimo"
-                        placeholder="formato YYYY/MM/DD*"
-                        register={register}
-                        required={true}
-                        getDatos={getDatos}
-                        errors={errors}
-                    />
-                    <InputBasico_Components
-                        type="date"
-                        name="fechaMax"
-                        label="Maximo"
-                        placeholder="formato YYYY/MM/DD*"
-                        register={register}
-                        required={true}
-                        getDatos={getDatos}
-                        errors={errors}
-                    />
-                    <BtnConfirmar_Components
-                        variant="primary"
-                        width="100%"
-                        nombreAccion="Descargar Reporte"
-                        padding=".4rem"
-                    // disabled={!existenModificaciones}
-                    />
-                    <BtnCancelar_Components
-                        variant="secondary"
-                        width="100%"
-                        nombreAccion="Cancelar"
-                        padding=".4rem"
-                        close={close}
-                    />
+                            })}
+                        />
+                        <small className='fail'>{errors?.fechaMin?.message}</small>
+                    </Form.Group>
+                    <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Fecha Máxima</Form.Label>
+                        <Form.Control
+                            type="date"
+                            name="fechaMax"
+                            placeholder="Ingrese fecha en formato YYYY/MM/DD*"
+                            onChange={getDatos}
+                            {...register('fechaMax', {
+                                required: {
+                                    value: true,
+                                    message: "*Campo requerido"
+                                },
 
+                            })}
+                        />
+                        <small className='fail'>{errors?.fechaMax?.message}</small>
+                    </Form.Group>
                 </Form>
             </Modal.Body>
-            {/* 
             <Modal.Footer>
-                
-            </Modal.Footer> */}
+                <Button className="confirmar"
+                    onClick={handleSubmit(enviarDatos)}
+                    type='submit'
+                    variant="primary"
+                >Generar Reporte
+                </Button>
+                <Button className="cancelar"
+                    variant="secondary"
+                    onClick={close}>
+                    Cancelar
+                </Button>
+            </Modal.Footer>
         </Modal>
     )
 }

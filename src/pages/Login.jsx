@@ -41,7 +41,6 @@ const Login = () => {
             else
                 mostrarAlertError("Error de red. Inténtalo más tarde.");
         }
-        e.target.reset();
     }
 
     return (

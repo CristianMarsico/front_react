@@ -11,6 +11,7 @@ const BtnEditarMP = ({ mp, fetchMateriaPrima }) => {
 
     const editarMP = async (datos) => {
         try {
+
             let response = await actualizarMP(datos);
             mostrarAlertCompraSuccess(response.data);
             fetchMateriaPrima();

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function RegistroService(datosEnviados, e) {
+export async function RegistroService(datosEnviados) {
     const URL_REGISTRO = "http://localhost:3000/api/register";
 
     let userData = {
@@ -10,6 +10,5 @@ export async function RegistroService(datosEnviados, e) {
         usuario: datosEnviados.usuario,
         email: datosEnviados.email
     };
-
-    return await axios.post(URL_REGISTRO, userData);
+    return await axios.post(URL_REGISTRO, userData, { withCredentials: true });
 }

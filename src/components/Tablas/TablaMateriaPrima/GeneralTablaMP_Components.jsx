@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import '../../../css/tabla.css'
 import useAuth from '../../../helpers/auth/useAuth';
 import { Button } from 'react-bootstrap';
-import { getAllMP } from '../../../services/MateriaPrima';
+import { getAllMP } from '../../../services/MateriaPrimaServices';
 import { useModal } from '../../../helpers/hooks/useModal';
 import ModalCompraMP_Components from './Modal/ModalCompraMP_Components';
 
@@ -46,18 +46,17 @@ const GeneralTablaMP_Components = () => {
     return (
         <>
             <div className="table">
-
                 <section className="table__header">
-                    <h3>Listado de Materia Prima</h3>
+                    <h3>Materia Prima</h3>
                     <Button variant="primary" onClick={openChangeAddMPModal}>
                         Agregar Compra
                     </Button>
 
-                    <Button variant="success" onClick={openChangeAddReporteModal}>
+                    <Button variant="warning" onClick={openChangeAddReporteModal}>
                         Reporte Compras
                     </Button>
 
-                    <Button variant="success" onClick={openChangeAddProduccionModal}>
+                    <Button variant="warning" onClick={openChangeAddProduccionModal}>
                         Reporte en Producción
                     </Button>
                     <div className="input-group">
@@ -100,12 +99,10 @@ const GeneralTablaMP_Components = () => {
                                                     mp={mp}
                                                     fetchMateriaPrima={fetchMateriaPrima}
                                                 />
-
                                                 <BtnEliminarMP
                                                     mp={mp}
                                                     fetchMateriaPrima={fetchMateriaPrima}
                                                 />
-
                                                 <BtnDescontarStock
                                                     mp={mp}
                                                     fetchMateriaPrima={fetchMateriaPrima}

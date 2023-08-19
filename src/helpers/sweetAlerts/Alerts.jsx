@@ -51,7 +51,7 @@ export function alertWarningStock(data) {
         Swal.fire({
             iconColor: 'rgb(252, 113, 0)',
             title: 'Está seguro de retirar stock ?',
-            text: `Está por retirar ${data.cantidad}kg. de: ${data.nombre}`,
+            html: `<h6>Está por retirar <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.cantidad}kg.</span> de: <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.nombre}</span></h6>`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -79,7 +79,7 @@ export function alertWarningDelete(data) {
         Swal.fire({
             iconColor: 'rgb(252, 113, 0)',
             title: 'Está seguro que desea eliminar ?',
-            text: `Está por elimanar la materia prima: ${data.nombre}`,
+            html: `<h6>Está por eliminar la materia prima: <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.nombre}</span></h6>`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -100,12 +100,13 @@ export function alertWarningDelete(data) {
     });
 }
 
-export function alertWarningUpdate(data) {
+export function alertWarningUpdate(mp, data) {
     return new Promise((resolve) => {
         Swal.fire({
             iconColor: 'rgb(252, 113, 0)',
-            title: `Está por editar materia prima: ${data.nombre} !`,
-            text: `Alerta!, Se modificará en la base de datos`,
+            title: `Está por realizar modificaciones !`,
+            html: `<h6>Cambiará <span style="color: blue; font-weight: bold; text-transform: uppercase;">${mp.nombre}</span> por <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.nombre}</span></h6>` +
+                `<h6>Además, se actualizará el stock de <span style="color: blue; font-weight: bold;text-transform: uppercase;">${mp.stock}</span> a <span style="color: red; font-weight: bold;text-transform: uppercase;">${data.stock}</span> .</h6>`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

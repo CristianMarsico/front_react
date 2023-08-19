@@ -2,18 +2,36 @@ import { useEffect, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { alertWarningUpdate } from '../../../../helpers/sweetAlerts/Alerts';
+import InputBasico_Components from '../../../Inputs/InputBasico_Components';
+
 
 const Modal_UpdateMP = ({ isOpen, close, mp, editarMP }) => {
 
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
     const existenModificaciones = !!Object.keys(dirtyFields).length;
-    const [mprima, setMprima] = useState(mp);
+
+    const [datos, setDatos] = useState({
+        nombre: "",
+        stock: ""
+    });
+
+    const [modalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
-        if (!isOpen) {
-            reset()
+        if (isOpen)
+            setModalOpen(true);
+        else {
+            setModalOpen(false);
+            reset();
         }
-    }, [isOpen])
+    }, [isOpen, reset]);
+
+    let getDatos = (e) => {
+        setDatos({
+            ...datos,
+            [e.target.name]: e.target.value
+        });
+    }
 
     let enviarDatos = async (formData) => {
         try {
@@ -22,13 +40,10 @@ const Modal_UpdateMP = ({ isOpen, close, mp, editarMP }) => {
                 nombre: formData.nombre,
                 stock: formData.stock,
             }
-            setMprima(datos)
-            let isTrue = await alertWarningUpdate(datos)
-            if (isTrue) {
+            let isTrue = await alertWarningUpdate(mp, datos)
+            if (isTrue)
                 editarMP(datos)
-                close(true)
-            }
-            return;
+
         } catch (err) {
             return { error: `algo ha salido mal ${err}` }
         }
@@ -40,47 +55,28 @@ const Modal_UpdateMP = ({ isOpen, close, mp, editarMP }) => {
                 <Modal.Title>Desea modificar: <span className='span-mp-name'>{mp.nombre}</span></Modal.Title>
             </Modal.Header>
 
-            <Modal.Body className='a' >
+            <Modal.Body>
                 <Form className='form-modal' onSubmit={handleSubmit(enviarDatos)}>
-                    <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Nombre</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="nombre"
-                            defaultValue={mprima.nombre}
-                            placeholder="Escribe un nuevo nombre"
-                            onChange={(e) => setMprima(e.target.value)}
-
-                            {...register('nombre', {
-                                required: {
-                                    value: true,
-                                    message: "*Campo requerido"
-                                },
-
-                            })}
-                        />
-                        <small className='fail'>{errors?.nombre?.message}</small>
-                    </Form.Group>
-
-                    <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Stock</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="stock"
-                            defaultValue={mprima.stock}
-                            placeholder="Escribe un nuevo nombre"
-                            onChange={(e) => setMprima(e.target.value)}
-
-                            {...register('stock', {
-                                required: {
-                                    value: true,
-                                    message: "*Campo requerido"
-                                },
-
-                            })}
-                        />
-                        <small className='fail'>{errors?.stock?.message}</small>
-                    </Form.Group>
+                    <InputBasico_Components
+                        type="text"
+                        label="Nombre"
+                        name="nombre"
+                        placeholder="Escribe un nuevo nombre*"
+                        onChange={getDatos}
+                        register={register}
+                        errors={errors}
+                        defaultValue={mp.nombre}
+                    />
+                    <InputBasico_Components
+                        type="text"
+                        label="Stock"
+                        name="stock"
+                        placeholder="Ingrese un nuevo stock*"
+                        onChange={getDatos}
+                        register={register}
+                        errors={errors}
+                        defaultValue={mp.stock}
+                    />
                 </Form>
             </Modal.Body>
 

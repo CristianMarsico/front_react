@@ -1,12 +1,26 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { alertWarningStock } from '../../../../helpers/sweetAlerts/Alerts';
+import InputBasico_Components from '../../../Inputs/InputBasico_Components';
+import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 
 const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
 
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
     const existenModificaciones = !!Object.keys(dirtyFields).length;
+    const [modalOpen, setModalOpen] = useState(false);
+
+    useEffect(() => {
+        if (isOpen) {
+            setModalOpen(true);
+        } else {
+            setModalOpen(false);
+            reset();
+        }
+    }, [isOpen, reset]);
+
     const [datos, setDatos] = useState({
         cantidad: "",
         fechaProduccion: ""
@@ -28,15 +42,13 @@ const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
                 fecha: datosEnviados.fechaProduccion
             }
             let isTrue = await alertWarningStock(STOCK)
-            if (isTrue) {
+            if (isTrue)
                 descontarStock(STOCK)
-                reset();
-                close(true)
-            }
         } catch (err) {
             return { error: `algo ha salido mal ${err}` }
         }
     }
+    const fechaActual = new Date().toISOString().split('T')[0];
 
     return (
         <Modal show={isOpen} onHide={close}>
@@ -45,41 +57,26 @@ const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form className='form-modal' onSubmit={handleSubmit(enviarDatos)}>
-                    <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Cantidad</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="cantidad"
-                            placeholder="Ingrese la cantiadad a retirar"
-                            onChange={getDatos}
-                            {...register('cantidad', {
-                                required: {
-                                    value: true,
-                                    message: "*Campo requerido"
-                                },
-
-                            })}
-                        />
-                        <small className='fail'>{errors?.cantidad?.message}</small>
-                    </Form.Group>
-
-                    <Form.Group className="mb-8" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Fecha de envio a producción</Form.Label>
-                        <Form.Control
-                            type="date"
-                            name="fechaProduccion"
-                            placeholder="Ingrese fecha envio a producción"
-                            onChange={getDatos}
-                            {...register('fechaProduccion', {
-                                required: {
-                                    value: true,
-                                    message: "*Campo requerido"
-                                },
-
-                            })}
-                        />
-                        <small className='fail'>{errors?.fechaProduccion?.message}</small>
-                    </Form.Group>
+                    <InputBasico_Components
+                        type="text"
+                        label="Cantidad"
+                        name="cantidad"
+                        placeholder="Ingrese la cantidad a retirar*"
+                        onChange={getDatos}
+                        register={register}
+                        errors={errors}
+                        defaultValue=""
+                    />
+                    <InputTypeDate_Components
+                        type="date"
+                        label="Fecha"
+                        name="fechaProduccion"
+                        placeholder="Ingrese fecha en formato YYYY/MM/DD*"
+                        onChange={getDatos}
+                        register={register}
+                        errors={errors}
+                        max={fechaActual}
+                    />
                 </Form>
             </Modal.Body>
 
@@ -88,8 +85,8 @@ const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
                     onClick={handleSubmit(enviarDatos)}
                     type='submit'
                     variant="primary"
-                    disabled={!existenModificaciones}
-                >Confirmar
+                    disabled={!existenModificaciones}>
+                    Confirmar
                 </Button>
                 <Button className="cancelar"
                     variant="secondary"

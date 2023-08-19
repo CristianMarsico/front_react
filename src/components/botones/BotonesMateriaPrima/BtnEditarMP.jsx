@@ -1,20 +1,22 @@
-
 import React from 'react'
 import { Button } from "react-bootstrap";
 import Modal_UpdateMP from '../../Tablas/TablaMateriaPrima/Modal/Modal_UpdateMP';
 import { useModal } from '../../../helpers/hooks/useModal';
-import { actualizarMP } from '../../../services/MateriaPrima';
+import { actualizarMP } from '../../../services/MateriaPrimaServices';
 import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../helpers/sweetAlerts/Alerts';
+
 
 const BtnEditarMP = ({ mp, fetchMateriaPrima }) => {
     const [isOpenChangeEditModal, openChangeEditModal, closeChangeEditModal] = useModal();
 
     const editarMP = async (datos) => {
         try {
-
             let response = await actualizarMP(datos);
-            mostrarAlertCompraSuccess(response.data);
-            fetchMateriaPrima();
+            if (response.status === 200) {
+                mostrarAlertCompraSuccess(response.data);
+                fetchMateriaPrima();
+                closeChangeEditModal(true)
+            }
             return;
         } catch (err) {
             if (err.response)
@@ -23,6 +25,7 @@ const BtnEditarMP = ({ mp, fetchMateriaPrima }) => {
                 mostrarAlertError("Error de red. Inténtalo más tarde.");
         }
     };
+
     return (
         <>
             <Button className="dimensionBtn"

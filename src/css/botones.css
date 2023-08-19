@@ -6,6 +6,7 @@
 .contenedorConfirmarLogin {
     display: flex;
     justify-content: center;
+
 }
 
 .contenedorConfirmarLogin button {

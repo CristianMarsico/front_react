@@ -44,6 +44,7 @@ const GeneralTablaUsuarios_Components = () => {
     };
 
     const handleEditUser = async (user) => {
+        console.log(user)
         try {
             await editarUsuario(user)
             fetchUsers();

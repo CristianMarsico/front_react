@@ -44,9 +44,7 @@ export async function actualizarMP(datos) {
 
 export async function getReporte(datos) {
     const URL_REPORTE = `http://localhost:3000/api/reporteCompra/${datos.fechaMin}/${datos.fechaMax}`;
-    let a = await axios.get(URL_REPORTE, { responseType: 'arraybuffer', withCredentials: true });
-    return a;
-
+    return await axios.get(URL_REPORTE, { responseType: 'arraybuffer', withCredentials: true });
 }
 
 export async function getReporteProduccion(datos) {

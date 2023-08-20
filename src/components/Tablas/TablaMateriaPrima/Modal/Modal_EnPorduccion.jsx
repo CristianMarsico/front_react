@@ -28,20 +28,18 @@ const Modal_EnPorduccion = ({ open, close }) => {
     let enviarDatos = async (datosEnviados) => {
         try {
             let response = await getReporteProduccion(datosEnviados);
-
-            const fileContent = response.data;
-            const blob = new Blob([fileContent]);
-            const nombreArchivo = 'reporte.pdf';
-            saveAs(blob, nombreArchivo);
-            close(true)
-            return;
-
-
-        } catch (err) {
-            if (err.response)
-                return mostrarAlertError(err.response.data.error);
-            else
-                mostrarAlertError("Error de red. Inténtalo más tarde.");
+            const contentType = response.headers['content-type'];
+            if (contentType === 'application/pdf') {
+                const fileContent = response.data;
+                const blob = new Blob([fileContent], { type: 'application/pdf' });
+                const nombreArchivo = 'Reporte En Produccion.pdf';
+                saveAs(blob, nombreArchivo);
+                close(true);
+            } else {
+                mostrarAlertError('Error de red. Inténtalo más tarde.');
+            }
+        } catch (error) {
+            mostrarAlertError('No se ha enviado nada a producción en esas fechas');
         }
     }
 

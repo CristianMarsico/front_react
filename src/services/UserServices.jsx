@@ -13,7 +13,8 @@ export async function getAllUsarios() {
 export async function editarUsuario(user) {
 
     const USUARIO = {
-        nombre: user.nombre
+        nombre: user.nombre,
+        email: user.email
     }
     const URL_UPDATE = `http://localhost:3000/api/updateUser/${user.id}`;
     return await axios.put(URL_UPDATE, USUARIO, { withCredentials: true });

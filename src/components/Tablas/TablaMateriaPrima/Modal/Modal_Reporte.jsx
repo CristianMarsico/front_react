@@ -24,24 +24,23 @@ const Modal_Reporte = ({ open, close }) => {
 
     let enviarDatos = async (datosEnviados) => {
         try {
-            let response = await getReporte(datosEnviados);
-            if (response.status === 200) {
+            const response = await getReporte(datosEnviados);
+            const contentType = response.headers['content-type'];
+
+            if (contentType === 'application/pdf') {
                 const fileContent = response.data;
-                const blob = new Blob([fileContent]);
+                const blob = new Blob([fileContent], { type: 'application/pdf' });
                 const nombreArchivo = 'reporteCompra.pdf';
                 saveAs(blob, nombreArchivo);
-                close(true)
-                return;
+                close(true);
+            } else {
+                mostrarAlertError('Error de red. Inténtalo más tarde.');
             }
-        } catch (err) {
-            if (err.response) {
-                console.log(err.response)
-                return mostrarAlertError(err.response.data.error);
-            }
-            else
-                mostrarAlertError("Error de red. Inténtalo más tarde.");
+        } catch (error) {
+            mostrarAlertError('No hay compras en esas fechas');
         }
     }
+
 
     useEffect(() => {
         if (!open) {

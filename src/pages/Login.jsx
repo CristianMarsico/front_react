@@ -47,9 +47,7 @@ const Login = () => {
         <div className='contenedor-login'>
             <div className='banner'>
                 <img src={IMG} alt="banner" />
-                <h3>Hola</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
+                <h6>Confección de hilados artesanales</h6>
             </div>
             <div className='.container_form'>
                 <GeneralLogin_Components

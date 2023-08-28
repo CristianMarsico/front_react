@@ -127,3 +127,28 @@ export function alertWarningUpdate(mp, data) {
     });
 }
 
+export function alertWarningTransferirStock(data) {
+    return new Promise((resolve) => {
+        Swal.fire({
+            iconColor: 'rgb(252, 113, 0)',
+            title: 'Está seguro de mover mercaderia ?',
+            html: `<h6>Está por mover <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.cantidad}kg.</span> de: <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.origen}</span> a: <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.destino}</span></h6>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Si, deseo continuar!',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                title: 'custom_title',
+                popup: 'custom_width',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    });
+}

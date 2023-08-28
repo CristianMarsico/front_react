@@ -28,8 +28,12 @@
     box-shadow: .5rem 1rem rgba(0, 0, 0, .1);
 }
 
-.contenedor-login .banner * {
-    text-align: center;
+.contenedor-login .banner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .logo-img {
@@ -143,5 +147,15 @@ svg {
         display: none;
     }
 
+    .contenedorConfirmarLogin button {
+        width: 100% !important;
+    }
 
+}
+
+@media all and (max-width:400px) {
+
+    .contenedorConfirmarLogin button {
+        width: 100% !important;
+    }
 }

@@ -5,7 +5,7 @@ import { mostrarAlertSuccess, mostrarAlertError } from '../helpers/sweetAlerts/A
 import { LoginServices } from '../services/LoginServices';
 import RUTAS from '../helpers/RutasHelpers';
 import GeneralLogin_Components from '../components/Formularios/Login/GeneralLogin_Components';
-import IMG from '../components/../images/logo.svg';
+import Banner_Lateral from '../components/Banner/Banner_Lateral';
 
 const Login = () => {
 
@@ -45,16 +45,12 @@ const Login = () => {
 
     return (
         <div className='contenedor-login'>
-            <div className='banner'>
-                <img src={IMG} alt="banner" />
-                <h6>Confección de hilados artesanales</h6>
-            </div>
-            <div className='.container_form'>
-                <GeneralLogin_Components
-                    enviarDatos={enviarDatos}
-                    getDatos={getDatos}
-                />
-            </div>
+            <Banner_Lateral />
+
+            <GeneralLogin_Components
+                enviarDatos={enviarDatos}
+                getDatos={getDatos}
+            />
         </div>
     )
 }

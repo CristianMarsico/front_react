@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import useAuth from '../helpers/auth/useAuth';
 import { mostrarAlertSuccess, mostrarAlertError } from '../helpers/sweetAlerts/Alerts';
 import { RegistroService } from '../services/RegistroService';
-import IMG from '../components/../images/logo.svg';
 import GeneralRegistro_Components from '../components/Formularios/Registro/GeneralRegistro_Components';
-
+import Banner_Lateral from '../components/Banner/Banner_Lateral';
 
 const Registro = () => {
     const { tieneToken, deleteUserLocal } = useAuth();
@@ -47,17 +46,13 @@ const Registro = () => {
 
     return (
         <>
-            <div className='contenedor-registro'>
-                <div className='banner'>
-                    <img src={IMG} alt="banner" />
-                    <h6>Confección de hilados artesanales</h6>
-                </div>
-                <div className='.container_form'>
-                    <GeneralRegistro_Components
-                        enviarDatos={enviarDatos}
-                        getDatos={getDatos}
-                    />
-                </div>
+            <div className='contenedor-login'>
+                <Banner_Lateral />
+
+                <GeneralRegistro_Components
+                    enviarDatos={enviarDatos}
+                    getDatos={getDatos}
+                />
             </div>
         </>
     )

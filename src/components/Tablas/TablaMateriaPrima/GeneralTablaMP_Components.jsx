@@ -12,6 +12,7 @@ import BtnEliminarMP from './BtnMateriaPrima/BtnEliminarMP';
 import BtnEditarMP from './BtnMateriaPrima/BtnEditarMP';
 import BtnDescontarStock from './BtnMateriaPrima/BtnDescontarStock';
 
+
 const GeneralTablaMP_Components = () => {
     const [materiaPrima, setMateriaPrima] = useState([]);
     const [searchMP, setSearchMP] = useState('');

@@ -5,13 +5,13 @@ import '../../../../css/modals.css'
 import { alertWarningTransferirStock } from '../../../../helpers/sweetAlerts/Alerts';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import InputTypeSelect_Components from '../../../Inputs/InputTypeSelect_Components';
-import Logo from '../../../../images/logo.svg'
+import Logo from '../../../../images/swap_horiz_black_24dp.svg';
 
 
 const Modal_TransferirStock = ({ isOpen, close, hilado, transerirStock }) => {
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
     const existenModificaciones = !!Object.keys(dirtyFields).length;
-    // const [usuario, setUsuario] = useState(user.nombre);
+
     const [datos, setDatos] = useState({
         cantidad: "",
         origen: "",
@@ -71,7 +71,7 @@ const Modal_TransferirStock = ({ isOpen, close, hilado, transerirStock }) => {
                             defaultValue=""
                         />
 
-                        <img className='logos' src={Logo} alt="" />
+                        <img src={Logo} alt="" />
 
                         <InputTypeSelect_Components
                             label="Ciudad Destino"

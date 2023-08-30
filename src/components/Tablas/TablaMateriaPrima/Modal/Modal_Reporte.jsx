@@ -8,7 +8,6 @@ import { getReporte } from '../../../../services/MateriaPrimaServices';
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 
 const Modal_Reporte = ({ open, close }) => {
-
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const [fecha, setFecha] = useState({
@@ -68,6 +67,7 @@ const Modal_Reporte = ({ open, close }) => {
                         errors={errors}
                         max={fechaActual}
                     />
+
                     <InputTypeDate_Components
                         type="date"
                         label="Fecha Máxima"

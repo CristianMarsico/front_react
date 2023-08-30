@@ -9,6 +9,7 @@ import '../../../../css/modals.css'
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 
+
 const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPrima }) => {
 
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();

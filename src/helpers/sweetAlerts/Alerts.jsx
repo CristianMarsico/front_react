@@ -4,7 +4,7 @@ import '../../css/sweets.css'
 export function mostrarAlertSuccess(data) {
     Swal.fire({
         iconColor: 'rgb(76, 201, 45)',
-        title: `Bienvenido ${data} !!!`,
+        title: `Bienvenido ${data} !`,
         icon: 'success',
         showConfirmButton: false,
         timer: 2500,
@@ -18,7 +18,7 @@ export function mostrarAlertSuccess(data) {
 export function mostrarAlertCompraSuccess(data) {
     Swal.fire({
         iconColor: 'rgb(76, 201, 45)',
-        title: `${data} !!!`,
+        title: `${data} !`,
         icon: 'success',
         showConfirmButton: false,
         timer: 2500,
@@ -33,7 +33,7 @@ export function mostrarAlertCompraSuccess(data) {
 export function mostrarAlertError(data) {
     Swal.fire({
         iconColor: 'rgb(255, 0, 0)',
-        title: `${data} !!!`,
+        title: `${data} !`,
         icon: 'error',
         showConfirmButton: true,
         confirmButtonColor: '#3085d6',
@@ -164,6 +164,36 @@ export function alertWarningAgregarHilado(data) {
                     <h6>Cantidad en Buenos Aires: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.stock_BuenosAires}</span></h6>
                     <h6>Precio mayorista: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.precio_mayorista}</span></h6>
                     <h6>Precio minorista: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.precio_minorista}</span></h6>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Si, deseo continuar!',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                title: 'custom_title',
+                popup: 'custom_width',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    });
+}
+
+
+export function alertWarningVender(data, prod) {
+    return new Promise((resolve) => {
+        Swal.fire({
+            iconColor: 'rgb(252, 113, 0)',
+            title: 'Está a punto de vender !',
+            html: `<h6>Producto: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${prod}</span></h6>
+                     <h6>Cantidad a vender: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.cantidad}</span></h6>
+                    <h6>Ciudad de despacho: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.ciudad}</span></h6>
+                    <h6>Venta al por: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.tipo_venta}</span></h6>`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

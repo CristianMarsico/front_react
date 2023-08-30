@@ -5,6 +5,7 @@ import useAuth from '../../../helpers/auth/useAuth';
 import { useModal } from '../../../helpers/hooks/useModal';
 import { getAllHilado } from '../../../services/ProductoService';
 import BtnTransferirStock from './BtnTablaHilado/BtnTransferirStock';
+import BtnVender from './BtnTablaHilado/BtnVender';
 import Modal_AddHilado_Components from './Modal/Modal_AddHilado_Components';
 
 // import { Button } from 'react-bootstrap';
@@ -114,22 +115,16 @@ const GeneralHilado_Components = () => {
                                         {
                                             tieneRol("super_admin") &&
                                             <td className="td_btn">
-                                                {/* <BtnEditarMP
-                                                    mp={mp}
-                                                    fetchMateriaPrima={fetchMateriaPrima}
-                                                /> */}
+
                                                 <BtnTransferirStock
                                                     hilado={h}
                                                     fetchHilado={fetchHilado}
                                                 />
-                                                {/* <BtnEliminarMP
-                                                    mp={mp}
-                                                    fetchMateriaPrima={fetchMateriaPrima}
+                                                <BtnVender
+                                                    hilado={h}
+                                                    fetchHilado={fetchHilado}
                                                 />
-                                                <BtnDescontarStock
-                                                    mp={mp}
-                                                    fetchMateriaPrima={fetchMateriaPrima}
-                                                /> */}
+
                                             </td>
                                         }
                                     </tr>

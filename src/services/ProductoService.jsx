@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { RequiereTokenHelpers } from '../helpers/RequiereTokenHelpers';
 
 export async function addHilado(datos) {
 
@@ -34,4 +35,23 @@ export async function moverStock(datos) {
 
     const URL_MOVER_STOCK = `http://localhost:3000/api/trasferirStock/${datos.id}`;
     return await axios.put(URL_MOVER_STOCK, STOCK, { withCredentials: true });
+}
+
+export async function vender(datos) {
+
+    let token = await RequiereTokenHelpers();
+
+    let VENTA = {
+        producto_id: datos.id,
+        cantidad_vendida: datos.cantidad,
+        origen: datos.ciudad,
+        tipo_venta: datos.tipo_venta,
+    }
+    const ADD_VENTA = "http://localhost:3000/api/venta";
+    return await axios.post(ADD_VENTA, VENTA, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        withCredentials: true
+    });
 }

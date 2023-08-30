@@ -6,21 +6,35 @@
     --terciario: rgb(250, 246, 237);
 }
 
+
 .contenedor-login {
-    max-width: 1200px;
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
-    gap: 60px;
     align-items: center;
-    margin: auto auto;
+    gap: 50px;
+    flex-wrap: wrap;
 }
 
-.form-container-lavender {
+.contenedor-login .banner {
+    text-align: center;
+}
+
+.contenedor-login .banner h6 {
+    margin-top: 10px;
+    font-size: 16px;
+    color: var(--texto);
+}
+
+.contenedor-login .form-container-lavender {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background-color: var(--terciario);
     width: 25rem;
-    padding: 3rem 3rem 1rem 3rem;
+    padding: 3rem 2.5rem 1rem 2.5rem;
     border-radius: var(--bs-border-radius-2xl);
     --bs-border-width: 4px;
     --bs-border-opacity: 1;
@@ -28,37 +42,40 @@
     box-shadow: .5rem 1rem rgba(0, 0, 0, .1);
 }
 
-.contenedor-login .banner {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
+.contenedor-login .register-form {
+    padding: 1rem 2.5rem 1rem 2.5rem;
 }
 
-.logo-img {
+.contenedor-login .form-container-lavender img {
     height: 8.5rem;
     border-radius: 50%;
     object-fit: fill;
-    --bs-border-width: 4px;
-    --bs-border-opacity: 1;
-    border-color: var(--bs-border-opacity);
-    border-bottom: 0px;
     border-top: 4px var(--bs-border-style) var(--cabezera);
-}
-
-.logo-img img {
     vertical-align: middle;
-}
-
-.div_img {
     margin-top: -7.5rem;
     text-align: center;
-    padding-bottom: 1.5rem;
-    color: var(--texto);
 }
 
-.form_input {
+.contenedor-login .form-container-lavender h2 {
+    margin-bottom: 20px;
+    color: var(--texto);
+    text-align: center;
+}
+
+
+.contenedor-login .form-container-lavender .form_box {
+    position: relative;
+    width: 100%;
+}
+
+.contenedor-login .form-container-lavender .contenedor-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: .8rem;
+}
+
+.contenedor-login .form-container-lavender .form_box .form_input {
     width: 100%;
     display: block;
     padding: .5rem 1.5rem;
@@ -71,14 +88,22 @@
     font-weight: 400 !important;
 }
 
-svg {
-    color: rgb(143, 143, 143);
-    position: absolute;
-    transform: translate(16.0rem, .7rem);
-    width: 21px;
+.contenedor-login .form-container-lavender p {
+    color: rgb(61, 57, 57);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: .8rem !important;
 }
 
-.form_label {
+.contenedor-login .form-container-lavender a {
+    text-decoration: none;
+}
+
+.contenedor-login .form-container-lavender button {
+    width: 60%;
+}
+
+.contenedor-login .form-container-lavender .form_box .form_label {
     position: absolute;
     top: 0.5rem;
     left: .5rem;
@@ -89,14 +114,7 @@ svg {
     font-size: 16px;
 }
 
-.form_box {
-    position: relative;
-    /* padding: 1rem 0; */
-    width: 100%;
-    margin-bottom: 1rem;
-}
-
-.form_input:focus+.form_label {
+.contenedor-login .form-container-lavender .form_input:focus+.form_label {
     transform: translateY(-1.2rem);
     transition: .2s;
     font-size: 15px;
@@ -104,7 +122,7 @@ svg {
     background: linear-gradient(var(--terciario) 56%, white 0);
 }
 
-.form_input:not(:placeholder-shown)+.form_label {
+.contenedor-login .form-container-lavender .form_input:not(:placeholder-shown)+.form_label {
     transform: translateY(-1.2rem);
     transition: .2s;
     font-size: 13px;
@@ -112,51 +130,38 @@ svg {
     color: rgb(143, 143, 143);
 }
 
-.registrate {
-    display: flex;
-    justify-content: flex-end;
+
+.contenedor-login .form-container-lavender .form_box .pwd-icon {
+    color: rgb(143, 143, 143);
+    position: absolute;
+    transform: translate(17.0rem, .5rem);
 }
 
-.registrate p {
-    color: rgb(61, 57, 57);
-    font-size: 0.9rem;
-    font-weight: 600;
-    font-style: italic !important;
-    padding-right: 0.5rem !important;
-    margin-bottom: 1rem !important;
-}
-
-.registrate a {
-    text-decoration: none;
-}
-
-.fail {
+.contenedor-login .form-container-lavender .form_box .fail {
     color: red;
     margin-left: 0.5rem;
+    font-weight: 400;
+    font-size: 14px;
 }
 
-@media all and (max-width:870px) {
+
+@media all and (max-width:856px) {
 
     .contenedor-login {
-        height: 100vh;
         display: flex;
-        flex-direction: column;
         justify-content: center;
+        gap: 70px;
     }
 
-    .contenedor-login .banner {
-        display: none;
+    .contenedor-login .form-container-lavender button {
+        width: 100%;
     }
-
-    .contenedorConfirmarLogin button {
-        width: 100% !important;
-    }
-
 }
 
-@media all and (max-width:400px) {
 
-    .contenedorConfirmarLogin button {
-        width: 100% !important;
+@media all and (max-width:700px) {
+
+    .contenedor-login .banner img {
+        width: 300px;
     }
 }

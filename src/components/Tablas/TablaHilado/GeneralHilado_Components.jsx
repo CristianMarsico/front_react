@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import '../../../css/tabla.css'
 import useAuth from '../../../helpers/auth/useAuth';
+import { useModal } from '../../../helpers/hooks/useModal';
 import { getAllHilado } from '../../../services/ProductoService';
-import BtnTransferirStock from '../../botones/BotonesHilado/BtnTransferirStock';
+import BtnTransferirStock from './BtnTablaHilado/BtnTransferirStock';
+import Modal_AddHilado_Components from './Modal/Modal_AddHilado_Components';
+
 // import { Button } from 'react-bootstrap';
 // import { getAllMP } from '../../../services/MateriaPrimaServices';
 // import { useModal } from '../../../helpers/hooks/useModal';
@@ -19,7 +23,7 @@ const GeneralHilado_Components = () => {
     const [searchHilado, setSearchHilado] = useState('');
     let { tieneRol } = useAuth()
 
-    // const [isOpenAddMPModal, openChangeAddMPModal, closeChangeAddMPModal] = useModal()
+    const [isOpenAddHiladoModal, openChangeAddHiladoModal, closeChangeAddHiladoModal] = useModal()
     // const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
     // const [isOpenAddProduccionModal, openChangeAddProduccionModal, closeChangeAddProduccionModal] = useModal()
 
@@ -48,11 +52,11 @@ const GeneralHilado_Components = () => {
             <div className="table">
                 <section className="table__header">
                     <h3>Hilado</h3>
-                    {/* <Button variant="primary" onClick={openChangeAddMPModal}>
-                        Agregar Compra
+                    <Button variant="primary" onClick={openChangeAddHiladoModal}>
+                        Agregar Hilado
                     </Button>
 
-                    <Button variant="warning" onClick={openChangeAddReporteModal}>
+                    {/* <Button variant="warning" onClick={openChangeAddReporteModal}>
                         Reporte Compras
                     </Button> */}
 
@@ -74,6 +78,7 @@ const GeneralHilado_Components = () => {
                         <thead>
                             <tr>
                                 <th> Nombre</th>
+                                <th> Color</th>
                                 <th> Stock Loberia</th>
                                 <th> Stock Bs. As.</th>
                                 <th> Precio Mayorista</th>
@@ -84,12 +89,13 @@ const GeneralHilado_Components = () => {
                         <tbody>
                             {filteredHilado.length === 0 ? (
                                 <tr>
-                                    <td colSpan="6">No se encontraron resultados</td>
+                                    <td colSpan="7">No se encontraron resultados</td>
                                 </tr>
                             ) : (
                                 filteredHilado.map((h) => (
                                     <tr key={h.id}>
                                         <td>{h.producto_terminado}</td>
+                                        <td>{h.color}</td>
                                         <td className={h.stock_loberia > 0 ? '' : 'sin-stock'}>
                                             {
                                                 h.stock_loberia > 0 ? h.stock_loberia : <span>sin stock</span>
@@ -133,21 +139,21 @@ const GeneralHilado_Components = () => {
                     </table>
                 </section>
             </div>
-            {/* <ModalCompraMP_Components
-                isOpen={isOpenAddMPModal}
-                close={closeChangeAddMPModal}
-                fetchMateriaPrima={fetchMateriaPrima}
-                materiaPrima={materiaPrima}
+            <Modal_AddHilado_Components
+                isOpen={isOpenAddHiladoModal}
+                close={closeChangeAddHiladoModal}
+                fetchHilado={fetchHilado}
+                hilado={hilado}
             />
 
-            <Modal_Reporte
+            {/* <Modal_Reporte
                 open={isOpenAddReporteModal}
                 close={closeChangeAddReporteModal}
             />
 
             <Modal_EnPorduccion
                 open={isOpenAddProduccionModal}
-                close={closeChangeAddProduccionModal} /> */}
+                close={closeChangeAddProduccionModal} />  */}
         </>
     )
 }

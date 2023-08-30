@@ -1,5 +1,19 @@
 import axios from 'axios';
 
+export async function addHilado(datos) {
+
+    let HILADO = {
+        producto_terminado: datos.nombre,
+        color: datos.color,
+        stock_loberia: datos.stock_loberia,
+        stock_buenosAires: datos.stock_BuenosAires,
+        precio_venta_mayorista: datos.precio_mayorista,
+        precio_venta_minorista: datos.precio_minorista
+    }
+    const ADD_HILADO = "http://localhost:3000/api/hilado";
+    return await axios.post(ADD_HILADO, HILADO, { withCredentials: true });
+}
+
 export async function getProductoByName() {
     const GET_PRODUCTO_BY_NAME = "http://localhost:3000/api/hiladoNombre";
     return await axios.get(GET_PRODUCTO_BY_NAME, { withCredentials: true });

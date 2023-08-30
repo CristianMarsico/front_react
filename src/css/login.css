@@ -85,7 +85,8 @@ svg {
     background: white;
     padding: 0 .5rem;
     color: rgb(143, 143, 143);
-    letter-spacing: 0.1rem;
+    letter-spacing: .1rem;
+    font-size: 16px;
 }
 
 .form_box {

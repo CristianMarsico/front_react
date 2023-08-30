@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { saveAs } from 'file-saver';
 import { useForm } from 'react-hook-form'
+import '../../../../css/modals.css'
 import { mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
 import { getReporteProduccion } from '../../../../services/MateriaPrimaServices';
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
@@ -51,7 +52,7 @@ const Modal_EnPorduccion = ({ open, close }) => {
                 <Modal.Title>Materia prima en produccion</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form className='form-modal' onSubmit={handleSubmit(enviarDatos)}>
+                <Form className='form-reporte' onSubmit={handleSubmit(enviarDatos)}>
                     <InputTypeDate_Components
                         type="date"
                         label="Fecha"

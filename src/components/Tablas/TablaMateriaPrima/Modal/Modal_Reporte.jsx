@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { saveAs } from 'file-saver';
+import '../../../../css/modals.css'
 import { mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
 import { getReporte } from '../../../../services/MateriaPrimaServices';
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
@@ -56,7 +57,7 @@ const Modal_Reporte = ({ open, close }) => {
                 <Modal.Title>Generar Reporte</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form className='form-modal' onSubmit={handleSubmit(enviarDatos)}>
+                <Form className='form-modal form-reporte' onSubmit={handleSubmit(enviarDatos)}>
                     <InputTypeDate_Components
                         type="date"
                         label="Fecha"

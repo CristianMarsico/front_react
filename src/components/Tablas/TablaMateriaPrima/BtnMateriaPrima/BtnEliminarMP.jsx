@@ -1,7 +1,9 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
-import { alertWarningDelete } from '../../../helpers/sweetAlerts/Alerts';
-import { eliminarMateriaPrima } from '../../../services/MateriaPrimaServices';
+import { alertWarningDelete } from '../../../../helpers/sweetAlerts/Alerts';
+import { eliminarMateriaPrima } from '../../../../services/MateriaPrimaServices';
+
+
 
 const BtnEliminarMP = ({ mp, fetchMateriaPrima }) => {
 

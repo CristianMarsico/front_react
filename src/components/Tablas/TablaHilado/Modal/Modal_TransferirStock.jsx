@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
-import { alertWarningStock, alertWarningTransferirStock } from '../../../../helpers/sweetAlerts/Alerts';
+import '../../../../css/modals.css'
+import { alertWarningTransferirStock } from '../../../../helpers/sweetAlerts/Alerts';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import InputTypeSelect_Components from '../../../Inputs/InputTypeSelect_Components';
+import Logo from '../../../../images/logo.svg'
 
 
 const Modal_TransferirStock = ({ isOpen, close, hilado, transerirStock }) => {
@@ -51,47 +53,52 @@ const Modal_TransferirStock = ({ isOpen, close, hilado, transerirStock }) => {
                 <Modal.Title>Transferir de stock</Modal.Title>
             </Modal.Header>
 
-            <Modal.Body>
-                <Form className='form-modal' onSubmit={handleSubmit(enviarDatos)}>
-                    <InputBasico_Components
-                        type="number"
-                        label="Cantidad"
-                        name="cantidad"
-                        placeholder="Ingrese la cantidad a retirar*"
-                        onChange={getDatos}
-                        register={register}
-                        errors={errors}
-                        defaultValue=""
-                    />
+            <Modal.Body className='contenedor-modal'>
+                <Form className='form-tranferirStock' onSubmit={handleSubmit(enviarDatos)}>
 
+                    <div className='contenedor-select'>
+                        <InputTypeSelect_Components
+                            label="Ciudad Origen"
+                            name="origen"
+                            options={[
+                                { label: "Seleccionar", value: "" },
+                                { label: "Lobería", value: "stock_loberia" },
+                                { label: "Buenos Aires", value: "stock_buenosAires" },
+                            ]}
+                            onChange={getDatos}
+                            register={register}
+                            errors={errors}
+                            defaultValue=""
+                        />
 
-                    <InputTypeSelect_Components
-                        label="Ciudad Origen"
-                        name="origen"
-                        options={[
-                            { label: "Seleccionar", value: "" },
-                            { label: "Lobería", value: "stock_loberia" },
-                            { label: "Buenos Aires", value: "stock_buenosAires" },
-                        ]}
-                        onChange={getDatos}
-                        register={register}
-                        errors={errors}
-                        defaultValue=""
-                    />
+                        <img className='logos' src={Logo} alt="" />
 
-                    <InputTypeSelect_Components
-                        label="Ciudad Destino"
-                        name="destino"
-                        options={[
-                            { label: "Seleccionar", value: "" },
-                            { label: "Lobería", value: "stock_loberia" },
-                            { label: "Buenos Aires", value: "stock_buenosAires" },
-                        ]}
-                        onChange={getDatos}
-                        register={register}
-                        errors={errors}
-                        defaultValue=""
-                    />
+                        <InputTypeSelect_Components
+                            label="Ciudad Destino"
+                            name="destino"
+                            options={[
+                                { label: "Seleccionar", value: "" },
+                                { label: "Lobería", value: "stock_loberia" },
+                                { label: "Buenos Aires", value: "stock_buenosAires" },
+                            ]}
+                            onChange={getDatos}
+                            register={register}
+                            errors={errors}
+                            defaultValue=""
+                        />
+                    </div>
+                    <div className='contenedor-basico'>
+                        <InputBasico_Components
+                            type="number"
+                            label="Cantidad"
+                            name="cantidad"
+                            placeholder="Ingrese la cantidad a retirar*"
+                            onChange={getDatos}
+                            register={register}
+                            errors={errors}
+                            defaultValue=""
+                        />
+                    </div>
                 </Form>
             </Modal.Body>
 

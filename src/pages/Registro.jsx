@@ -1,22 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from 'react-hook-form';
+import { useNavigate } from "react-router-dom";
 import useAuth from '../helpers/auth/useAuth';
 import { mostrarAlertSuccess, mostrarAlertError } from '../helpers/sweetAlerts/Alerts';
-import InputsLoginComponent from '../components/Inputs/Login/InputsLoginComponent';
-import InputRegitroComponent from '../components/Inputs/Login/InputRegitroComponent';
 import { RegistroService } from '../services/RegistroService';
-import { Button } from 'react-bootstrap';
 import IMG from '../components/../images/logo.svg';
 import GeneralRegistro_Components from '../components/Formularios/Registro/GeneralRegistro_Components';
 
 
 const Registro = () => {
-
-
     const { tieneToken, deleteUserLocal } = useAuth();
     let navigate = useNavigate();
-
 
     const [datos, setDatos] = useState({
         nombre: "",
@@ -54,12 +47,10 @@ const Registro = () => {
 
     return (
         <>
-            <div className='contenedor-login'>
+            <div className='contenedor-registro'>
                 <div className='banner'>
                     <img src={IMG} alt="banner" />
-                    <h3>Hola</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </p>
+                    <h6>Confección de hilados artesanales</h6>
                 </div>
                 <div className='.container_form'>
                     <GeneralRegistro_Components

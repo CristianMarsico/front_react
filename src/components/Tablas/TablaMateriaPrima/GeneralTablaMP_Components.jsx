@@ -6,12 +6,11 @@ import { getAllMP } from '../../../services/MateriaPrimaServices';
 import { useModal } from '../../../helpers/hooks/useModal';
 import ModalCompraMP_Components from './Modal/ModalCompraMP_Components';
 
-import BtnEditarMP from '../../botones/BotonesMateriaPrima/BtnEditarMP';
-import BtnEliminarMP from '../../botones/BotonesMateriaPrima/BtnEliminarMP';
-import BtnDescontarStock from '../../botones/BotonesMateriaPrima/BtnDescontarStock';
 import Modal_Reporte from './Modal/Modal_Reporte';
 import Modal_EnPorduccion from './Modal/Modal_EnPorduccion';
-
+import BtnEliminarMP from './BtnMateriaPrima/BtnEliminarMP';
+import BtnEditarMP from './BtnMateriaPrima/BtnEditarMP';
+import BtnDescontarStock from './BtnMateriaPrima/BtnDescontarStock';
 
 const GeneralTablaMP_Components = () => {
     const [materiaPrima, setMateriaPrima] = useState([]);

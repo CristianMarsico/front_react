@@ -1,0 +1,65 @@
+:root {
+    --texto: rgb(61, 57, 57);
+    --cabezera: rgb(252, 206, 120);
+    --primario: rgb(236, 216, 179);
+    --secundario: rgb(252, 237, 210);
+    --terciario: rgb(250, 246, 237);
+}
+
+.header-modal,
+.modal-footer {
+    background-color: rgb(252, 206, 120) !important;
+}
+
+
+.modal-content {
+    background-color: rgb(252, 237, 210) !important;
+}
+
+
+label {
+    text-transform: capitalize !important;
+    font-weight: 550 !important;
+}
+
+.form-hilado {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.form-hilado .mb-8 {
+    width: 14rem;
+}
+
+.form-tranferirStock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.form-tranferirStock .contenedor-select,
+.form-reporte {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.form-tranferirStock .contenedor-select *,
+.form-reporte * {
+    width: 100%;
+}
+
+.contenedor-select .logos {
+    width: 55px;
+}
+
+.form-tranferirStock .contenedor-basico {
+    width: 50%;
+}

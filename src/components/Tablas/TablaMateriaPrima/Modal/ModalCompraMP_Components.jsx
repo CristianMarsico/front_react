@@ -5,7 +5,7 @@ import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helper
 import { CompraServices } from '../../../../services/CompraServices';
 import Select from 'react-select';
 import customStylesTagSelect from '../../../../helpers/customStyles/customStylesTagSelect';
-import '../../../../css/compra_venta.css'
+import '../../../../css/modals.css'
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 

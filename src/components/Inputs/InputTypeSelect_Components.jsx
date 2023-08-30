@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 
 const InputTypeSelect_Components = ({ label, name, options, onChange, register, errors, defaultValue }) => {
     return (
-        <Form.Group className="mb-8" controlId={`formGroup_${name}`}>
+        <Form.Group className="mb-8 group-select " controlId={`formGroup_${name}`}>
             <Form.Label>{label}</Form.Label>
             <Form.Control
                 as="select"

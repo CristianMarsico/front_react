@@ -152,3 +152,34 @@ export function alertWarningTransferirStock(data) {
         });
     });
 }
+
+export function alertWarningAgregarHilado(data) {
+    return new Promise((resolve) => {
+        Swal.fire({
+            iconColor: 'rgb(252, 113, 0)',
+            title: 'Está seguro agregar el siguiente producto ?',
+            html: `<h6>Hilado: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.nombre}</span></h6>
+                    <h6>Color: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.color}</span></h6>
+                    <h6>Cantidad en Loberia: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.stock_loberia}</span></h6>
+                    <h6>Cantidad en Buenos Aires: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.stock_BuenosAires}</span></h6>
+                    <h6>Precio mayorista: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.precio_mayorista}</span></h6>
+                    <h6>Precio minorista: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.precio_minorista}</span></h6>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Si, deseo continuar!',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                title: 'custom_title',
+                popup: 'custom_width',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    });
+}

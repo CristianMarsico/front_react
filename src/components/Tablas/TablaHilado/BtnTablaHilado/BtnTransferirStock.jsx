@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
-import { useModal } from '../../../helpers/hooks/useModal';
-import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../helpers/sweetAlerts/Alerts';
-import { moverStock } from '../../../services/ProductoService';
-import Modal_TransferirStock from '../../Tablas/TablaHilado/Modal/Modal_TransferirStock';
+import { useModal } from '../../../../helpers/hooks/useModal';
+import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { moverStock } from '../../../../services/ProductoService';
+import Modal_TransferirStock from '../Modal/Modal_TransferirStock';
 
 
 const BtnTransferirStock = ({ hilado, fetchHilado }) => {

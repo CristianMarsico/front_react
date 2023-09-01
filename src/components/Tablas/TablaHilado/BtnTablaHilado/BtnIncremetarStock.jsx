@@ -27,11 +27,17 @@ const BtnIncremetarStock = ({ hilado, fetchHilado }) => {
     };
     return (
         <>
-            <Button className="dimensionBtn"
-                variant="info"
+            <Button variant="outline-dark"
                 onClick={openChangeEditStockModal}
-            >Aumentar Stock
-            </Button>
+                style={{
+                    fontWeight: "bold",
+                    textTransform: "uppercase",
+                    border: "2px solid black",
+                    fontSize: "13px",
+                    margin: "2px"
+                }}
+            >Sumar Stock</Button>{' '}
+
 
             <Modal_IncrementarStock
                 isOpen={isOpenChangeStockModal}

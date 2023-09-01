@@ -10,17 +10,6 @@ import BtnTransferirStock from './BtnTablaHilado/BtnTransferirStock';
 import BtnVender from './BtnTablaHilado/BtnVender';
 import Modal_AddHilado_Components from './Modal/Modal_AddHilado_Components';
 
-// import { Button } from 'react-bootstrap';
-// import { getAllMP } from '../../../services/MateriaPrimaServices';
-// import { useModal } from '../../../helpers/hooks/useModal';
-// import ModalCompraMP_Components from './Modal/ModalCompraMP_Components';
-
-// import BtnEditarMP from '../../botones/BotonesMateriaPrima/BtnEditarMP';
-// import BtnEliminarMP from '../../botones/BotonesMateriaPrima/BtnEliminarMP';
-// import BtnDescontarStock from '../../botones/BotonesMateriaPrima/BtnDescontarStock';
-// import Modal_Reporte from './Modal/Modal_Reporte';
-// import Modal_EnPorduccion from './Modal/Modal_EnPorduccion';
-
 const GeneralHilado_Components = () => {
     const [hilado, setHilado] = useState([]);
     const [searchHilado, setSearchHilado] = useState('');

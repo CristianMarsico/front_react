@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { saveAs } from 'file-saver';
 import '../../../../css/modals.css'
 import { mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
 import { getReporte } from '../../../../services/MateriaPrimaServices';
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
+import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 
 const Modal_Reporte = ({ open, close }) => {
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
+    const existenModificaciones = !!Object.keys(dirtyFields).length;
 
     const [fecha, setFecha] = useState({
         fechaMin: "",
@@ -81,17 +83,12 @@ const Modal_Reporte = ({ open, close }) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button className="confirmar"
-                    onClick={handleSubmit(enviarDatos)}
-                    type='submit'
-                    variant="primary"
-                >Generar Reporte
-                </Button>
-                <Button className="cancelar"
-                    variant="secondary"
-                    onClick={close}>
-                    Cancelar
-                </Button>
+                <BtnConfirmar_Cancelar_Components
+                    handleSubmit={handleSubmit}
+                    enviarDatos={enviarDatos}
+                    existenModificaciones={existenModificaciones}
+                    close={close}
+                />
             </Modal.Footer>
         </Modal>
     )

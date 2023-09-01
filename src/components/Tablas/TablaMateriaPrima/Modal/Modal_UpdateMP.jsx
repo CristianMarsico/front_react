@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { alertWarningUpdate } from '../../../../helpers/sweetAlerts/Alerts';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
+import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 
 
 const Modal_UpdateMP = ({ isOpen, close, mp, editarMP }) => {
@@ -81,18 +82,12 @@ const Modal_UpdateMP = ({ isOpen, close, mp, editarMP }) => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button className="confirmar"
-                    onClick={handleSubmit(enviarDatos)}
-                    type='submit'
-                    variant="primary"
-                    disabled={!existenModificaciones}>
-                    Confirmar
-                </Button>
-                <Button className="cancelar"
-                    variant="secondary"
-                    onClick={close}>
-                    Cancelar
-                </Button>
+                <BtnConfirmar_Cancelar_Components
+                    handleSubmit={handleSubmit}
+                    enviarDatos={enviarDatos}
+                    existenModificaciones={existenModificaciones}
+                    close={close}
+                />
             </Modal.Footer>
         </Modal>
     )

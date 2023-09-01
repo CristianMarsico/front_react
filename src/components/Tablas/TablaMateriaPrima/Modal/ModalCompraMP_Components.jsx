@@ -8,6 +8,7 @@ import customStylesTagSelect from '../../../../helpers/customStyles/customStyles
 import '../../../../css/modals.css'
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
+import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 
 
 const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPrima }) => {
@@ -144,18 +145,12 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
             </Modal.Body>
 
             <Modal.Footer>
-                <Button className="confirmar"
-                    onClick={handleSubmit(enviarDatos)}
-                    type='submit'
-                    variant="primary"
-                    disabled={!existenModificaciones}>
-                    Confirmar
-                </Button>
-                <Button className="cancelar"
-                    variant="secondary"
-                    onClick={close}>
-                    Cancelar
-                </Button>
+                <BtnConfirmar_Cancelar_Components
+                    handleSubmit={handleSubmit}
+                    enviarDatos={enviarDatos}
+                    existenModificaciones={existenModificaciones}
+                    close={close}
+                />
             </Modal.Footer>
         </Modal>
     )

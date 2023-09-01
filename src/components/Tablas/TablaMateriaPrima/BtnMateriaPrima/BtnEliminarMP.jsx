@@ -3,8 +3,6 @@ import { Button } from 'react-bootstrap'
 import { alertWarningDelete } from '../../../../helpers/sweetAlerts/Alerts';
 import { eliminarMateriaPrima } from '../../../../services/MateriaPrimaServices';
 
-
-
 const BtnEliminarMP = ({ mp, fetchMateriaPrima }) => {
 
     const eliminarMP = async (id) => {
@@ -20,11 +18,18 @@ const BtnEliminarMP = ({ mp, fetchMateriaPrima }) => {
     };
 
     return (
-        <Button className="dimensionBtn"
-            variant="danger"
-            onClick={() => { eliminarMP(mp.id) }}
-        >Eliminar
-        </Button>
+        <>
+            <Button variant="outline-danger"
+                onClick={() => { eliminarMP(mp.id) }}
+                style={{
+                    fontWeight: "bold",
+                    textTransform: "uppercase",
+                    border: "2px solid red",
+                    fontSize: "13px",
+                    margin: "2px"
+                }}
+            >Eliminar</Button>{' '}
+        </>
     )
 }
 

@@ -26,11 +26,22 @@ const BtnVender = ({ hilado, fetchHilado }) => {
     };
     return (
         <>
-            <Button className="dimensionBtn"
+            {/* <Button className="dimensionBtn"
                 variant="danger"
                 onClick={openChangeVenderModal}
             >Registrar Venta
-            </Button>
+            </Button> */}
+
+            <Button variant="outline-danger"
+                onClick={openChangeVenderModal}
+                style={{
+                    fontWeight: "bold",
+                    textTransform: "uppercase",
+                    border: "2px solid red",
+                    fontSize: "13px",
+                    margin: "2px"
+                }}
+            >Registrar Venta</Button>{' '}
 
             <Modal_Venta
                 isOpen={isOpenChangeVenderModal}

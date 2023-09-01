@@ -27,11 +27,17 @@ const BtnModificarPrecio = ({ hilado, fetchHilado }) => {
 
     return (
         <>
-            <Button className="dimensionBtn"
-                variant="info"
+
+            <Button variant="outline-success"
                 onClick={openChangeEditPrecioModal}
-            >Cambiar Precio
-            </Button>
+                style={{
+                    fontWeight: "bold",
+                    textTransform: "uppercase",
+                    border: "2px solid green",
+                    fontSize: "13px",
+                    margin: "2px"
+                }}
+            >Cambiar Precio</Button>{' '}
 
             <Modal_ModificarPrecio
                 isOpen={isOpenChangePrecioModal}

@@ -27,11 +27,16 @@ const BtnTransferirStock = ({ hilado, fetchHilado }) => {
     };
     return (
         <>
-            <Button className="dimensionBtn"
-                variant="info"
+            <Button variant="outline-primary"
                 onClick={openChangeEditTrasnferirStockModal}
-            >Mover Stock
-            </Button>
+                style={{
+                    fontWeight: "bold",
+                    textTransform: "uppercase",
+                    border: "2px solid blue",
+                    fontSize: "13px",
+                    margin: "2px"
+                }}
+            >Mover Stock</Button>{' '}
 
             <Modal_TransferirStock
                 isOpen={isOpenChangeTrasnferirStockModal}

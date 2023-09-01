@@ -31,11 +31,16 @@ const BtnEditarMP = ({ mp, fetchMateriaPrima }) => {
 
     return (
         <>
-            <Button className="dimensionBtn"
-                variant="primary"
+            <Button variant="outline-success"
                 onClick={openChangeEditModal}
-            >Editar
-            </Button>
+                style={{
+                    fontWeight: "bold",
+                    textTransform: "uppercase",
+                    border: "2px solid green",
+                    fontSize: "13px",
+                    margin: "2px"
+                }}
+            >Editar</Button>{' '}
 
             <Modal_UpdateMP
                 isOpen={isOpenChangeEditModal}

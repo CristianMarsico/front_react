@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import '../../../../css/modals.css'
 import { addHilado } from '../../../../services/ProductoService';
 import { alertWarningAgregarHilado, mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 
 const Modal_AddHilado_Components = ({ isOpen, close, fetchHilado, hilado }) => {
 
@@ -128,18 +129,12 @@ const Modal_AddHilado_Components = ({ isOpen, close, fetchHilado, hilado }) => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button className="confirmar"
-                    onClick={handleSubmit(enviarDatos)}
-                    type='submit'
-                    variant="primary"
-                    disabled={!existenModificaciones}>
-                    Confirmar
-                </Button>
-                <Button className="cancelar"
-                    variant="secondary"
-                    onClick={close}>
-                    Cancelar
-                </Button>
+                <BtnConfirmar_Cancelar_Components
+                    handleSubmit={handleSubmit}
+                    enviarDatos={enviarDatos}
+                    existenModificaciones={existenModificaciones}
+                    close={close}
+                />
             </Modal.Footer>
         </Modal>
     )

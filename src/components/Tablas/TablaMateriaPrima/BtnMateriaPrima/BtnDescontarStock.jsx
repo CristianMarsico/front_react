@@ -28,11 +28,17 @@ const BtnDescontarStock = ({ mp, fetchMateriaPrima }) => {
     };
     return (
         <>
-            <Button className="dimensionBtn"
-                variant="info"
+            <Button variant="outline-dark"
                 onClick={openChangeEditStockModal}
-            >Quitar Stock
-            </Button>
+                style={{
+                    fontWeight: "bold",
+                    textTransform: "uppercase",
+                    border: "2px solid black",
+                    fontSize: "13px",
+                    margin: "2px"
+                }}
+            >Quitar Stock</Button>{' '}
+
 
             <Modal_DescontarStock
                 isOpen={isOpenChangeSotckModal}

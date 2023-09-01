@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { alertWarningStock } from '../../../../helpers/sweetAlerts/Alerts';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
+import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 
 const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
 
@@ -81,18 +82,12 @@ const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button className="confirmar"
-                    onClick={handleSubmit(enviarDatos)}
-                    type='submit'
-                    variant="primary"
-                    disabled={!existenModificaciones}>
-                    Confirmar
-                </Button>
-                <Button className="cancelar"
-                    variant="secondary"
-                    onClick={close}>
-                    Cancelar
-                </Button>
+                <BtnConfirmar_Cancelar_Components
+                    handleSubmit={handleSubmit}
+                    enviarDatos={enviarDatos}
+                    existenModificaciones={existenModificaciones}
+                    close={close}
+                />
             </Modal.Footer>
         </Modal>
     )

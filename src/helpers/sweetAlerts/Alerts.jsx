@@ -213,3 +213,60 @@ export function alertWarningVender(data, prod) {
         });
     });
 }
+
+
+export function alertWarningPrecio(data, prod) {
+    return new Promise((resolve) => {
+        Swal.fire({
+            iconColor: 'rgb(252, 113, 0)',
+            title: 'Desea modificar el precio ?',
+            html: `<h6>Producto: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${prod.producto_terminado}</span></h6>
+                     <h6>Tipo consumidor: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;"> ${data.tipoConsumidor}</span></h6>
+                    <h6>Nuevo precio: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.total}</span></h6>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Si, deseo continuar!',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                title: 'custom_title',
+                popup: 'custom_width',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    });
+}
+
+export function alertWarningIncrementarStock(data, prod) {
+    return new Promise((resolve) => {
+        Swal.fire({
+            iconColor: 'rgb(252, 113, 0)',
+            title: 'Desea aumentar la cantidad ?',
+            html: `<h6>Producto: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${prod.producto_terminado}</span></h6>
+                    <h6> Ciudad: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.ciudad}</span ></h6>
+                     <h6>Sumar: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;"> ${data.total} </span> nuevos</h6>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Si, deseo continuar!',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                title: 'custom_title',
+                popup: 'custom_width',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    });
+}

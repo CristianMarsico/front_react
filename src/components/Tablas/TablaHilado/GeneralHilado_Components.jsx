@@ -4,6 +4,8 @@ import '../../../css/tabla.css'
 import useAuth from '../../../helpers/auth/useAuth';
 import { useModal } from '../../../helpers/hooks/useModal';
 import { getAllHilado } from '../../../services/ProductoService';
+import BtnIncremetarStock from './BtnTablaHilado/BtnIncremetarStock';
+import BtnModificarPrecio from './BtnTablaHilado/BtnModificarPrecio';
 import BtnTransferirStock from './BtnTablaHilado/BtnTransferirStock';
 import BtnVender from './BtnTablaHilado/BtnVender';
 import Modal_AddHilado_Components from './Modal/Modal_AddHilado_Components';
@@ -84,7 +86,10 @@ const GeneralHilado_Components = () => {
                                 <th> Stock Bs. As.</th>
                                 <th> Precio Mayorista</th>
                                 <th> Precio Minorista</th>
-                                <th> Acciones</th>
+                                {
+                                    tieneRol("super_admin") &&
+                                    <th> Acciones</th>
+                                }
                             </tr>
                         </thead>
                         <tbody>
@@ -116,7 +121,16 @@ const GeneralHilado_Components = () => {
                                             tieneRol("super_admin") &&
                                             <td className="td_btn">
 
+                                                <BtnIncremetarStock
+                                                    hilado={h}
+                                                    fetchHilado={fetchHilado}
+                                                />
                                                 <BtnTransferirStock
+                                                    hilado={h}
+                                                    fetchHilado={fetchHilado}
+                                                />
+
+                                                <BtnModificarPrecio
                                                     hilado={h}
                                                     fetchHilado={fetchHilado}
                                                 />
@@ -124,6 +138,7 @@ const GeneralHilado_Components = () => {
                                                     hilado={h}
                                                     fetchHilado={fetchHilado}
                                                 />
+
 
                                             </td>
                                         }

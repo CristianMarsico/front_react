@@ -38,7 +38,7 @@ const General_Navbar_Component = () => {
                             />
                             <>
                                 {
-                                    tieneRol("super_admin") && (
+                                    (tieneRol("super_admin") || tieneRol("admin")) && (
 
                                         <NavegacionNav
                                             style={customStyle}

@@ -26,7 +26,7 @@ const InputsLoginComponent = ({ name, label, placeholder, register, required, mi
                     onChange={getDatos}
                 />
                 <label htmlFor={name} className="form_label">{label}</label>
-                <small className='fail'>{errors?.usuario?.message}</small>
+                <small className='fail'>{errors?.[name]?.message}</small>
             </div>
         </div>
     );

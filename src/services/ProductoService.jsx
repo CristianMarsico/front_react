@@ -55,3 +55,23 @@ export async function vender(datos) {
         withCredentials: true
     });
 }
+
+export async function actualizarPrecio(datos) {
+
+    let PRECIO = {
+        tipo_consumidor: datos.tipoConsumidor,
+        total: datos.total,
+    }
+    const URL_MODIFICAR_PRECIO = `http://localhost:3000/api/cambiarPrecio/${datos.id}`;
+    return await axios.put(URL_MODIFICAR_PRECIO, PRECIO, { withCredentials: true });
+}
+
+export async function incrementar_stock(datos) {
+
+    let STOCK = {
+        stock: datos.ciudad,
+        total: datos.total,
+    }
+    const URL_INCREMENTAR_STOCK = `http://localhost:3000/api/incrementarMercaderia/${datos.id}`;
+    return await axios.put(URL_INCREMENTAR_STOCK, STOCK, { withCredentials: true });
+}

@@ -74,7 +74,10 @@ const GeneralTablaMP_Components = () => {
                             <tr>
                                 <th> Nombre</th>
                                 <th> Stock</th>
-                                <th> Acciones</th>
+                                {
+                                    tieneRol("super_admin") &&
+                                    <th> Acciones</th>
+                                }
                             </tr>
                         </thead>
                         <tbody>

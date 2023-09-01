@@ -23,6 +23,7 @@ const Registro = () => {
             ...datos,
             [e.target.name]: e.target.value
         });
+        console.log(datos)
     }
 
     if (!tieneToken()) deleteUserLocal();

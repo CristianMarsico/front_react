@@ -78,7 +78,10 @@ const GeneralTablaUsuarios_Components = () => {
                                 <th> Nombre</th>
                                 <th> Usuario</th>
                                 <th> Email</th>
-                                <th> Acciones</th>
+                                {
+                                    tieneRol("super_admin") &&
+                                    <th> Acciones</th>
+                                }
                             </tr>
                         </thead>
                         <tbody>

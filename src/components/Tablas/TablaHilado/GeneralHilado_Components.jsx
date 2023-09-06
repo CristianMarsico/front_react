@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import '../../../css/tabla.css'
 import useAuth from '../../../helpers/auth/useAuth';
+import useGetDatosBD from '../../../helpers/hooks/useGetDatosBD';
 import { useModal } from '../../../helpers/hooks/useModal';
 import { getAllHilado } from '../../../services/ProductoService';
 import BtnIncremetarStock from './BtnTablaHilado/BtnIncremetarStock';
@@ -11,7 +12,12 @@ import BtnVender from './BtnTablaHilado/BtnVender';
 import Modal_AddHilado_Components from './Modal/Modal_AddHilado_Components';
 
 const GeneralHilado_Components = () => {
-    const [hilado, setHilado] = useState([]);
+
+    /**
+     * Me traigo todos los datos realacionados a la Materia Prima
+     * mediante el uso un un hook (helpers -> hooks -> useEnviarDatosBD)
+     */
+    const { respuesta, fetchDatos } = useGetDatosBD(getAllHilado);
     const [searchHilado, setSearchHilado] = useState('');
     let { tieneRol } = useAuth()
 
@@ -19,24 +25,8 @@ const GeneralHilado_Components = () => {
     // const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
     // const [isOpenAddProduccionModal, openChangeAddProduccionModal, closeChangeAddProduccionModal] = useModal()
 
-    useEffect(() => {
-        fetchHilado();
-    }, []);
-
-    const fetchHilado = async () => {
-        try {
-            const response = await getAllHilado();
-            setHilado(response.data.response);
-        } catch (err) {
-            if (err)
-                setHilado([]);
-            else
-                console.log(err)
-        }
-    };
-
     //realizo la busqueda de usuarios
-    const filteredHilado = hilado.filter((h) =>
+    const filteredHilado = respuesta.filter((h) =>
         h.producto_terminado?.toLowerCase().includes(searchHilado.toLowerCase())
     );
     return (
@@ -112,20 +102,20 @@ const GeneralHilado_Components = () => {
 
                                                 <BtnIncremetarStock
                                                     hilado={h}
-                                                    fetchHilado={fetchHilado}
+                                                    fetchHilado={fetchDatos}
                                                 />
                                                 <BtnTransferirStock
                                                     hilado={h}
-                                                    fetchHilado={fetchHilado}
+                                                    fetchHilado={fetchDatos}
                                                 />
 
                                                 <BtnModificarPrecio
                                                     hilado={h}
-                                                    fetchHilado={fetchHilado}
+                                                    fetchHilado={fetchDatos}
                                                 />
                                                 <BtnVender
                                                     hilado={h}
-                                                    fetchHilado={fetchHilado}
+                                                    fetchHilado={fetchDatos}
                                                 />
 
 
@@ -141,8 +131,8 @@ const GeneralHilado_Components = () => {
             <Modal_AddHilado_Components
                 isOpen={isOpenAddHiladoModal}
                 close={closeChangeAddHiladoModal}
-                fetchHilado={fetchHilado}
-                hilado={hilado}
+                fetchHilado={fetchDatos}
+                hilado={respuesta}
             />
 
             {/* <Modal_Reporte

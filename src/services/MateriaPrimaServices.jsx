@@ -35,6 +35,7 @@ export async function actualizarMP(datos) {
 
     let DATA = {
         nombre: datos.nombre,
+        precio: datos.precio,
         stock: datos.stock,
     }
     const URL_ACTUALIZAR_MP = `http://localhost:3000/api/updateMP/${datos.id}`;

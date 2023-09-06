@@ -11,35 +11,24 @@ import Modal_EnPorduccion from './Modal/Modal_EnPorduccion';
 import BtnEliminarMP from './BtnMateriaPrima/BtnEliminarMP';
 import BtnEditarMP from './BtnMateriaPrima/BtnEditarMP';
 import BtnDescontarStock from './BtnMateriaPrima/BtnDescontarStock';
+import useGetDatosBD from '../../../helpers/hooks/useGetDatosBD';
+
 
 
 const GeneralTablaMP_Components = () => {
-    const [materiaPrima, setMateriaPrima] = useState([]);
+    /**
+     * Me traigo todos los datos realacionados a la Materia Prima
+     * mediante el uso un un hook (helpers -> hooks -> useEnviarDatosBD)
+     */
+    const { respuesta, fetchDatos } = useGetDatosBD(getAllMP);
     const [searchMP, setSearchMP] = useState('');
     let { tieneRol } = useAuth()
 
     const [isOpenAddMPModal, openChangeAddMPModal, closeChangeAddMPModal] = useModal()
     const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
     const [isOpenAddProduccionModal, openChangeAddProduccionModal, closeChangeAddProduccionModal] = useModal()
-
-    useEffect(() => {
-        fetchMateriaPrima();
-    }, []);
-
-    const fetchMateriaPrima = async () => {
-        try {
-            const response = await getAllMP();
-            setMateriaPrima(response.data.response);
-        } catch (err) {
-            if (err)
-                setMateriaPrima([]);
-            else
-                console.log(err)
-        }
-    };
-
     //realizo la busqueda de usuarios 
-    const filteredMP = materiaPrima.filter((mp) =>
+    const filteredMP = respuesta.filter((mp) =>
         mp.nombre?.toLowerCase().includes(searchMP.toLowerCase())
     );
 
@@ -74,6 +63,7 @@ const GeneralTablaMP_Components = () => {
                             <tr>
                                 <th> Nombre</th>
                                 <th> Stock</th>
+                                <th> Precio</th>
                                 {
                                     tieneRol("super_admin") &&
                                     <th> Acciones</th>
@@ -95,20 +85,22 @@ const GeneralTablaMP_Components = () => {
 
                                             }
                                         </td>
+                                        <td>{mp.precio}</td>
+
                                         {
                                             tieneRol("super_admin") &&
                                             <td className="td_btn">
                                                 <BtnEditarMP
                                                     mp={mp}
-                                                    fetchMateriaPrima={fetchMateriaPrima}
+                                                    fetchMateriaPrima={fetchDatos}
                                                 />
                                                 <BtnEliminarMP
                                                     mp={mp}
-                                                    fetchMateriaPrima={fetchMateriaPrima}
+                                                    fetchMateriaPrima={fetchDatos}
                                                 />
                                                 <BtnDescontarStock
                                                     mp={mp}
-                                                    fetchMateriaPrima={fetchMateriaPrima}
+                                                    fetchMateriaPrima={fetchDatos}
                                                 />
                                             </td>
                                         }
@@ -122,8 +114,8 @@ const GeneralTablaMP_Components = () => {
             <ModalCompraMP_Components
                 isOpen={isOpenAddMPModal}
                 close={closeChangeAddMPModal}
-                fetchMateriaPrima={fetchMateriaPrima}
-                materiaPrima={materiaPrima}
+                fetchMateriaPrima={fetchDatos}
+                materiaPrima={respuesta}
             />
 
             <Modal_Reporte

@@ -106,7 +106,8 @@ export function alertWarningUpdate(mp, data) {
             iconColor: 'rgb(252, 113, 0)',
             title: `Está por realizar modificaciones !`,
             html: `<h6>Cambiará <span style="color: blue; font-weight: bold; text-transform: uppercase;">${mp.nombre}</span> por <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.nombre}</span></h6>` +
-                `<h6>Además, se actualizará el stock de <span style="color: blue; font-weight: bold;text-transform: uppercase;">${mp.stock}</span> a <span style="color: red; font-weight: bold;text-transform: uppercase;">${data.stock}</span> .</h6>`,
+                `<h6>Se actualizará el stock de <span style="color: blue; font-weight: bold;text-transform: uppercase;">${mp.stock}</span> a <span style="color: red; font-weight: bold;text-transform: uppercase;">${data.stock}</span> .</h6>` +
+                `<h6>Se actualizará el precio de <span style="color: blue; font-weight: bold; text-transform: uppercase;">${mp.precio}</span> por <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.precio}</span></h6>`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

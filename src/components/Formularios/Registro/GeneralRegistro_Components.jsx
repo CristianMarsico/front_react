@@ -73,8 +73,6 @@ const GeneralRegistro_Components = ({ enviarDatos, getDatos }) => {
                     maxLength={50}
                     getDatos={getDatos}
                     errors={errors}
-                    setShowPwd={setShowPwd}
-                    showPwd={showPwd}
                 />
             </div>
             <p >Volver al <Link to="/">Login</Link></p>

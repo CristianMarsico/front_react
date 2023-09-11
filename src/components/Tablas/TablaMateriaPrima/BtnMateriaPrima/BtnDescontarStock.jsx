@@ -37,7 +37,7 @@ const BtnDescontarStock = ({ mp, fetchMateriaPrima }) => {
                     fontSize: "13px",
                     margin: "2px"
                 }}
-            >Quitar Stock</Button>{' '}
+            >Enviar a Producción</Button>{' '}
 
 
             <Modal_DescontarStock

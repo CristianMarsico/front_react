@@ -10,6 +10,7 @@ import BtnModificarPrecio from './BtnTablaHilado/BtnModificarPrecio';
 import BtnTransferirStock from './BtnTablaHilado/BtnTransferirStock';
 import BtnVender from './BtnTablaHilado/BtnVender';
 import Modal_AddHilado_Components from './Modal/Modal_AddHilado_Components';
+import Modal_ReporteVenta_Components from './Modal/Modal_ReporteVenta_Components';
 
 const GeneralHilado_Components = () => {
 
@@ -22,7 +23,7 @@ const GeneralHilado_Components = () => {
     let { tieneRol } = useAuth()
 
     const [isOpenAddHiladoModal, openChangeAddHiladoModal, closeChangeAddHiladoModal] = useModal()
-    // const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
+    const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
     // const [isOpenAddProduccionModal, openChangeAddProduccionModal, closeChangeAddProduccionModal] = useModal()
 
     //realizo la busqueda de usuarios
@@ -38,9 +39,9 @@ const GeneralHilado_Components = () => {
                         Agregar Hilado
                     </Button>
 
-                    {/* <Button variant="warning" onClick={openChangeAddReporteModal}>
-                        Reporte Compras
-                    </Button> */}
+                    <Button variant="warning" onClick={openChangeAddReporteModal}>
+                        Reporte Ventas
+                    </Button>
 
                     {/* <Button variant="warning" onClick={openChangeAddProduccionModal}>
                         Reporte en Producción
@@ -135,14 +136,15 @@ const GeneralHilado_Components = () => {
                 hilado={respuesta}
             />
 
-            {/* <Modal_Reporte
+            <Modal_ReporteVenta_Components
                 open={isOpenAddReporteModal}
                 close={closeChangeAddReporteModal}
             />
 
-            <Modal_EnPorduccion
+            {/* <Modal_EnPorduccion
                 open={isOpenAddProduccionModal}
                 close={closeChangeAddProduccionModal} />  */}
+
         </>
     )
 }

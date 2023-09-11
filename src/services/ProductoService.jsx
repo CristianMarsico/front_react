@@ -43,9 +43,13 @@ export async function vender(datos) {
 
     let VENTA = {
         producto_id: datos.id,
+        nombre_prod: datos.nombre_prod,
+        color: datos.color,
         cantidad_vendida: datos.cantidad,
         origen: datos.ciudad,
         tipo_venta: datos.tipo_venta,
+        fecha: datos.fecha,
+        cliente: datos.cliente
     }
     const ADD_VENTA = "http://localhost:3000/api/venta";
     return await axios.post(ADD_VENTA, VENTA, {
@@ -74,4 +78,9 @@ export async function incrementar_stock(datos) {
     }
     const URL_INCREMENTAR_STOCK = `http://localhost:3000/api/incrementarMercaderia/${datos.id}`;
     return await axios.put(URL_INCREMENTAR_STOCK, STOCK, { withCredentials: true });
+}
+
+export async function getReporteVenta(datos) {
+    const URL_REPORTE = `http://localhost:3000/api/reporteVenta/${datos.fechaMin}/${datos.fechaMax}`;
+    return await axios.get(URL_REPORTE, { responseType: 'arraybuffer', withCredentials: true });
 }

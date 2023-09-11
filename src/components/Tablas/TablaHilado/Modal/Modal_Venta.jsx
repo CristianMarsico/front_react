@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import '../../../../css/modals.css'
 import { alertWarningVender } from '../../../../helpers/sweetAlerts/Alerts';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
+import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 import InputTypeSelect_Components from '../../../Inputs/InputTypeSelect_Components';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 
@@ -16,6 +17,9 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
         ciudad: "",
         tipo_venta: "",
         cantidad: "",
+        medio_pago: "",
+        cliente: "",
+        fecha: ""
     });
     useEffect(() => {
         if (!isOpen) {
@@ -28,9 +32,14 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
         try {
             const VENTA = {
                 id: hilado.id,
+                nombre_prod: hilado.producto_terminado,
+                color: hilado.color,
                 ciudad: datos.ciudad,
                 tipo_venta: datos.tipo_venta,
-                cantidad: datos.cantidad
+                cantidad: datos.cantidad,
+                medio_pago: datos.medio_pago,
+                cliente: datos.cliente,
+                fecha: datos.fecha
             }
 
             let isTrue = await alertWarningVender(VENTA, hilado.producto_terminado)
@@ -47,6 +56,7 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
             [e.target.name]: e.target.value
         });
     }
+    const fechaActual = new Date().toISOString().split('T')[0];
 
     return (
         <Modal show={isOpen} onHide={close}>
@@ -59,7 +69,7 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
 
 
                     <InputTypeSelect_Components
-                        label="Ciudad la cual realiza la venta"
+                        label="Ciudad"
                         name="ciudad"
                         options={[
                             { label: "Seleccionar ciudad de despacho", value: "" },
@@ -86,16 +96,50 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
                         defaultValue=""
                     />
 
-
                     <InputBasico_Components
                         type="number"
-                        label="Unidades a vender"
+                        label="Cantidad a vender"
                         name="cantidad"
                         placeholder="Ingrese la cantidad que desea vender*"
                         onChange={getDatos}
                         register={register}
                         errors={errors}
                         defaultValue=""
+                    />
+
+                    <InputTypeSelect_Components
+                        label="Medio de pago"
+                        name="medio_pago"
+                        options={[
+                            { label: "Seleccionar medio de pago", value: "" },
+                            { label: "Mercado Pago", value: "mercado_pago" },
+                            { label: "App", value: "app" },
+                        ]}
+                        onChange={getDatos}
+                        register={register}
+                        errors={errors}
+                        defaultValue=""
+                    />
+                    <InputBasico_Components
+                        type="text"
+                        label="Cliente/Empresa"
+                        name="cliente"
+                        placeholder="Ingrese nombre de cliente/empresa*"
+                        onChange={getDatos}
+                        register={register}
+                        errors={errors}
+                        defaultValue=""
+                    />
+
+                    <InputTypeDate_Components
+                        type="date"
+                        label="Fecha"
+                        name="fecha"
+                        placeholder="Ingrese fecha en formato YYYY/MM/DD*"
+                        onChange={getDatos}
+                        register={register}
+                        errors={errors}
+                        max={fechaActual}
                     />
 
                 </Form>

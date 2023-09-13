@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import '../../../css/tabla.css'
+import { useState } from 'react';
 import useAuth from '../../../helpers/auth/useAuth';
 import { Button } from 'react-bootstrap';
 import { getAllMP } from '../../../services/MateriaPrimaServices';
@@ -58,57 +57,59 @@ const GeneralTablaMP_Components = () => {
                 </section>
 
                 <section className="table__body">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th> Nombre</th>
-                                <th> Stock</th>
-                                <th> Precio</th>
-                                {
-                                    tieneRol("super_admin") &&
-                                    <th> Acciones</th>
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredMP.length === 0 ? (
+                    <div className="table-scroll">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td colSpan="4">No se encontraron resultados</td>
+                                    <th> Nombre</th>
+                                    <th> Stock</th>
+                                    <th> Precio</th>
+                                    {
+                                        tieneRol("super_admin") &&
+                                        <th> Acciones</th>
+                                    }
                                 </tr>
-                            ) : (
-                                filteredMP.map((mp) => (
-                                    <tr key={mp.id}>
-                                        <td>{mp.nombre}</td>
-                                        <td className={mp.stock > 0 ? '' : 'sin-stock'}>
-                                            {
-                                                mp.stock > 0 ? mp.stock : <span>sin stock</span>
-
-                                            }
-                                        </td>
-                                        <td>{mp.precio}</td>
-
-                                        {
-                                            tieneRol("super_admin") &&
-                                            <td className="td_btn">
-                                                <BtnEditarMP
-                                                    mp={mp}
-                                                    fetchMateriaPrima={fetchDatos}
-                                                />
-                                                <BtnEliminarMP
-                                                    mp={mp}
-                                                    fetchMateriaPrima={fetchDatos}
-                                                />
-                                                <BtnDescontarStock
-                                                    mp={mp}
-                                                    fetchMateriaPrima={fetchDatos}
-                                                />
-                                            </td>
-                                        }
+                            </thead>
+                            <tbody>
+                                {filteredMP.length === 0 ? (
+                                    <tr>
+                                        <td colSpan="4">No se encontraron resultados</td>
                                     </tr>
-                                ))
-                            )}
-                        </tbody>
-                    </table>
+                                ) : (
+                                    filteredMP.map((mp) => (
+                                        <tr key={mp.id}>
+                                            <td>{mp.nombre}</td>
+                                            <td className={mp.stock > 0 ? '' : 'sin-stock'}>
+                                                {
+                                                    mp.stock > 0 ? mp.stock : <span>sin stock</span>
+
+                                                }
+                                            </td>
+                                            <td>{mp.precio}</td>
+
+                                            {
+                                                tieneRol("super_admin") &&
+                                                <td className="td_btn">
+                                                    <BtnEditarMP
+                                                        mp={mp}
+                                                        fetchMateriaPrima={fetchDatos}
+                                                    />
+                                                    <BtnEliminarMP
+                                                        mp={mp}
+                                                        fetchMateriaPrima={fetchDatos}
+                                                    />
+                                                    <BtnDescontarStock
+                                                        mp={mp}
+                                                        fetchMateriaPrima={fetchDatos}
+                                                    />
+                                                </td>
+                                            }
+                                        </tr>
+                                    ))
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
             </div>
             <ModalCompraMP_Components

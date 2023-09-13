@@ -21,3 +21,14 @@ export async function CompraServices(datosEnviados, e) {
         withCredentials: true
     });
 }
+
+export async function getAllCompras() {
+    let token = await RequiereTokenHelpers();
+    const URL_GETALL = "http://localhost:3000/api/getAllCompras";
+    return await axios.get(URL_GETALL, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        withCredentials: true
+    });
+}

@@ -6,9 +6,17 @@
     --terciario: rgb(250, 246, 237);
 }
 
-.table {
-    max-width: 1200px;
+.root-layout .table {
+    max-width: 1100px;
     margin: auto auto;
+}
+
+.root-layout .table-scroll {
+
+    max-height: 350px;
+    /* Establece la altura máxima del contenedor */
+    overflow-y: auto;
+    /* Añade una barra de desplazamiento vertical cuando sea necesario */
 }
 
 .table__header {
@@ -20,12 +28,26 @@
     gap: 20px;
 }
 
+.table__header .mb-8 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.table__header .mb-8 label {
+    background-color: transparent;
+    text-align: center;
+    margin: 0 !important;
+}
+
 .table__header button {
     padding: 10px 5px;
 }
 
 .table__header .input-group {
-    width: 23%;
+    width: 15rem;
     height: 100%;
     background-color: #fff5;
     padding: 0 .8rem;
@@ -54,15 +76,6 @@
 table {
     width: 100%;
 }
-
-/* td img {
-    width: 36px;
-    height: 36px;
-    margin-right: .5rem;
-    border-radius: 50%;
-    vertical-align: middle;
-} */
-
 
 .td_btn {
     padding: 0 !important;
@@ -118,10 +131,7 @@ tbody tr:hover {
     background-color: rgb(192, 169, 127) !important;
 }
 
-
-
 .sin-stock span {
-    /* Cambia esto por los estilos que desees */
     font-weight: bold;
     color: red;
     font-size: 16px;
@@ -129,27 +139,8 @@ tbody tr:hover {
     border-radius: 20px;
     background-color: rgb(248, 248, 21);
     padding: 3px 10px;
-    /* Agrega más estilos según tus necesidades */
 }
 
-/*
-.status.delivered {
-    background-color: #86e49d;
-    color: #006b21;
-}
-
-.status.cancelled {
-    background-color: #d893a3;
-    color: #b30021;
-} */
-
-/* .status.pending {
-    background-color: #ebc474;
-}
-
-.status.shipped {
-    background-color: #6fcaea;
-} */
 thead th.active,
 tbody td.active {
     color: red;

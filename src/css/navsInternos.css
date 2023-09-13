@@ -1,4 +1,4 @@
-.help-layout nav {
+.root-layout .layout {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -6,27 +6,26 @@
     flex-wrap: wrap;
 }
 
-.help-layout nav a {
+.root-layout .layout a {
     border: 2px solid rgb(61, 57, 57);
     color: rgb(61, 57, 57);
-    border-radius: 4px;
     text-decoration: none;
     padding: 0.5rem;
     font-size: 1.1rem;
     border-radius: var(--bs-border-radius-lg);
 }
 
-.help-layout nav a:hover {
+.root-layout .layout a:hover {
     border-color: var(--primary);
 }
 
-.help-layout nav a.active {
+.root-layout .layout a.active {
     background: rgb(240, 156, 0);
     color: white;
 }
 
 @media all and (max-width:500px) {
-    .help-layout nav {
+    .root-layout .layout {
         display: flex;
         flex-direction: column;
     }

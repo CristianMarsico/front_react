@@ -33,7 +33,7 @@ const Login = () => {
             saveToken(token);
             saveUsuerLocal(response.data);
             mostrarAlertSuccess(response.data.usuario);
-            navigate(RUTAS.home);
+            navigate(RUTAS.administracion);
             return;
         } catch (err) {
             if (err.response)

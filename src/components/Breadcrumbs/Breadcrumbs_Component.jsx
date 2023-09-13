@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import '../../css/posicionURL.css';
+
 
 
 const Breadcrumbs_Component = () => {
@@ -21,11 +21,11 @@ const Breadcrumbs_Component = () => {
 
     return (
 
-        <div className="contenedorBreadcrumbs">
-            <div className='breadcrumbs'>
-                {partesURL}
-            </div>
+        // <div className="contenedorBreadcrumbs">
+        <div className='breadcrumbs'>
+            {partesURL}
         </div>
+        // </div>
     )
 }
 

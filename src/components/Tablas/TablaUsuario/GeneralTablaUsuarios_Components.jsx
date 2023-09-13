@@ -1,21 +1,16 @@
 import { useEffect, useState } from 'react';
-import '../../../css/tabla.css'
 import { editarUsuario, eliminarUsuario, getAllUsarios } from '../../../services/UserServices';
 import useAuth from '../../../helpers/auth/useAuth';
 
 //COMPONENTES
 import BotonesTablaUsuarios from './components_internos/BotonesTablaUsuarios';
 
-//IMAGENES
-// import Lupa from "../../images/search.png";
-import { Table } from 'react-bootstrap';
-
 
 const GeneralTablaUsuarios_Components = () => {
 
     const [users, setUsers] = useState([]);
     const [searchUser, setSearchUser] = useState('');
-    let { user, tieneRol } = useAuth()
+    let { tieneRol } = useAuth()
 
     useEffect(() => {
         fetchUsers();

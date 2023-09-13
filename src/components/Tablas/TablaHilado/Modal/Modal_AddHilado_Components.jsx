@@ -33,7 +33,6 @@ const Modal_AddHilado_Components = ({ isOpen, close, fetchHilado, hilado }) => {
             let istrue = await alertWarningAgregarHilado(datosEnviados);
             if (istrue) {
                 let response = await addHilado(datosEnviados);
-                console.log(response)
                 mostrarAlertCompraSuccess(response.data);
                 fetchHilado();
                 close(true)

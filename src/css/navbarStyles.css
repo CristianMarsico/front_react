@@ -1,13 +1,13 @@
-.bg-body-tertiary {
+.root-layout .bg-body-tertiary {
     background-color: transparent !important;
     border: 2px solid rgb(173, 167, 167);
 }
 
-.active {
+.root-layout .bg-body-tertiary .active {
     border-bottom: 3px solid rgb(240, 156, 0);
 }
 
-.links {
+.root-layout .bg-body-tertiary .links {
     text-decoration: none;
 
 }

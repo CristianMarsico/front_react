@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import '../../../css/tabla.css'
 import useAuth from '../../../helpers/auth/useAuth';
 import useGetDatosBD from '../../../helpers/hooks/useGetDatosBD';
 import { useModal } from '../../../helpers/hooks/useModal';

@@ -2,12 +2,10 @@ import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
 //imports pages
-import Home from '../pages/Home'
 import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
 import Registro from '../pages/Registro'
 import Perfil from '../pages/Perfil'
-import Galeria_Imagenes, { LoaderGaleriaImagen } from '../pages/Galeria_Imagenes'
 
 
 //imports rutas publicas y privadas
@@ -24,6 +22,7 @@ import RUTAS from '../helpers/RutasHelpers'
 import ListaMP from '../pages/ListaMP'
 import ListaProductos from '../pages/ListaProductos'
 import ListaUsuarios from '../pages/ListaUsuarios'
+import ListaCompra from '../pages/ListaCompra'
 
 export const router = createBrowserRouter(
     [
@@ -53,35 +52,6 @@ export const router = createBrowserRouter(
             element: <LayoutRaiz />,
             children: [
                 {
-                    path: RUTAS.galeria,
-                    element: <Galeria_Imagenes />,
-                    loader: LoaderGaleriaImagen
-                },
-
-                // {
-                //     path: RUTAS.superAdmin,
-                //     element: < SuperAdmin_Layout />,
-                //     children: [
-                //         {
-                //             path: RUTAS.compra,
-                //             element:
-                //                 < ComprarMP />
-                //         },
-                //         {
-                //             path: RUTAS.venta,
-                //             element:
-                //                 < Venta_Hilado />
-                //         },
-                //     ]
-                // },
-
-
-                {
-                    path: RUTAS.home,
-                    element: < Home />
-
-                },
-                {
                     path: RUTAS.perfil,
                     element:
                         <Perfil />
@@ -108,6 +78,11 @@ export const router = createBrowserRouter(
                             path: RUTAS.listaUsuarios,
                             element:
                                 < ListaUsuarios />
+                        },
+                        {
+                            path: RUTAS.listaCompras,
+                            element:
+                                < ListaCompra />
                         },
                     ]
                 },

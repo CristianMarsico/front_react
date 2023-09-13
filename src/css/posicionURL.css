@@ -1,28 +1,20 @@
-.contenedorBreadcrumbs {
-    width: 100%;
-    display: flex;
-    /* padding-top: 5px; */
-    margin: auto auto;
+.root-layout .breadcrumbs {
+    margin: 5px auto 5px 6.2rem;
+    padding: 0 20px;
 }
 
-.breadcrumbs {
-    width: 85%;
-    margin: 5px auto 5px auto;
-
-}
-
-.breadcrumbs>* {
+.root-layout .breadcrumbs>* {
     color: rgb(61, 57, 57);
     display: inline-block;
     margin-right: 10px;
 }
 
-.breadcrumbs .crumb:after {
+.root-layout .breadcrumbs .crumb:after {
     content: '>';
     margin-left: 10px;
 }
 
-.breadcrumbs .crumb:last-child:after {
+.root-layout .breadcrumbs .crumb:last-child:after {
     display: none;
 
 }

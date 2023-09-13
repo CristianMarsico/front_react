@@ -23,19 +23,13 @@ const General_Navbar_Component = () => {
         <>
             < Navbar expand="sm" className="bg-body-tertiary bg_fondo" style={{ backgroundColor: 'red' }}>
                 <Container>
-                    <Navbar.Brand href="home">
+                    <Navbar.Brand href={RUTAS.administracion}>
                         <Card.Img variant="top" src={Logo} style={{ width: '7rem' }} />
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
                         <Nav>
-                            <NavegacionNav
 
-                                style={customStyle}
-                                nombreClase="links"
-                                redirec="home"
-                                sitio="Home"
-                            />
                             <>
                                 {
                                     (tieneRol("super_admin") || tieneRol("admin")) && (
@@ -43,7 +37,7 @@ const General_Navbar_Component = () => {
                                         <NavegacionNav
                                             style={customStyle}
                                             nombreClase="links"
-                                            redirec="administracion"
+                                            redirec={RUTAS.administracion}
                                             sitio="Administración"
                                         />
 
@@ -51,14 +45,8 @@ const General_Navbar_Component = () => {
                                 }
                             </>
 
-                            <NavegacionNav
-                                style={customStyle}
-                                nombreClase="links"
-                                redirec="galeria"
-                                sitio="Galeria"
-                            />
                             <NavDropdown title="Menu" id="basic-nav-dropdown">
-                                <NavDropdown.Item as={Link} to="perfil">
+                                <NavDropdown.Item as={Link} to={RUTAS.perfil}>
                                     <Navbar.Text>
                                         <span className="links">Mi Perfil</span>
                                     </Navbar.Text>

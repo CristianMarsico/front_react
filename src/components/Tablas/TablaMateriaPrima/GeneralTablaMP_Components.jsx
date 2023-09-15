@@ -24,7 +24,7 @@ const GeneralTablaMP_Components = () => {
     let { tieneRol } = useAuth()
 
     const [isOpenAddMPModal, openChangeAddMPModal, closeChangeAddMPModal] = useModal()
-    const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
+    // const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
     const [isOpenAddProduccionModal, openChangeAddProduccionModal, closeChangeAddProduccionModal] = useModal()
     //realizo la busqueda de usuarios 
     const filteredMP = respuesta.filter((mp) =>
@@ -40,9 +40,9 @@ const GeneralTablaMP_Components = () => {
                         Agregar Compra
                     </Button>
 
-                    <Button variant="warning" onClick={openChangeAddReporteModal}>
+                    {/* <Button variant="warning" onClick={openChangeAddReporteModal}>
                         Reporte Compras
-                    </Button>
+                    </Button> */}
 
                     <Button variant="warning" onClick={openChangeAddProduccionModal}>
                         Reporte en Producción
@@ -119,10 +119,10 @@ const GeneralTablaMP_Components = () => {
                 materiaPrima={respuesta}
             />
 
-            <Modal_Reporte
+            {/* <Modal_Reporte
                 open={isOpenAddReporteModal}
                 close={closeChangeAddReporteModal}
-            />
+            /> */}
 
             <Modal_EnPorduccion
                 open={isOpenAddProduccionModal}

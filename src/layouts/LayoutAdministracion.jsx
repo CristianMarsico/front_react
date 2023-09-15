@@ -10,10 +10,10 @@ const LayoutAdministracion = () => {
         <>
             {/* <div className="help-layout"> */}
             <nav className="layout">
-                <NavLink to={RUTAS.listaMP}>Lista Materia Prima</NavLink>
-                <NavLink to={RUTAS.listaProductos}>Lista Productos</NavLink>
-                <NavLink to={RUTAS.listaUsuarios}>Lista Usuarios</NavLink>
-                <NavLink to={RUTAS.listaCompras}>Lista De Compras</NavLink>
+                <NavLink to={RUTAS.listaMP}>Materia Prima</NavLink>
+                <NavLink to={RUTAS.listaProductos}>Producto Terminado</NavLink>
+                <NavLink to={RUTAS.listaUsuarios}>Usuarios</NavLink>
+                <NavLink to={RUTAS.listaCompras}>Compras</NavLink>
             </nav>
             <Outlet />
             {/* </div> */}

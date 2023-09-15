@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import useGetDatosBD from '../../../helpers/hooks/useGetDatosBD';
+import { useModal } from '../../../helpers/hooks/useModal';
 import { getAllCompras } from '../../../services/CompraServices';
+import Modal_Reporte from '../TablaMateriaPrima/Modal/Modal_Reporte';
 
 const General_TablaCompras_Components = () => {
 
     const { respuesta, fetchDatos } = useGetDatosBD(getAllCompras);
+    const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
 
     const [fechaInicio, setFechaInicio] = useState('');
     const [fechaFin, setFechaFin] = useState('');
@@ -95,6 +98,10 @@ const General_TablaCompras_Components = () => {
                         />
                     </Form.Group>
 
+                    <Button variant="warning" onClick={openChangeAddReporteModal}>
+                        Reporte Compras
+                    </Button>
+
                 </section>
 
                 <section className="table__body">
@@ -134,6 +141,12 @@ const General_TablaCompras_Components = () => {
                     </div>
                 </section>
             </div>
+
+            <Modal_Reporte
+                open={isOpenAddReporteModal}
+                close={closeChangeAddReporteModal}
+            />
+
         </>
     )
 }

@@ -14,6 +14,7 @@ const LayoutAdministracion = () => {
                 <NavLink to={RUTAS.listaProductos}>Producto Terminado</NavLink>
                 <NavLink to={RUTAS.listaUsuarios}>Usuarios</NavLink>
                 <NavLink to={RUTAS.listaCompras}>Compras</NavLink>
+                <NavLink to={RUTAS.listaVentas}>Ventas</NavLink>
             </nav>
             <Outlet />
             {/* </div> */}

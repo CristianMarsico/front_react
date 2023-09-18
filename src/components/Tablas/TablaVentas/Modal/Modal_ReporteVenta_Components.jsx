@@ -55,7 +55,7 @@ const Modal_ReporteVenta_Components = ({ open, close }) => {
     return (
         <Modal show={open} onHide={close}>
             <Modal.Header className='header-modal' closeButton>
-                <Modal.Title>Generar Reporte</Modal.Title>
+                <Modal.Title>Generar Reporte Ventas</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form className='form-modal form-reporte' onSubmit={handleSubmit(enviarDatos)}>

@@ -42,6 +42,8 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
                 fecha: datos.fecha
             }
 
+            console.log(VENTA)
+
             let isTrue = await alertWarningVender(VENTA, hilado.producto_terminado)
             if (isTrue)
                 vender(VENTA)
@@ -112,8 +114,8 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
                         name="medio_pago"
                         options={[
                             { label: "Seleccionar medio de pago", value: "" },
-                            { label: "Mercado Pago", value: "mercado_pago" },
-                            { label: "App", value: "app" },
+                            { label: "Mercado Pago", value: "mercado pago" },
+                            { label: "Tienda Nube", value: "tienda nube" },
                         ]}
                         onChange={getDatos}
                         register={register}

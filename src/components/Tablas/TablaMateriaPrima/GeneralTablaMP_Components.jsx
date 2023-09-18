@@ -5,7 +5,6 @@ import { getAllMP } from '../../../services/MateriaPrimaServices';
 import { useModal } from '../../../helpers/hooks/useModal';
 import ModalCompraMP_Components from './Modal/ModalCompraMP_Components';
 
-import Modal_Reporte from './Modal/Modal_Reporte';
 import Modal_EnPorduccion from './Modal/Modal_EnPorduccion';
 import BtnEliminarMP from './BtnMateriaPrima/BtnEliminarMP';
 import BtnEditarMP from './BtnMateriaPrima/BtnEditarMP';
@@ -45,7 +44,7 @@ const GeneralTablaMP_Components = () => {
                     </Button> */}
 
                     <Button variant="warning" onClick={openChangeAddProduccionModal}>
-                        Reporte en Producción
+                        PDF En Producción
                     </Button>
                     <div className="input-group">
                         <input

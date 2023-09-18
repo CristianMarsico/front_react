@@ -49,7 +49,8 @@ export async function vender(datos) {
         origen: datos.ciudad,
         tipo_venta: datos.tipo_venta,
         fecha: datos.fecha,
-        cliente: datos.cliente
+        cliente: datos.cliente,
+        medio_pago: datos.medio_pago
     }
     const ADD_VENTA = "http://localhost:3000/api/venta";
     return await axios.post(ADD_VENTA, VENTA, {

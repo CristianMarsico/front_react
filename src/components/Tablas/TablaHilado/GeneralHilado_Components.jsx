@@ -9,7 +9,6 @@ import BtnModificarPrecio from './BtnTablaHilado/BtnModificarPrecio';
 import BtnTransferirStock from './BtnTablaHilado/BtnTransferirStock';
 import BtnVender from './BtnTablaHilado/BtnVender';
 import Modal_AddHilado_Components from './Modal/Modal_AddHilado_Components';
-import Modal_ReporteVenta_Components from './Modal/Modal_ReporteVenta_Components';
 
 const GeneralHilado_Components = () => {
 
@@ -36,10 +35,6 @@ const GeneralHilado_Components = () => {
                     <h3>Hilado</h3>
                     <Button variant="primary" onClick={openChangeAddHiladoModal}>
                         Agregar Hilado
-                    </Button>
-
-                    <Button variant="warning" onClick={openChangeAddReporteModal}>
-                        Reporte Ventas
                     </Button>
 
                     {/* <Button variant="warning" onClick={openChangeAddProduccionModal}>
@@ -133,11 +128,6 @@ const GeneralHilado_Components = () => {
                 close={closeChangeAddHiladoModal}
                 fetchHilado={fetchDatos}
                 hilado={respuesta}
-            />
-
-            <Modal_ReporteVenta_Components
-                open={isOpenAddReporteModal}
-                close={closeChangeAddReporteModal}
             />
 
             {/* <Modal_EnPorduccion

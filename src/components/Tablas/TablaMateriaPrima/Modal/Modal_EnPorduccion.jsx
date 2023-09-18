@@ -52,7 +52,7 @@ const Modal_EnPorduccion = ({ open, close }) => {
     return (
         <Modal show={open} onHide={close}>
             <Modal.Header className='header-modal' closeButton>
-                <Modal.Title>Materia prima en produccion</Modal.Title>
+                <Modal.Title>Materia Prima En Produccion</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form className='form-reporte' onSubmit={handleSubmit(enviarDatos)}>

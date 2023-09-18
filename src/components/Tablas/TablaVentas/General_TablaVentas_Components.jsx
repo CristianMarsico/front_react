@@ -2,13 +2,15 @@ import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import useGetDatosBD from '../../../helpers/hooks/useGetDatosBD';
 import { useModal } from '../../../helpers/hooks/useModal';
-import { getAllCompras } from '../../../services/CompraServices';
-import Modal_Reporte from './Modal/Modal_Reporte';
+import { getAllVentas } from '../../../services/VentaServices';
 
 
-const General_TablaCompras_Components = () => {
+import Modal_ReporteVenta_Components from './Modal/Modal_ReporteVenta_Components';
 
-    const { respuesta, fetchDatos } = useGetDatosBD(getAllCompras);
+
+const General_TablaVentas_Components = () => {
+
+    const { respuesta, fetchDatos } = useGetDatosBD(getAllVentas);
     const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
 
     const [fechaInicio, setFechaInicio] = useState('');
@@ -78,7 +80,7 @@ const General_TablaCompras_Components = () => {
         <>
             <div className="table">
                 <section className="table__header">
-                    <h3>Compras realizadas</h3>
+                    <h3>Ventas realizadas</h3>
                     <Form.Group className="mb-8">
                         <Form.Label>Desde: </Form.Label>
                         <Form.Control
@@ -100,7 +102,7 @@ const General_TablaCompras_Components = () => {
                     </Form.Group>
 
                     <Button variant="warning" onClick={openChangeAddReporteModal}>
-                        PDF Compras
+                        PDF Ventas
                     </Button>
 
                 </section>
@@ -112,26 +114,32 @@ const General_TablaCompras_Components = () => {
                                 <tr>
                                     <th> Producto</th>
                                     <th> Cantidad</th>
-                                    <th> Precio Unitario</th>
                                     <th> Total</th>
+                                    <th> Origen</th>
+                                    <th> tipo Consumidor</th>
+                                    <th> Cliente</th>
+                                    <th> Medio Pago</th>
                                     <th> Fecha</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {elementosFiltrados.length === 0 ? (
                                     <tr>
-                                        <td colSpan="5">No se encontraron resultados</td>
+                                        <td colSpan="8">No se encontraron resultados</td>
                                     </tr>
                                 ) : (
-                                    elementosFiltrados.map((c) => {
-                                        const fecha = new Date(c.fecha);
+                                    elementosFiltrados.map((v) => {
+                                        const fecha = new Date(v.fecha);
                                         const fechaFormateada = fecha.toLocaleDateString('es-ES');
                                         return (
-                                            <tr key={c.id}>
-                                                <td>{c.producto}</td>
-                                                <td>{c.cantidad}</td>
-                                                <td>{c.precio_unitario}</td>
-                                                <td>{c.total}</td>
+                                            <tr key={v.id}>
+                                                <td>{v.nombre_prod} {v.color}</td>
+                                                <td>{v.cantidad}</td>
+                                                <td>{v.precio}</td>
+                                                <td>{v.stock_origen === "stock_buenosAires" ? "Bs. As." : "Lobería"}</td>
+                                                <td>{v.tipo_venta === "precio_venta_minorista" ? "Minorista" : "Mayorista"}</td>
+                                                <td>{v.cliente}</td>
+                                                <td>{v.medio_pago}</td>
                                                 <td>{fechaFormateada}</td>
                                             </tr>
                                         );
@@ -143,7 +151,7 @@ const General_TablaCompras_Components = () => {
                 </section>
             </div>
 
-            <Modal_Reporte
+            <Modal_ReporteVenta_Components
                 open={isOpenAddReporteModal}
                 close={closeChangeAddReporteModal}
             />
@@ -152,4 +160,4 @@ const General_TablaCompras_Components = () => {
     )
 }
 
-export default General_TablaCompras_Components
+export default General_TablaVentas_Components

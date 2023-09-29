@@ -24,6 +24,7 @@ import ListaProductos from '../pages/ListaProductos'
 import ListaUsuarios from '../pages/ListaUsuarios'
 import ListaCompra from '../pages/ListaCompra'
 import ListaVentas from '../pages/ListaVentas'
+import ListaClientes from '../pages/ListaClientes'
 
 export const router = createBrowserRouter(
     [
@@ -89,6 +90,11 @@ export const router = createBrowserRouter(
                             path: RUTAS.listaVentas,
                             element:
                                 < ListaVentas />
+                        },
+                        {
+                            path: RUTAS.clientes,
+                            element:
+                                < ListaClientes />
                         },
                     ]
                 },

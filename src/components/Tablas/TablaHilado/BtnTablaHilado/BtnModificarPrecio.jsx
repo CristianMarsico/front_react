@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { useModal } from '../../../../helpers/hooks/useModal';
-import { mostrarAlertCompraSuccess } from '../../../../helpers/sweetAlerts/Alerts';
+import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
 import { actualizarPrecio } from '../../../../services/ProductoService';
 import Modal_ModificarPrecio from '../Modal/Modal_ModificarPrecio';
 

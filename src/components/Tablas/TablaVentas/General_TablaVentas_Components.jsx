@@ -134,10 +134,10 @@ const General_TablaVentas_Components = () => {
                                         return (
                                             <tr key={v.id}>
                                                 <td>{v.nombre_prod} {v.color}</td>
-                                                <td>{v.cantidad}</td>
+                                                <td>{v.cantidad_vendida}</td>
                                                 <td>{v.precio}</td>
-                                                <td>{v.stock_origen === "stock_buenosAires" ? "Bs. As." : "Lobería"}</td>
-                                                <td>{v.tipo_venta === "precio_venta_minorista" ? "Minorista" : "Mayorista"}</td>
+                                                <td>{v.stock_origen === "stock_buenosAires" ? "bs. as." : "lobería"}</td>
+                                                <td>{v.tipo_venta === "precio_venta_minorista" ? "minorista" : "mayorista"}</td>
                                                 <td>{v.cliente}</td>
                                                 <td>{v.medio_pago}</td>
                                                 <td>{fechaFormateada}</td>

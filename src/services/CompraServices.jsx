@@ -1,34 +1,18 @@
-import axios from 'axios';
-import { RequiereTokenHelpers } from '../helpers/RequiereTokenHelpers';
+import { fetchGetAllDataWithToken } from "../helpers/hooks/servicesHooks/useGetALLData";
+import { fetchPostDataWithToken } from "../helpers/hooks/servicesHooks/usePostData";
 
-export async function CompraServices(datosEnviados, e) {
+export function CompraServices(datosEnviados) {
     const URL_COMPRA = "http://localhost:3000/api/compra";
-
-    let token = await RequiereTokenHelpers();
-
     let userData = {
         producto: datosEnviados.producto,
         cantidad: datosEnviados.cantidad,
         precio_unitario: datosEnviados.precio_unitario,
         fecha: datosEnviados.fecha,
-
     };
-
-    return await axios.post(URL_COMPRA, userData, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        },
-        withCredentials: true
-    });
+    return fetchPostDataWithToken(URL_COMPRA, userData)
 }
 
-export async function getAllCompras() {
-    let token = await RequiereTokenHelpers();
+export function getAllCompras() {
     const URL_GETALL = "http://localhost:3000/api/getAllCompras";
-    return await axios.get(URL_GETALL, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        },
-        withCredentials: true
-    });
+    return fetchGetAllDataWithToken(URL_GETALL)
 }

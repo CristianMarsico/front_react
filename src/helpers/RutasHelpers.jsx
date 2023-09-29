@@ -11,7 +11,8 @@ const RUTAS = {
     listaMP: "listaMP",
     listaProductos: "listaProductos",
     listaCompras: "listadoCompras",
-    listaVentas: "listadoVentas"
+    listaVentas: "listadoVentas",
+    clientes: "misClientes"
 }
 
 export default RUTAS;

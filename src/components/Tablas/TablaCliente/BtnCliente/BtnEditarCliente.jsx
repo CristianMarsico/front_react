@@ -1,19 +1,19 @@
 import React from 'react'
-import { Button } from "react-bootstrap";
-import { useModal } from '../../../../helpers/hooks/useModal';
+import { Button } from 'react-bootstrap';
 import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
-import { actualizarMP } from '../../../../services/MateriaPrimaServices';
-import Modal_UpdateMP from '../Modal/Modal_UpdateMP';
+import { useModal } from '../../../../helpers/hooks/useModal';
+import Modal_UpdateCliente from '../Modal/Modal_UpdateCliente';
+import { actualizarCliente } from '../../../../services/ClienteServices';
 
-const BtnEditarMP = ({ mp, fetchMateriaPrima }) => {
+const BtnEditarCliente = ({ cliente, fetchCliente }) => {
     const [isOpenChangeEditModal, openChangeEditModal, closeChangeEditModal] = useModal();
 
-    const editarMP = async (datos) => {
+    const editarCliente = async (datos) => {
         try {
-            let response = await actualizarMP(datos);
+            let response = await actualizarCliente(datos);
             if (response.status === 200) {
                 mostrarAlertCompraSuccess(response.data);
-                fetchMateriaPrima();
+                fetchCliente();
                 closeChangeEditModal(true)
             }
             return;
@@ -38,14 +38,15 @@ const BtnEditarMP = ({ mp, fetchMateriaPrima }) => {
                 }}
             >Editar</Button>{' '}
 
-            <Modal_UpdateMP
+            <Modal_UpdateCliente
                 isOpen={isOpenChangeEditModal}
                 close={closeChangeEditModal}
-                mp={mp}
-                editarMP={editarMP}
+                cliente={cliente}
+                editarCliente={editarCliente}
             />
         </>
     )
 }
 
-export default BtnEditarMP
+
+export default BtnEditarCliente

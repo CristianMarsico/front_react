@@ -128,6 +128,34 @@ export function alertWarningUpdate(mp, data) {
     });
 }
 
+export function alertWarningUpdateCliente(cliente, data) {
+    return new Promise((resolve) => {
+        Swal.fire({
+            iconColor: 'rgb(252, 113, 0)',
+            title: `Está por realizar modificaciones !`,
+            html: `<h6>Cambiará <span style="color: blue; font-weight: bold; text-transform: uppercase;">${cliente.direccion}</span> por <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.direccion}</span></h6>` +
+                `<h6>Se actualizará el stock de <span style="color: blue; font-weight: bold;text-transform: uppercase;">${cliente.email}</span> a <span style="color: red; font-weight: bold;text-transform: uppercase;">${data.email}</span> .</h6>` +
+                `<h6>Se actualizará el precio de <span style="color: blue; font-weight: bold; text-transform: uppercase;">${cliente.telefono}</span> por <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.telefono}</span></h6>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Si, deseo modificar!',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                title: 'custom_title',
+                popup: 'custom_width',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    });
+}
+
 export function alertWarningTransferirStock(data) {
     return new Promise((resolve) => {
         Swal.fire({

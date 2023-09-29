@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { RequiereTokenHelpers } from '../helpers/RequiereTokenHelpers';
+import { fetchGetAllDataWithToken } from '../helpers/hooks/servicesHooks/useGetALLData';
+import { fetchPostDataWithToken } from '../helpers/hooks/servicesHooks/usePostData';
+import { fetchUpdateDataWithToken } from '../helpers/hooks/servicesHooks/useUpdateData';
 
-export async function addHilado(datos) {
+export function addHilado(datos) {
 
     let HILADO = {
         producto_terminado: datos.nombre,
@@ -12,17 +14,17 @@ export async function addHilado(datos) {
         precio_venta_minorista: datos.precio_minorista
     }
     const ADD_HILADO = "http://localhost:3000/api/hilado";
-    return await axios.post(ADD_HILADO, HILADO, { withCredentials: true });
+    return fetchPostDataWithToken(ADD_HILADO, HILADO)
 }
 
 export async function getProductoByName() {
     const GET_PRODUCTO_BY_NAME = "http://localhost:3000/api/hiladoNombre";
-    return await axios.get(GET_PRODUCTO_BY_NAME, { withCredentials: true });
+    return fetchGetAllDataWithToken(GET_PRODUCTO_BY_NAME)
 }
 
 export async function getAllHilado() {
     const URL_GETALL = "http://localhost:3000/api/hilado";
-    return await axios.get(URL_GETALL, { withCredentials: true });
+    return fetchGetAllDataWithToken(URL_GETALL)
 }
 
 export async function moverStock(datos) {
@@ -32,15 +34,11 @@ export async function moverStock(datos) {
         origen: datos.origen,
         destino: datos.destino
     }
-
     const URL_MOVER_STOCK = `http://localhost:3000/api/trasferirStock/${datos.id}`;
-    return await axios.put(URL_MOVER_STOCK, STOCK, { withCredentials: true });
+    return fetchUpdateDataWithToken(URL_MOVER_STOCK, STOCK)
 }
 
 export async function vender(datos) {
-
-    let token = await RequiereTokenHelpers();
-
     let VENTA = {
         producto_id: datos.id,
         nombre_prod: datos.nombre_prod,
@@ -50,15 +48,13 @@ export async function vender(datos) {
         tipo_venta: datos.tipo_venta,
         fecha: datos.fecha,
         cliente: datos.cliente,
-        medio_pago: datos.medio_pago
+        medio_pago: datos.medio_pago,
+        email: datos.email,
+        telefono: datos.telefono,
+        direccion: datos.direccion
     }
-    const ADD_VENTA = "http://localhost:3000/api/venta";
-    return await axios.post(ADD_VENTA, VENTA, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        },
-        withCredentials: true
-    });
+    const URL_VENTA = "http://localhost:3000/api/venta";
+    return fetchPostDataWithToken(URL_VENTA, VENTA)
 }
 
 export async function actualizarPrecio(datos) {
@@ -68,7 +64,7 @@ export async function actualizarPrecio(datos) {
         total: datos.total,
     }
     const URL_MODIFICAR_PRECIO = `http://localhost:3000/api/cambiarPrecio/${datos.id}`;
-    return await axios.put(URL_MODIFICAR_PRECIO, PRECIO, { withCredentials: true });
+    return fetchUpdateDataWithToken(URL_MODIFICAR_PRECIO, PRECIO)
 }
 
 export async function incrementar_stock(datos) {
@@ -78,7 +74,7 @@ export async function incrementar_stock(datos) {
         total: datos.total,
     }
     const URL_INCREMENTAR_STOCK = `http://localhost:3000/api/incrementarMercaderia/${datos.id}`;
-    return await axios.put(URL_INCREMENTAR_STOCK, STOCK, { withCredentials: true });
+    return fetchUpdateDataWithToken(URL_INCREMENTAR_STOCK, STOCK)
 }
 
 export async function getReporteVenta(datos) {

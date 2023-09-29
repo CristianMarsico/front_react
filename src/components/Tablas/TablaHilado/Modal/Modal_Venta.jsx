@@ -19,7 +19,10 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
         cantidad: "",
         medio_pago: "",
         cliente: "",
-        fecha: ""
+        fecha: "",
+        email: "",
+        telefono: "",
+        direccion: ""
     });
     useEffect(() => {
         if (!isOpen) {
@@ -39,11 +42,11 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
                 cantidad: datos.cantidad,
                 medio_pago: datos.medio_pago,
                 cliente: datos.cliente,
-                fecha: datos.fecha
+                fecha: datos.fecha,
+                email: datos.email,
+                telefono: datos.telefono,
+                direccion: datos.direccion
             }
-
-            console.log(VENTA)
-
             let isTrue = await alertWarningVender(VENTA, hilado.producto_terminado)
             if (isTrue)
                 vender(VENTA)
@@ -67,14 +70,13 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
             </Modal.Header>
 
             <Modal.Body className='contenedor-modal'>
-                <Form className='form-tranferirStock' onSubmit={handleSubmit(enviarDatos)}>
-
+                <Form className='form-hilado' onSubmit={handleSubmit(enviarDatos)}>
 
                     <InputTypeSelect_Components
                         label="Ciudad"
                         name="ciudad"
                         options={[
-                            { label: "Seleccionar ciudad de despacho", value: "" },
+                            { label: "ver opciones:", value: "" },
                             { label: "Lobería", value: "stock_loberia" },
                             { label: "Buenos Aires", value: "stock_buenosAires" },
                         ]}
@@ -88,7 +90,7 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
                         label="Tipo de venta"
                         name="tipo_venta"
                         options={[
-                            { label: "Seleccionar mayorista o minorista", value: "" },
+                            { label: "ver opciones:", value: "" },
                             { label: "Mayorista", value: "precio_venta_mayorista" },
                             { label: "Minorista", value: "precio_venta_minorista" },
                         ]}
@@ -102,31 +104,7 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
                         type="number"
                         label="Cantidad a vender"
                         name="cantidad"
-                        placeholder="Ingrese la cantidad que desea vender*"
-                        onChange={getDatos}
-                        register={register}
-                        errors={errors}
-                        defaultValue=""
-                    />
-
-                    <InputTypeSelect_Components
-                        label="Medio de pago"
-                        name="medio_pago"
-                        options={[
-                            { label: "Seleccionar medio de pago", value: "" },
-                            { label: "Mercado Pago", value: "mercado pago" },
-                            { label: "Tienda Nube", value: "tienda nube" },
-                        ]}
-                        onChange={getDatos}
-                        register={register}
-                        errors={errors}
-                        defaultValue=""
-                    />
-                    <InputBasico_Components
-                        type="text"
-                        label="Cliente/Empresa"
-                        name="cliente"
-                        placeholder="Ingrese nombre de cliente/empresa*"
+                        placeholder="Ingrese la cantidad*"
                         onChange={getDatos}
                         register={register}
                         errors={errors}
@@ -144,6 +122,70 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
                         max={fechaActual}
                     />
 
+                    <InputBasico_Components
+                        type="text"
+                        label="Cliente/Empresa"
+                        name="cliente"
+                        placeholder="Ingrese cliente/empresa*"
+                        onChange={getDatos}
+                        register={register}
+                        errors={errors}
+                        defaultValue=""
+                    />
+
+                    <InputTypeSelect_Components
+                        label="Medio de pago"
+                        name="medio_pago"
+                        options={[
+                            { label: "ver opciones:", value: "" },
+                            { label: "Mercado Pago", value: "mercado pago" },
+                            { label: "Tienda Nube", value: "tienda nube" },
+                            { label: "Transferencia", value: "transferencia" },
+                        ]}
+                        onChange={getDatos}
+                        register={register}
+                        errors={errors}
+                        defaultValue=""
+                    />
+
+                    <Form.Group className="mb-8" controlId={`formGroup_direccion`}>
+                        <Form.Label>Dirección (opcional)</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="direccion"
+                            defaultValue=""
+                            placeholder="Ingrese direccion"
+                            onChange={getDatos}
+                            {...register("direccion")}
+                        />
+                        <small className='fail'>{errors?.direccion?.message}</small>
+                    </Form.Group>
+
+                    <Form.Group className="mb-8" controlId={`formGroup_email`}>
+                        <Form.Label>Email (opcional)</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="email"
+                            defaultValue=""
+                            placeholder="Ingrese email"
+                            onChange={getDatos}
+                            {...register("email")}
+                        />
+                        <small className='fail'>{errors?.email?.message}</small>
+                    </Form.Group>
+
+                    <Form.Group className="mb-8" controlId={`formGroup_telefono`}>
+                        <Form.Label>Telefono (opcional)</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="telefono"
+                            defaultValue=""
+                            placeholder="Ingrese telefono*"
+                            onChange={getDatos}
+                            {...register("telefono")}
+                        />
+                        <small className='fail'>{errors?.telefono?.message}</small>
+                    </Form.Group>
                 </Form>
             </Modal.Body>
 

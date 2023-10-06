@@ -161,7 +161,7 @@ export function alertWarningTransferirStock(data) {
         Swal.fire({
             iconColor: 'rgb(252, 113, 0)',
             title: 'Está seguro de mover mercaderia ?',
-            html: `<h6>Está por mover <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.cantidad}kg.</span> de: <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.origen}</span> a: <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.destino}</span></h6>`,
+            html: `<h6>Está por mover <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.cantidad}</span> kg. de: <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.origen == "stock_loberia" ? "Lobería" : "Buenos Aires"}</span> a: <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.destino == "stock_loberia" ? "Lobería" : "Buenos Aires"}</span></h6>`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -214,6 +214,34 @@ export function alertWarningAgregarHilado(data) {
 }
 
 
+export function alertWarningComprar(data) {
+    return new Promise((resolve) => {
+        Swal.fire({
+            iconColor: 'rgb(252, 113, 0)',
+            title: 'Está a punto de registrar una compra',
+            html: `<h6>Materia Prima: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.producto}</span></h6>
+                   <h6>Cantidad: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.cantidad}</span></h6>
+                   <h6>Valor: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.precio_unitario}</span></h6>`
+            ,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Si, deseo continuar!',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                title: 'custom_title',
+                popup: 'custom_width',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    });
+}
 export function alertWarningVender(data, prod) {
     return new Promise((resolve) => {
         Swal.fire({
@@ -221,8 +249,10 @@ export function alertWarningVender(data, prod) {
             title: 'Está a punto de vender !',
             html: `<h6>Producto: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${prod}</span></h6>
                      <h6>Cantidad a vender: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.cantidad}</span></h6>
-                    <h6>Ciudad de despacho: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.ciudad}</span></h6>
-                    <h6>Venta al por: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.tipo_venta}</span></h6>`,
+                    <h6>Ciudad de despacho: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.ciudad == "stock_loberia" ? "Lobería " : "Buenos Aires"}</span></h6>
+                    <h6>Venta al por: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.tipo_venta == "precio_venta_mayorista" ? "Mayorista" : "Minorista"}</span></h6>
+                    <h6> Cliente: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.cliente}</span></h6>`
+            ,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -250,7 +280,7 @@ export function alertWarningPrecio(data, prod) {
             iconColor: 'rgb(252, 113, 0)',
             title: 'Desea modificar el precio ?',
             html: `<h6>Producto: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${prod.producto_terminado}</span></h6>
-                     <h6>Tipo consumidor: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;"> ${data.tipoConsumidor}</span></h6>
+                     <h6>Tipo consumidor: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;"> ${data.tipoConsumidor == "precio_venta_mayorista" ? "Mayorista" : "Minorista"}</span></h6>
                     <h6>Nuevo precio: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.total}</span></h6>`,
             icon: 'warning',
             showCancelButton: true,
@@ -278,7 +308,7 @@ export function alertWarningIncrementarStock(data, prod) {
             iconColor: 'rgb(252, 113, 0)',
             title: 'Desea aumentar la cantidad ?',
             html: `<h6>Producto: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${prod.producto_terminado}</span></h6>
-                    <h6> Ciudad: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.ciudad}</span ></h6>
+                    <h6> Ciudad: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;">${data.ciudad == "stock_loberia" ? "Lobería" : "Buenos Aires"}</span ></h6>
                      <h6>Sumar: <span style="text-aling:center; color: red; font-weight: bold; text-transform: uppercase;"> ${data.total} </span> nuevos</h6>`,
             icon: 'warning',
             showCancelButton: true,

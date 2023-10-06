@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 const useGetDatosBD = (fetchFunction) => {
     const [respuesta, setRespuesta] = useState([]);
     const [loading, setLoading] = useState(true);
-
     const fetchDatos = async () => {
         try {
             const response = await fetchFunction();

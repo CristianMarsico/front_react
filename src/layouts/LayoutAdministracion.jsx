@@ -1,8 +1,6 @@
 import React from 'react'
 import RUTAS from '../helpers/RutasHelpers'
 import { Outlet, NavLink } from 'react-router-dom'
-// import '../css/linksNavegacion.css'
-
 
 const LayoutAdministracion = () => {
 
@@ -15,7 +13,7 @@ const LayoutAdministracion = () => {
                 <NavLink to={RUTAS.listaProductos}>Producto Terminado</NavLink>
                 <NavLink to={RUTAS.listaVentas}>Mis Ventas</NavLink>
                 <NavLink to={RUTAS.clientes}>Clientes de Ventas</NavLink>
-                <NavLink to={RUTAS.listaUsuarios}>Usuarios</NavLink>
+                {/* <NavLink to={RUTAS.listaUsuarios}>Usuarios</NavLink> */}
             </nav>
             <Outlet />
             {/* </div> */}

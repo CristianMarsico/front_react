@@ -10,6 +10,7 @@ import '../css/posicionURL.css';
 import '../css/navsInternos.css';
 import '../css/tabla.css'
 
+
 const LayoutRaiz = () => {
 
     let load = useNavigation()

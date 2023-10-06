@@ -1,5 +1,51 @@
 /* SERIA LA PARTE ADMIN */
 
+.root-perfil {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    width: 25rem;
+    margin: 0 auto;
+    padding: 15px;
+    position: relative;
+}
+
+
+
+.root-perfil img {
+    width: 15rem;
+}
+
+.root-perfil h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+.root-perfil .opciones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 15px;
+
+    position: absolute;
+    bottom: -6em;
+    left: 6.8em;
+    border: 1px solid red;
+}
+
+.root-perfil .opciones button {
+    width: 9rem !important;
+}
+
+.root-perfil .opciones.hidden {
+    display: none;
+}
+
+
 /* .conteiner-cuenta {
     display: flex;
     width: 100%;

@@ -47,6 +47,7 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
                 telefono: datos.telefono,
                 direccion: datos.direccion
             }
+            console.log(VENTA)
             let isTrue = await alertWarningVender(VENTA, hilado.producto_terminado)
             if (isTrue)
                 vender(VENTA)

@@ -5,8 +5,10 @@ import RUTAS from '../helpers/RutasHelpers';
 const PublicRoutes = ({ children }) => {
     const { tieneToken } = useAuth();
 
-    if (tieneToken())
-        return <Navigate to={`/${RUTAS.home}`} />;
+    if (tieneToken()) {
+        return <Navigate to={`/${RUTAS.administracion}`} />;
+
+    }
     return children;
 }
 

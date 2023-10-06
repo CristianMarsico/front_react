@@ -5,7 +5,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
 import Registro from '../pages/Registro'
-import Perfil from '../pages/Perfil'
+// import Perfil from '../pages/Perfil'
 
 
 //imports rutas publicas y privadas
@@ -21,7 +21,7 @@ import ROLES from '../helpers/RolesHelpers'
 import RUTAS from '../helpers/RutasHelpers'
 import ListaMP from '../pages/ListaMP'
 import ListaProductos from '../pages/ListaProductos'
-import ListaUsuarios from '../pages/ListaUsuarios'
+// import ListaUsuarios from '../pages/ListaUsuarios'
 import ListaCompra from '../pages/ListaCompra'
 import ListaVentas from '../pages/ListaVentas'
 import ListaClientes from '../pages/ListaClientes'
@@ -53,11 +53,11 @@ export const router = createBrowserRouter(
         {
             element: <LayoutRaiz />,
             children: [
-                {
-                    path: RUTAS.perfil,
-                    element:
-                        <Perfil />
-                },
+                // {
+                //     path: RUTAS.perfil,
+                //     element:
+                //         <Perfil />
+                // },
 
                 {
                     path: RUTAS.administracion,
@@ -76,11 +76,11 @@ export const router = createBrowserRouter(
                             element:
                                 < ListaProductos />
                         },
-                        {
-                            path: RUTAS.listaUsuarios,
-                            element:
-                                < ListaUsuarios />
-                        },
+                        // {
+                        //     path: RUTAS.listaUsuarios,
+                        //     element:
+                        //         < ListaUsuarios />
+                        // },
                         {
                             path: RUTAS.listaCompras,
                             element:

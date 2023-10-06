@@ -1,15 +1,8 @@
 import { useEffect } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
-
 import { useForm } from 'react-hook-form'
 import { useNavigate } from "react-router-dom"
 import useAuth from "../../../helpers/auth/useAuth"
-
-
-
-// import { RequiereTokenHelpers } from "../../../helpers/RequiereTokenHelpers"
-
-// import { LogoutServices } from "../services/LogoutServices"
 
 const CambiarPassModalComponent = ({ isOpen, close }) => {
 

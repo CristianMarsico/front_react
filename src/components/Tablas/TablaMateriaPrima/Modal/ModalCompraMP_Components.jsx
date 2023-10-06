@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
-import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertWarningComprar, mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
 import { CompraServices } from '../../../../services/CompraServices';
 import Select from 'react-select';
 import customStylesTagSelect from '../../../../helpers/customStyles/customStylesTagSelect';
@@ -46,11 +46,16 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
         try {
             if (!datosEnviados.producto)
                 datosEnviados.producto = datos.producto;
-            let response = await CompraServices(datosEnviados);
-            mostrarAlertCompraSuccess(response.data);
-            fetchMateriaPrima();
-            close(true)
-            return;
+            console.log(datosEnviados)
+            let isTrue = await alertWarningComprar(datosEnviados)
+            if (isTrue) {
+                let response = await CompraServices(datosEnviados);
+                mostrarAlertCompraSuccess(response.data);
+                fetchMateriaPrima();
+                close(true)
+                return;
+            }
+
         } catch (err) {
             console.log(err)
             if (err.response)

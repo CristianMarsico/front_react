@@ -4,15 +4,18 @@ import RUTAS from '../helpers/RutasHelpers';
 
 const PrivateRoutes = ({ props, children }) => {
 
-    const { tieneRol, tieneToken } = useAuth();
+    const { tieneRol, tieneToken, estaLogeado } = useAuth();
 
     if (!tieneToken()) {
+        alert("sesion expirada")
         return <Navigate to={RUTAS.login} />
     }
 
-    if (!tieneRol(props?.super) && !tieneRol(props?.admin)) {
-        return <Navigate to={`/${RUTAS.home}`} />
-    }
+
+
+    // if (!tieneRol(props?.super) && !tieneRol(props?.admin)) {
+    //     return <Navigate to={`/${RUTAS.home}`} />
+    // }
     return children
 
 }

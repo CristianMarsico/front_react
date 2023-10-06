@@ -112,7 +112,7 @@ const General_TablaCompras_Components = () => {
                                 <tr>
                                     <th> Producto</th>
                                     <th> Cantidad</th>
-                                    <th> Precio Unitario</th>
+                                    <th> Costo de Compra</th>
                                     <th> Total</th>
                                     <th> Fecha</th>
                                 </tr>

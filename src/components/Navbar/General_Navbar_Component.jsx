@@ -1,5 +1,7 @@
 import RUTAS from '../../helpers/RutasHelpers';
 import { Link, useNavigate } from 'react-router-dom';
+
+import { NavLink } from 'react-router-dom';
 import { LogoutServices } from '../../services/LogoutServices';
 import useAuth from '../../helpers/auth/useAuth';
 import Logo from "../../images/logo.svg"
@@ -43,9 +45,13 @@ const General_Navbar_Component = () => {
 
                                     )
                                 }
+
+                                <Navbar.Text style={customStyle}>
+                                    <NavLink className="links" to="" onClick={cerrarSesion}>Cerrar Sesión</NavLink>
+                                </Navbar.Text>
                             </>
 
-                            <NavDropdown title="Menu" id="basic-nav-dropdown">
+                            {/* <NavDropdown title="Menu" id="basic-nav-dropdown">
                                 <NavDropdown.Item as={Link} to={RUTAS.perfil}>
                                     <Navbar.Text>
                                         <span className="links">Mi Perfil</span>
@@ -57,7 +63,7 @@ const General_Navbar_Component = () => {
                                         <span className="links">Cerrar Sesion</span>
                                     </Navbar.Text>
                                 </NavDropdown.Item>
-                            </NavDropdown>
+                            </NavDropdown> */}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

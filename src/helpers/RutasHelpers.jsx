@@ -12,7 +12,8 @@ const RUTAS = {
     listaProductos: "listaProductos",
     listaCompras: "listadoCompras",
     listaVentas: "listadoVentas",
-    clientes: "misClientes"
+    clientes: "misClientes",
+    enProduc: "enProduccion",
 }
 
 export default RUTAS;

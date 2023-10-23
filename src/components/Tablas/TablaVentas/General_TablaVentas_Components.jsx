@@ -80,7 +80,7 @@ const General_TablaVentas_Components = () => {
         <>
             <div className="table">
                 <section className="table__header">
-                    <h3>Ventas realizadas</h3>
+                    <h3>Ventas Realizadas</h3>
                     <Form.Group className="mb-8">
                         <Form.Label>Desde: </Form.Label>
                         <Form.Control

@@ -78,7 +78,7 @@ const General_TablaCompras_Components = () => {
         <>
             <div className="table">
                 <section className="table__header">
-                    <h3>Compras realizadas</h3>
+                    <h3>Compras Realizadas</h3>
                     <Form.Group className="mb-8">
                         <Form.Label>Desde: </Form.Label>
                         <Form.Control

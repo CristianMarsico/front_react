@@ -8,6 +8,17 @@ import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 import InputTypeSelect_Components from '../../../Inputs/InputTypeSelect_Components';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 
+
+/**
+ * Componente para el modal de registrar venta de un hilado o producto terminado.
+ *
+ * @component
+ * @param {Object} props - Propiedades del componente.
+ * @param {boolean} props.isOpen - Estado que indica si el modal está abierto.
+ * @param {function} props.close - Función para cerrar el modal.
+ * @param {Object} props.hilado - Datos del hilado a vender.
+ * @param {function} props.vender - Función para realizar la venta del hilado.
+ */
 const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
 
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
@@ -24,14 +35,23 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
         telefono: "",
         direccion: ""
     });
+
+    /**
+     * Restablece el formulario cuando el modal se cierra.
+     */
     useEffect(() => {
         if (!isOpen) {
             reset()
         }
     }, [isOpen])
 
-    const enviarDatos = async (datos) => {
 
+    /**
+     * Envía los datos del formulario para realizar la venta del hilado.
+     *
+     * @param {Object} datos - Datos del formulario enviados.
+     */
+    const enviarDatos = async (datos) => {
         try {
             const VENTA = {
                 id: hilado.id,
@@ -47,7 +67,6 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
                 telefono: datos.telefono,
                 direccion: datos.direccion
             }
-            console.log(VENTA)
             let isTrue = await alertWarningVender(VENTA, hilado.producto_terminado)
             if (isTrue)
                 vender(VENTA)
@@ -56,6 +75,11 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
         }
     }
 
+    /**
+     * Actualiza el estado de los datos al cambiar los valores de los campos de entrada.
+     *
+     * @param {Event} e - Objeto de evento que representa el cambio.
+     */
     let getDatos = (e) => {
         setDatos({
             ...datos,

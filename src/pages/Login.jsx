@@ -7,6 +7,10 @@ import RUTAS from '../helpers/RutasHelpers';
 import GeneralLogin_Components from '../components/Formularios/Login/GeneralLogin_Components';
 import Banner_Lateral from '../components/Banner/Banner_Lateral';
 
+/**
+ * Página de inicio de sesión que permite a los usuarios autenticarse.
+ * @returns {JSX.Element} Elemento JSX que representa la página de inicio de sesión.
+ */
 const Login = () => {
 
     const { tieneToken, saveUsuerLocal, deleteUserLocal, saveToken } = useAuth();
@@ -17,6 +21,10 @@ const Login = () => {
         password: ""
     });
 
+    /**
+     * Maneja el cambio de datos en los campos del formulario.
+     * @param {React.ChangeEvent<HTMLInputElement>} e - Evento de cambio.
+     */
     let getDatos = (e) => {
         setDatos({
             ...datos,
@@ -26,6 +34,11 @@ const Login = () => {
 
     if (!tieneToken()) deleteUserLocal();
 
+    /**
+     * Envia los datos de inicio de sesión al servidor para autenticación.
+     * @param {Object} datosEnviados - Datos de inicio de sesión enviados desde el formulario.
+     * @param {React.SyntheticEvent} e - Evento de formulario.
+     */
     let enviarDatos = async (datosEnviados, e) => {
         try {
             let response = await LoginServices(datosEnviados, e);

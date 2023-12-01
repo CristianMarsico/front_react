@@ -8,6 +8,14 @@ import { getReporteProduccion } from '../../../../services/MateriaPrimaServices'
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 
+/**
+ * Componente para el modal de Materia Prima en Producción.
+ *
+ * @component
+ * @param {Object} props - Propiedades del componente.
+ * @param {boolean} props.open - Estado que indica si el modal está abierto.
+ * @param {function} props.close - Función para cerrar el modal.
+ */
 const Modal_EnPorduccion = ({ open, close }) => {
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
     const existenModificaciones = !!Object.keys(dirtyFields).length;
@@ -17,18 +25,33 @@ const Modal_EnPorduccion = ({ open, close }) => {
         fechaMax: "",
     });
 
+    /**
+     * Maneja cambios en los campos de fecha.
+     *
+     * @param {Event} e - Objeto de evento que representa el cambio.
+     */
     let getDatos = (e) => {
         setFecha({
             ...fecha,
             [e.target.name]: e.target.value
         });
     }
+
+    /**
+    * Restablece el formulario cuando el modal se cierra.
+    */
     useEffect(() => {
         if (!open) {
             reset()
         }
     }, [open])
 
+
+    /**
+     * Envía los datos del formulario para obtener el reporte de producción.
+     *
+     * @param {Object} datosEnviados - Datos del formulario enviados.
+     */
     let enviarDatos = async (datosEnviados) => {
         try {
             let response = await getReporteProduccion(datosEnviados);

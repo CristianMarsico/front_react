@@ -1,18 +1,24 @@
 import RUTAS from '../../helpers/RutasHelpers';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { LogoutServices } from '../../services/LogoutServices';
 import useAuth from '../../helpers/auth/useAuth';
 import Logo from "../../images/logo.svg"
-import { Container, Navbar, Card, NavDropdown, Nav } from 'react-bootstrap';
+import { Container, Navbar, Card, Nav } from 'react-bootstrap';
 import NavegacionNav from './componentes_internos/NavegacionNav';
 
-
+/**
+ * Componente que representa la barra de navegación general.
+ *
+ * @returns {JSX.Element} Barra de navegación general.
+ */
 const General_Navbar_Component = () => {
     let { tieneRol, deleteUserLocal } = useAuth();
     let navigate = useNavigate();
 
+    /**
+     * Cierra la sesión del usuario.
+     */
     const cerrarSesion = async () => {
         await LogoutServices();
         deleteUserLocal();
@@ -50,20 +56,6 @@ const General_Navbar_Component = () => {
                                     <NavLink className="links" to="" onClick={cerrarSesion}>Cerrar Sesión</NavLink>
                                 </Navbar.Text>
                             </>
-
-                            {/* <NavDropdown title="Menu" id="basic-nav-dropdown">
-                                <NavDropdown.Item as={Link} to={RUTAS.perfil}>
-                                    <Navbar.Text>
-                                        <span className="links">Mi Perfil</span>
-                                    </Navbar.Text>
-                                </NavDropdown.Item>
-
-                                <NavDropdown.Item href="#action/3.2">
-                                    <Navbar.Text onClick={cerrarSesion}>
-                                        <span className="links">Cerrar Sesion</span>
-                                    </Navbar.Text>
-                                </NavDropdown.Item>
-                            </NavDropdown> */}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

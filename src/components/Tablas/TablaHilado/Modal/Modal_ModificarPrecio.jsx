@@ -7,6 +7,17 @@ import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import InputTypeSelect_Components from '../../../Inputs/InputTypeSelect_Components';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 
+
+/**
+ * Componente para el modal de modificar el precio de un hilado.
+ *
+ * @component
+ * @param {Object} props - Propiedades del componente.
+ * @param {boolean} props.isOpen - Estado que indica si el modal está abierto.
+ * @param {function} props.close - Función para cerrar el modal.
+ * @param {Object} props.hilado - Datos del hilado al que se le modificará el precio.
+ * @param {function} props.modificarPrecio - Función para modificar el precio del hilado.
+ */
 const Modal_ModificarPrecio = ({ isOpen, close, hilado, modificarPrecio }) => {
 
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
@@ -16,12 +27,21 @@ const Modal_ModificarPrecio = ({ isOpen, close, hilado, modificarPrecio }) => {
         total: ""
     });
 
+    /**
+     *  Restablece el formulario cuando el modal se cierra.
+     */
     useEffect(() => {
         if (!isOpen) {
             reset()
         }
     }, [isOpen])
 
+
+    /**
+     * Envía los datos del formulario para modificar el precio del hilado.
+     *
+     * @param {Object} datos - Datos del formulario enviados.
+     */
     const enviarDatos = async (datos) => {
 
         try {
@@ -38,6 +58,11 @@ const Modal_ModificarPrecio = ({ isOpen, close, hilado, modificarPrecio }) => {
         }
     }
 
+    /**
+     * Actualiza el estado de los datos al cambiar los valores de los campos de entrada.
+     *
+     * @param {Event} e - Objeto de evento que representa el cambio.
+     */
     let getDatos = (e) => {
         setDatos({
             ...datos,

@@ -2,13 +2,20 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import RUTAS from '../../../helpers/RutasHelpers';
-import Logo from "../../../images/male_avatar.svg";
 import InputRegitroComponent from '../../Inputs/Login/InputRegitroComponent';
 import InputsLoginComponent from '../../Inputs/Login/InputsLoginComponent';
-// import BtnConfirmar_Components from '../../botones/BtnConfirmar_Components';
 import { Button } from 'react-bootstrap';
 import Banner_ImgFotoForm from '../../Banner/Banner_ImgFotoForm';
 
+
+/**
+ * Componente que muestra un formulario de inicio de sesión en la aplicación.
+ *
+ * @param {Object} props - Propiedades del componente.
+ * @param {Function} props.enviarDatos - Función para enviar datos del formulario.
+ * @param {Function} props.getDatos - Función para obtener datos del formulario.
+ * @returns {JSX.Element} Elemento que muestra el formulario de inicio de sesión.
+ */
 const GeneralLogin_Components = ({ enviarDatos, getDatos }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();

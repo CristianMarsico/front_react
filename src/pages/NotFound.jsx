@@ -1,5 +1,10 @@
 import { Link, useRouteError } from "react-router-dom";
 import RUTAS from '../helpers/RutasHelpers';
+
+/**
+ * Componente que representa error de página.
+ * @returns {JSX.Element} Elemento JSX que representa error de página.
+ */
 const NotFound = () => {
     const error = useRouteError();
 

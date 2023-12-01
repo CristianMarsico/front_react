@@ -10,7 +10,11 @@ import '../css/posicionURL.css';
 import '../css/navsInternos.css';
 import '../css/tabla.css'
 
-
+/**
+ * Componente que proporciona un diseño general para las páginas de la aplicación.
+ * Incluye una barra de navegación, una sección de carga y un área principal para mostrar contenido.
+ * Si el usuario no tiene un token válido, se redirige a la página de inicio de sesión.
+ */
 const LayoutRaiz = () => {
 
     let load = useNavigation()

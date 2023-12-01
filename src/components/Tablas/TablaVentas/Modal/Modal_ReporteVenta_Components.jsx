@@ -8,6 +8,14 @@ import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 import { getReporteVenta } from '../../../../services/ProductoService';
 
+
+/**
+ * Componente que representa un modal para generar un reporte de ventas.
+ * @param {Object} props - Propiedades del componente.
+ * @param {boolean} props.open - Indica si el modal está abierto o cerrado.
+ * @param {Function} props.close - Función para cerrar el modal.
+ * @returns {JSX.Element} Elemento JSX que representa el modal de reporte de ventas.
+ */
 const Modal_ReporteVenta_Components = ({ open, close }) => {
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
     const existenModificaciones = !!Object.keys(dirtyFields).length;
@@ -17,6 +25,10 @@ const Modal_ReporteVenta_Components = ({ open, close }) => {
         fechaMax: "",
     });
 
+    /**
+    * Maneja el cambio de valores en los campos de fecha.
+    * @param {Object} e - Evento de cambio.
+    */
     let getDatos = (e) => {
         setFecha({
             ...fecha,
@@ -24,6 +36,10 @@ const Modal_ReporteVenta_Components = ({ open, close }) => {
         });
     }
 
+    /**
+     * Envía los datos del formulario para generar el reporte de ventas.
+     * @param {Object} datosEnviados - Datos del formulario.
+     */
     let enviarDatos = async (datosEnviados) => {
         try {
             const response = await getReporteVenta(datosEnviados);
@@ -52,6 +68,10 @@ const Modal_ReporteVenta_Components = ({ open, close }) => {
 
     const fechaActual = new Date().toISOString().split('T')[0];
 
+    /**
+     * Renderiza el modal de reporte de ventas.
+     * @returns {JSX.Element} Elemento JSX que representa el modal.
+     */
     return (
         <Modal show={open} onHide={close}>
             <Modal.Header className='header-modal' closeButton>

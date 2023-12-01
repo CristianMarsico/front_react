@@ -5,7 +5,11 @@ import { useModal } from '../../../helpers/hooks/useModal';
 import { getAllCompras } from '../../../services/CompraServices';
 import Modal_Reporte from './Modal/Modal_Reporte';
 
-
+/**
+ * Componente que muestra una tabla de compras realizadas con opciones de filtrado y generación de informe.
+ *
+ * @returns {JSX.Element} Elemento que representa la tabla de compras.
+ */
 const General_TablaCompras_Components = () => {
 
     const { respuesta, fetchDatos } = useGetDatosBD(getAllCompras);
@@ -43,11 +47,15 @@ const General_TablaCompras_Components = () => {
 
         }
     };
+
+    // Realizar el filtrado de compras por fecha
     const elementosFiltrados = respuesta.filter((c) => {
         if (!fechaInicio && !fechaFin) {
             return true
         }
         else {
+            // Realizar el filtrado de compras por rango de fechas
+            // El procesamiento necesario se debe realizar en los manejadores de eventos handleFechaInicioChange y handleFechaFinChange.
             let fechaOriginal = new Date(c.fecha);
 
 
@@ -72,6 +80,7 @@ const General_TablaCompras_Components = () => {
         }
     });
 
+    // Obtener la fecha actual en formato ISO
     const fechaActual = new Date().toISOString().split('T')[0];
 
     return (

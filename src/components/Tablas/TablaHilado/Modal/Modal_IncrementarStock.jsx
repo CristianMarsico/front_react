@@ -7,6 +7,18 @@ import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import InputTypeSelect_Components from '../../../Inputs/InputTypeSelect_Components';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 
+
+/**
+ * Componente para el modal de incrementar el stock de un hilado.
+ *
+ * @component
+ * @param {Object} props - Propiedades del componente.
+ * @param {boolean} props.isOpen - Estado que indica si el modal está abierto.
+ * @param {function} props.close - Función para cerrar el modal.
+ * @param {Object} props.hilado - Datos del hilado al que se le incrementará el stock.
+ * @param {function} props.incrementarStock - Función para incrementar el stock del hilado.
+ */
+
 const Modal_IncrementarStock = ({ isOpen, close, hilado, incrementarStock }) => {
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
     const existenModificaciones = !!Object.keys(dirtyFields).length;
@@ -15,12 +27,20 @@ const Modal_IncrementarStock = ({ isOpen, close, hilado, incrementarStock }) => 
         total: ""
     });
 
+    /**
+     * Restablece el formulario cuando el modal se cierra.
+     */
     useEffect(() => {
         if (!isOpen) {
             reset()
         }
     }, [isOpen])
 
+    /**
+    * Envía los datos del formulario para incrementar el stock del hilado.
+    *
+    * @param {Object} datos - Datos del formulario enviados.
+    */
     const enviarDatos = async (datos) => {
         try {
             const STOCK = {
@@ -36,6 +56,11 @@ const Modal_IncrementarStock = ({ isOpen, close, hilado, incrementarStock }) => 
         }
     }
 
+    /**
+    * Actualiza el estado de los datos al cambiar los valores de los campos de entrada.
+    *
+    * @param {Event} e - Objeto de evento que representa el cambio.
+    */
     let getDatos = (e) => {
         setDatos({
             ...datos,

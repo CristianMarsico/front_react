@@ -10,6 +10,13 @@ import BtnTransferirStock from './BtnTablaHilado/BtnTransferirStock';
 import BtnVender from './BtnTablaHilado/BtnVender';
 import Modal_AddHilado_Components from './Modal/Modal_AddHilado_Components';
 
+
+
+/**
+ * Componente para mostrar y gestionar la información general del hilado o producto terminado. 
+ *
+ * @component
+ */
 const GeneralHilado_Components = () => {
 
     /**
@@ -21,8 +28,6 @@ const GeneralHilado_Components = () => {
     let { tieneRol } = useAuth()
 
     const [isOpenAddHiladoModal, openChangeAddHiladoModal, closeChangeAddHiladoModal] = useModal()
-    const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
-    // const [isOpenAddProduccionModal, openChangeAddProduccionModal, closeChangeAddProduccionModal] = useModal()
 
     //realizo la busqueda de usuarios
     const filteredHilado = respuesta.filter((h) =>
@@ -36,10 +41,6 @@ const GeneralHilado_Components = () => {
                     <Button variant="primary" onClick={openChangeAddHiladoModal}>
                         Agregar Hilado
                     </Button>
-
-                    {/* <Button variant="warning" onClick={openChangeAddProduccionModal}>
-                        Reporte en Producción
-                    </Button> */}
                     <div className="input-group">
                         <input
                             type="search"
@@ -129,11 +130,6 @@ const GeneralHilado_Components = () => {
                 fetchHilado={fetchDatos}
                 hilado={respuesta}
             />
-
-            {/* <Modal_EnPorduccion
-                open={isOpenAddProduccionModal}
-                close={closeChangeAddProduccionModal} />  */}
-
         </>
     )
 }

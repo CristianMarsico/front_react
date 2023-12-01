@@ -1,6 +1,11 @@
 import { fetchGetAllDataWithToken } from "../helpers/hooks/servicesHooks/useGetALLData";
 import { fetchPostDataWithToken } from "../helpers/hooks/servicesHooks/usePostData";
 
+/**
+ * Realiza una solicitud para obtener todas las compras registradas en la aplicación.
+ *
+ * @returns {Promise} - Promesa que resuelve con los datos de las compras registradas.
+ */
 export function CompraServices(datosEnviados) {
     const URL_COMPRA = "http://localhost:3000/api/compra";
     let userData = {

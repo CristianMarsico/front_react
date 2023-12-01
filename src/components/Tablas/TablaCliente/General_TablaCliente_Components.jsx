@@ -4,13 +4,20 @@ import useGetDatosBD from '../../../helpers/hooks/useGetDatosBD';
 import useAuth from '../../../helpers/auth/useAuth';
 import BtnEditarCliente from './BtnCliente/BtnEditarCliente';
 
+/**
+ * Componente que muestra una tabla de clientes y permite buscar y editar clientes.
+ * @returns {JSX.Element} Elemento que representa la tabla de clientes.
+ */
 const General_TablaCliente_Components = () => {
     const { respuesta, fetchDatos } = useGetDatosBD(getAllClientes);
     const [searchUser, setSearchUser] = useState('');
     let { tieneRol } = useAuth()
+
+    // Filtra los clientes que coinciden con el término de búsqueda
     const filteredClients = respuesta.filter((c) =>
         c.nombre.toLowerCase().includes(searchUser.toLowerCase())
     );
+
     return (
         <>
             <div className="table">

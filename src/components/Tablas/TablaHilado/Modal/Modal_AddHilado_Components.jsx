@@ -7,6 +7,16 @@ import { addHilado } from '../../../../services/ProductoService';
 import { alertWarningAgregarHilado, mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 
+/**
+ * Componente para el modal de agregar un nuevo hilado.
+ *
+ * @component
+ * @param {Object} props - Propiedades del componente.
+ * @param {boolean} props.isOpen - Estado que indica si el modal está abierto.
+ * @param {function} props.close - Función para cerrar el modal.
+ * @param {function} props.fetchHilado - Función para actualizar la información de los hilados.
+ * @param {Object} props.hilado - Datos del hilado a editar (si se proporcionan).
+ */
 const Modal_AddHilado_Components = ({ isOpen, close, fetchHilado, hilado }) => {
 
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
@@ -21,6 +31,11 @@ const Modal_AddHilado_Components = ({ isOpen, close, fetchHilado, hilado }) => {
         precio_minorista: "",
     });
 
+    /**
+     * Actualiza el estado de los datos al cambiar los valores de los campos de entrada.
+     *
+     * @param {Event} e - Objeto de evento que representa el cambio.
+     */
     let getDatos = (e) => {
         setDatos({
             ...datos,
@@ -28,6 +43,11 @@ const Modal_AddHilado_Components = ({ isOpen, close, fetchHilado, hilado }) => {
         });
     }
 
+    /**
+     * Envía los datos del formulario para agregar un nuevo hilado.
+     *
+     * @param {Object} datosEnviados - Datos del formulario enviados.
+     */
     let enviarDatos = async (datosEnviados) => {
         try {
             let istrue = await alertWarningAgregarHilado(datosEnviados);
@@ -46,6 +66,9 @@ const Modal_AddHilado_Components = ({ isOpen, close, fetchHilado, hilado }) => {
         }
     }
 
+    /**
+     * Restablece el formulario cuando el modal se cierra.
+     */
     useEffect(() => {
         if (!isOpen) {
             reset()

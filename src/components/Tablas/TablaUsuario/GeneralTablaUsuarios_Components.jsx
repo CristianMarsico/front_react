@@ -5,17 +5,26 @@ import useAuth from '../../../helpers/auth/useAuth';
 //COMPONENTES
 import BotonesTablaUsuarios from './components_internos/BotonesTablaUsuarios';
 
-
+/**
+ * Componente que muestra una tabla de usuarios con funcionalidades de búsqueda, edición y eliminación.
+ * @returns {JSX.Element} Elemento JSX que representa la tabla de usuarios.
+ */
 const GeneralTablaUsuarios_Components = () => {
 
     const [users, setUsers] = useState([]);
     const [searchUser, setSearchUser] = useState('');
     let { tieneRol } = useAuth()
-
+    /**
+       * Efecto secundario que se ejecuta después de que el componente se monta para cargar la lista de usuarios.
+       */
     useEffect(() => {
         fetchUsers();
     }, []);
 
+    /**
+   * Función asincrónica que obtiene y actualiza la lista de usuarios desde el servidor.
+   * @returns {void}
+   */
     const fetchUsers = async () => {
         try {
             const response = await getAllUsarios();
@@ -28,7 +37,11 @@ const GeneralTablaUsuarios_Components = () => {
         }
     };
 
-
+    /**
+       * Función asincrónica que maneja la eliminación de un usuario por ID y actualiza la lista de usuarios.
+       * @param {number} userId - ID del usuario a eliminar.
+       * @returns {void}
+       */
     const handleDeleteUser = async (userId) => {
         try {
             await eliminarUsuario(userId);
@@ -38,6 +51,11 @@ const GeneralTablaUsuarios_Components = () => {
         }
     };
 
+    /**
+   * Función asincrónica que maneja la edición de un usuario y actualiza la lista de usuarios.
+   * @param {Object} user - Objeto que representa al usuario a editar.
+   * @returns {void}
+   */
     const handleEditUser = async (user) => {
         console.log(user)
         try {
@@ -48,11 +66,18 @@ const GeneralTablaUsuarios_Components = () => {
         }
     };
 
-    //realizo la busqueda de usuarios 
+    /**
+   * Filtra la lista de usuarios según el término de búsqueda.
+   * @type {Array}
+   */
     const filteredUsers = users.filter((u) =>
         u.usuario.toLowerCase().includes(searchUser.toLowerCase())
     );
 
+    /**
+       * Renderiza la tabla de usuarios con funciones de búsqueda, edición y eliminación.
+       * @returns {JSX.Element} Elemento JSX que representa la tabla de usuarios.
+       */
     return (
         <>
             <div className="table">

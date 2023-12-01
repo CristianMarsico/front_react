@@ -1,7 +1,12 @@
+/**
+ * Este módulo define las rutas y las páginas correspondientes para la aplicación.
+ *
+ * @module routes/Routes
+ */
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
-//imports pages
+// Importación de páginas
 import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
 import Registro from '../pages/Registro'
@@ -27,6 +32,8 @@ import ListaVentas from '../pages/ListaVentas'
 import ListaClientes from '../pages/ListaClientes'
 import ListaEnProduccion from '../pages/ListaEnProduccion'
 
+
+// Crear el enrutador de la aplicación
 export const router = createBrowserRouter(
     [
         {

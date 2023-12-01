@@ -1,11 +1,33 @@
+/**
+ * Objeto que contiene estilos personalizados para el componente Select.
+ * Puedes aplicar estos estilos al componente Select para personalizar su apariencia y comportamiento.
+ *
+ * @constant
+ * @type {Object}
+ */
+
 const customStylesTagSelect = {
-    // Aquí puedes definir los estilos que desees cambiar
+    /**
+     * Estilos para el control principal del componente Select, que es la parte visible del componente.
+     *
+     * @param {Object} provided - Estilos proporcionados por defecto.
+     * @param {Object} state - Estado actual del componente.
+     * @returns {Object} - Estilos modificados para el control.
+     */
     control: (provided, state) => ({
         ...provided,
         top: '0',
         fontSize: '1rem',
         borderRadius: '6px', // Cambiar el radio de las esquinas
     }),
+
+    /**
+     * Estilos para las opciones del componente Select, que son las opciones desplegables.
+     *
+     * @param {Object} provided - Estilos proporcionados por defecto.
+     * @param {Object} state - Estado actual de la opción.
+     * @returns {Object} - Estilos modificados para las opciones.
+     */
     option: (provided, state) => ({
         ...provided,
         width: '100%',

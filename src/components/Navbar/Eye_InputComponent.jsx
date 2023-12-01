@@ -1,4 +1,11 @@
-
+/**
+ * Componente que representa un icono de ojo para mostrar u ocultar contraseñas.
+ *
+ * @param {Object} props - Propiedades del componente.
+ * @param {Function} props.setShowPwd - Función para cambiar el estado de visualización de la contraseña.
+ * @param {boolean} props.showPwd - Estado de visualización de la contraseña (true para mostrar, false para ocultar).
+ * @returns {JSX.Element} Icono de ojo para mostrar u ocultar contraseñas.
+ */
 const Eye_InputComponent = ({ setShowPwd, showPwd }) => {
     return (
         <div className="pwd-icon" onClick={() => setShowPwd(!showPwd)}>

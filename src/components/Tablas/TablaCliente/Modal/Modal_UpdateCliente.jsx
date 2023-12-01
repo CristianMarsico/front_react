@@ -5,6 +5,17 @@ import { alertWarningUpdateCliente } from '../../../../helpers/sweetAlerts/Alert
 import InputEdit_Components from '../../../Inputs/InputEdit_Components';
 import InputTypeCheck_Components from '../../../Inputs/InputTypeCheck_Components';
 
+
+/**
+ * Componente que muestra un modal para editar la información de un cliente.
+ *
+ * @param {Object} props - Propiedades del componente.
+ * @param {boolean} props.isOpen - Indica si el modal está abierto.
+ * @param {Function} props.close - Función para cerrar el modal.
+ * @param {Object} props.cliente - Datos del cliente a editar.
+ * @param {Function} props.editarCliente - Función para editar el cliente.
+ * @returns {JSX.Element} Elemento que representa el modal de edición de cliente.
+ */
 const Modal_UpdateCliente = ({ isOpen, close, cliente, editarCliente }) => {
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
     const existenModificaciones = !!Object.keys(dirtyFields).length;

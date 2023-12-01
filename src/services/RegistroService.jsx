@@ -1,5 +1,11 @@
 import axios from 'axios';
 
+/**
+ * Realiza una solicitud para registrar un nuevo usuario en la aplicación.
+ *
+ * @param {Object} datosEnviados - Objeto que contiene los detalles del usuario a registrar.
+ * @returns {Promise} Una promesa que resuelve cuando el usuario se registra con éxito o se rechaza si hay un error.
+ */
 export async function RegistroService(datosEnviados) {
     const URL_REGISTRO = "http://localhost:3000/api/register";
 

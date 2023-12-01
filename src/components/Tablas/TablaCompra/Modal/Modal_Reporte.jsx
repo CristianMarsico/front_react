@@ -8,6 +8,15 @@ import { getReporte } from '../../../../services/MateriaPrimaServices';
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
 
+
+/**
+ * Componente que representa un modal para generar un informe de compras en formato PDF.
+ *
+ * @param {Object} props - Las propiedades del componente.
+ * @param {boolean} props.open - Indica si el modal está abierto.
+ * @param {Function} props.close - Función para cerrar el modal.
+ * @returns {JSX.Element} Elemento que representa el modal de generación de informe.
+ */
 const Modal_Reporte = ({ open, close }) => {
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
     const existenModificaciones = !!Object.keys(dirtyFields).length;
@@ -24,6 +33,7 @@ const Modal_Reporte = ({ open, close }) => {
         });
     }
 
+    // Envia los datos del formulario para generar el informe.
     let enviarDatos = async (datosEnviados) => {
         try {
             const response = await getReporte(datosEnviados);
@@ -43,7 +53,9 @@ const Modal_Reporte = ({ open, close }) => {
         }
     }
 
-
+    /**  
+     Restablece el formulario al cerrar el modal.
+     */
     useEffect(() => {
         if (!open) {
             reset()

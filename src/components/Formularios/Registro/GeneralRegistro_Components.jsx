@@ -6,6 +6,15 @@ import InputRegitroComponent from '../../Inputs/Login/InputRegitroComponent';
 import InputsLoginComponent from '../../Inputs/Login/InputsLoginComponent'
 import '../../../css/login.css'
 
+
+/**
+ * Componente que muestra un formulario de registro en la aplicación.
+ *
+ * @param {Object} props - Propiedades del componente.
+ * @param {Function} props.enviarDatos - Función para enviar datos del formulario.
+ * @param {Function} props.getDatos - Función para obtener datos del formulario.
+ * @returns {JSX.Element} Elemento que muestra el formulario de registro.
+ */
 const GeneralRegistro_Components = ({ enviarDatos, getDatos }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [showPwd, setShowPwd] = useState(false);

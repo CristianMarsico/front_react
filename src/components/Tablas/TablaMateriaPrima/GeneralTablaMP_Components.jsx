@@ -4,8 +4,6 @@ import { Button } from 'react-bootstrap';
 import { getAllMP } from '../../../services/MateriaPrimaServices';
 import { useModal } from '../../../helpers/hooks/useModal';
 import ModalCompraMP_Components from './Modal/ModalCompraMP_Components';
-
-import Modal_EnPorduccion from './Modal/Modal_EnPorduccion';
 import BtnEliminarMP from './BtnMateriaPrima/BtnEliminarMP';
 import BtnEditarMP from './BtnMateriaPrima/BtnEditarMP';
 import BtnDescontarStock from './BtnMateriaPrima/BtnDescontarStock';
@@ -24,7 +22,7 @@ const GeneralTablaMP_Components = () => {
 
     const [isOpenAddMPModal, openChangeAddMPModal, closeChangeAddMPModal] = useModal()
     // const [isOpenAddReporteModal, openChangeAddReporteModal, closeChangeAddReporteModal] = useModal()
-    const [isOpenAddProduccionModal, openChangeAddProduccionModal, closeChangeAddProduccionModal] = useModal()
+
     //realizo la busqueda de usuarios 
     const filteredMP = respuesta.filter((mp) =>
         mp.nombre?.toLowerCase().includes(searchMP.toLowerCase())
@@ -37,14 +35,6 @@ const GeneralTablaMP_Components = () => {
                     <h3>Materia Prima</h3>
                     <Button variant="primary" onClick={openChangeAddMPModal}>
                         Agregar Compra
-                    </Button>
-
-                    {/* <Button variant="warning" onClick={openChangeAddReporteModal}>
-                        Reporte Compras
-                    </Button> */}
-
-                    <Button variant="warning" onClick={openChangeAddProduccionModal}>
-                        PDF En Producción
                     </Button>
                     <div className="input-group">
                         <input
@@ -111,21 +101,13 @@ const GeneralTablaMP_Components = () => {
                     </div>
                 </section>
             </div>
+
             <ModalCompraMP_Components
                 isOpen={isOpenAddMPModal}
                 close={closeChangeAddMPModal}
                 fetchMateriaPrima={fetchDatos}
                 materiaPrima={respuesta}
             />
-
-            {/* <Modal_Reporte
-                open={isOpenAddReporteModal}
-                close={closeChangeAddReporteModal}
-            /> */}
-
-            <Modal_EnPorduccion
-                open={isOpenAddProduccionModal}
-                close={closeChangeAddProduccionModal} />
         </>
     )
 }

@@ -7,7 +7,10 @@ import { getAllVentas } from '../../../services/VentaServices';
 
 import Modal_ReporteVenta_Components from './Modal/Modal_ReporteVenta_Components';
 
-
+/**
+ * Componente que muestra una tabla de ventas y permite generar un reporte en formato PDF.
+ * @returns {JSX.Element} Elemento JSX que representa la tabla de ventas.
+ */
 const General_TablaVentas_Components = () => {
 
     const { respuesta, fetchDatos } = useGetDatosBD(getAllVentas);
@@ -16,7 +19,10 @@ const General_TablaVentas_Components = () => {
     const [fechaInicio, setFechaInicio] = useState('');
     const [fechaFin, setFechaFin] = useState('');
 
-
+    /**
+     * Maneja el cambio en la fecha de inicio.
+     * @param {Object} event - Evento de cambio.
+     */
     const handleFechaInicioChange = (event) => {
         if (event.target.value == "") {
             setFechaInicio("");
@@ -31,7 +37,10 @@ const General_TablaVentas_Components = () => {
         }
     };
 
-
+    /**
+     * Maneja el cambio en la fecha de fin.
+     * @param {Object} event - Evento de cambio.
+     */
     const handleFechaFinChange = (event) => {
         if (event.target.value == "") {
             setFechaFin("");
@@ -45,6 +54,12 @@ const General_TablaVentas_Components = () => {
 
         }
     };
+
+    /**
+     * Filtra los elementos según las fechas seleccionadas.
+     * @param {Object} c - Elemento a filtrar.
+     * @returns {boolean} Devuelve true si el elemento cumple con las fechas, false en caso contrario.
+     */
     const elementosFiltrados = respuesta.filter((c) => {
         if (!fechaInicio && !fechaFin) {
             return true
@@ -76,6 +91,11 @@ const General_TablaVentas_Components = () => {
 
     const fechaActual = new Date().toISOString().split('T')[0];
 
+
+    /**
+     * Renderiza el componente de tabla de ventas.
+     * @returns {JSX.Element} Elemento JSX que representa la tabla de ventas.
+     */
     return (
         <>
             <div className="table">

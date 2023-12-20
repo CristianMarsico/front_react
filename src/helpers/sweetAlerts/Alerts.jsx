@@ -45,6 +45,27 @@ export function mostrarAlertError(data) {
     })
 }
 
+export function sesionExpirada() {
+
+    return new Promise((resolve) => {
+        Swal.fire({
+            iconColor: 'rgb(252, 113, 0)',
+            title: 'La sesión ha expirado !',
+            // html: `<h6>Está por retirar <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.cantidad}kg.</span> de: <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.nombre}</span></h6>`,
+            icon: 'error',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Continuar!',
+            customClass: {
+                title: 'custom_title',
+                popup: 'custom_width',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                resolve(true);
+            }
+        });
+    });
+}
 
 export function alertWarningStock(data) {
     return new Promise((resolve) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet, useNavigation, Navigate } from 'react-router-dom'
+import { Outlet, useNavigation, Navigate, useNavigate } from 'react-router-dom'
 import useAuth from "../helpers/auth/useAuth";
 import General_Navbar_Component from '../components/Navbar/General_Navbar_Component';
 import RUTAS from '../helpers/RutasHelpers';
@@ -9,6 +9,8 @@ import '../css/navbarStyles.css'
 import '../css/posicionURL.css';
 import '../css/navsInternos.css';
 import '../css/tabla.css'
+import { sesionExpirada } from '../helpers/sweetAlerts/Alerts';
+import { LogoutServices } from '../services/LogoutServices';
 
 /**
  * Componente que proporciona un diseño general para las páginas de la aplicación.
@@ -18,13 +20,24 @@ import '../css/tabla.css'
 const LayoutRaiz = () => {
 
     let load = useNavigation()
+    let navigate = useNavigate();
 
-    let { tieneToken } = useAuth()
+    let { tieneToken, deleteUserLocal } = useAuth()
 
+    const verificarToken = async () => {
+        if (!tieneToken()) {
+            const isConfirmed = await sesionExpirada()
 
-    if (!tieneToken()) {
-        return <Navigate to={RUTAS.login} />
-    }
+            // Maneja el resultado del clic en "Aceptar"
+            if (isConfirmed) {
+                await LogoutServices();
+                deleteUserLocal();
+                navigate(RUTAS.login)
+            }
+        }
+    };
+
+    verificarToken();
 
     return (
         <div className="root-layout">

@@ -7,9 +7,6 @@ import General_TablaCompras_Components from '../components/Tablas/TablaCompra/Ge
  * @returns {JSX.Element} Elemento JSX que representa la página de lista de compras.
  */
 const ListaCompra = () => {
-
-    let usuario = localStorage.getItem("Usuario")
-    if (!usuario) return <Navigate to={`/`} />
     return (
         <General_TablaCompras_Components />
     )

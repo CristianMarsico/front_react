@@ -1,4 +1,5 @@
 import React from 'react'
+import { Navigate } from 'react-router-dom'
 import GeneralEnProduc_Components from '../components/Tablas/TablaEnProduccion/GeneralEnProduc_Components'
 
 
@@ -7,8 +8,6 @@ import GeneralEnProduc_Components from '../components/Tablas/TablaEnProduccion/G
  * @returns {JSX.Element} Elemento JSX que representa la página de productos en producción.
  */
 const ListaEnProduccion = () => {
-    let usuario = localStorage.getItem("Usuario")
-    if (!usuario) return <Navigate to={`/`} />
     return (
         <GeneralEnProduc_Components />
     )

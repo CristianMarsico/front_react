@@ -46,7 +46,7 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
         try {
             if (!datosEnviados.producto)
                 datosEnviados.producto = datos.producto;
-            console.log(datosEnviados)
+
             let isTrue = await alertWarningComprar(datosEnviados)
             if (isTrue) {
                 let response = await CompraServices(datosEnviados);

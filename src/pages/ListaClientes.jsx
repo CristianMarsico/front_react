@@ -9,13 +9,6 @@ import RUTAS from '../helpers/RutasHelpers';
  * @returns {JSX.Element} Elemento JSX que representa la página de lista de clientes.
  */
 const ListaClientes = () => {
-
-    let usuario = localStorage.getItem("Usuario")
-    if (!usuario) {
-        return <Navigate to={RUTAS.login} />
-
-    }
-
     // Renderizar el componente de tabla de clientes
     return (
         <General_TablaCliente_Components />

@@ -14,10 +14,10 @@ const PrivateRoutes = ({ props, children }) => {
 
     const { tieneToken } = useAuth();
     // Verifica si el usuario tiene un token de autenticación.
-    if (!tieneToken()) {
-        alert("sesion expirada")
-        return <Navigate to={RUTAS.login} />
-    }
+    // if (!tieneToken()) {
+    //     alert("sesion expirada")
+    //     return <Navigate to={RUTAS.login} />
+    // }
     return children
 }
 

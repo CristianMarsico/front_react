@@ -31,22 +31,22 @@ const customStylesTagSelect = {
     option: (provided, state) => ({
         ...provided,
         width: '100%',
-        padding: '7px',
+        padding: '3.5px 0 3.5px 15px',
         fontSize: '1rem',
         margin: '1px 0',
-        borderRadius: '0px',
+        borderRadius: '6px',
         background: state.isSelected ? '#4B89F7' : '#fff', // Cambiar el color de fondo de la opción seleccionada
         color: state.isSelected ? 'black' : 'black', // Cambiar el color del texto de la opción seleccionada
         fontWeight: state.isSelected ? 'bold' : '',
         textTransform: state.isSelected ? "uppercase" : '',
         textAlign: state.isSelected ? 'center' : '',
         '&:hover': {
-            border: '2px solid red',
-            borderRadius: '10px',
+            border: '2px solid gray',
+            borderRadius: '6px',
             textTransform: "uppercase",
-            fontSize: '1.2rem',
+            fontSize: '1rem',
             backgroundColor: '#fff', // Cambiar el color de fondo al pasar el cursor por encima de una opción
-            color: 'red', // Cambiar el color del texto al pasar el cursor por encima de una opción
+            color: 'black', // Cambiar el color del texto al pasar el cursor por encima de una opción
             textAlign: 'center',
             fontWeight: 'bold'
         },

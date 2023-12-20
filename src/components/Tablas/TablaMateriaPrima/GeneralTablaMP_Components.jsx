@@ -70,7 +70,7 @@ const GeneralTablaMP_Components = () => {
                                             <td>{mp.nombre}</td>
                                             <td className={mp.stock > 0 ? '' : 'sin-stock'}>
                                                 {
-                                                    mp.stock > 0 ? mp.stock : <span>sin stock</span>
+                                                    mp.stock > 0 ? mp.stock : <span>Agotado</span>
 
                                                 }
                                             </td>

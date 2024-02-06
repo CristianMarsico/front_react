@@ -11,6 +11,7 @@ import '../css/navsInternos.css';
 import '../css/tabla.css'
 import { sesionExpirada } from '../helpers/sweetAlerts/Alerts';
 import { LogoutServices } from '../services/LogoutServices';
+import visa from '../images/logo.svg'
 
 /**
  * Componente que proporciona un diseño general para las páginas de la aplicación.
@@ -52,11 +53,10 @@ const LayoutRaiz = () => {
                     )
                 }
                 <Breadcrumbs_Component />
+                <main>
+                    <Outlet />
+                </main>
             </header>
-
-            <main>
-                <Outlet />
-            </main>
 
         </div>
     )

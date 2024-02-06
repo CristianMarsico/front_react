@@ -1,9 +1,12 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
+import useAuth from '../../../helpers/auth/useAuth';
 import useGetDatosBD from '../../../helpers/hooks/useGetDatosBD';
 import { useModal } from '../../../helpers/hooks/useModal';
 import { getAllEnProduccion } from '../../../services/EnProduccionServices';
-import Modal_EnPorduccion from './Modal/Modal_EnPorduccion';
+import BtnEliminarEnProduccion from './BtnEnProduccion/BtnEliminarEnProduccion';
+import Modal_EnProduccion from './Modal/Modal_EnProduccion';
+
 
 
 /**
@@ -12,14 +15,15 @@ import Modal_EnPorduccion from './Modal/Modal_EnPorduccion';
  * @component
  */
 const GeneralEnProduc_Components = () => {
-    const { respuesta } = useGetDatosBD(getAllEnProduccion);
+    const { respuesta, fetchDatos } = useGetDatosBD(getAllEnProduccion);
     const [isOpenAddProduccionModal, openChangeAddProduccionModal, closeChangeAddProduccionModal] = useModal()
 
+    let { tieneRol } = useAuth()
     return (
         <>
             <div className="table">
                 <section className="table__header">
-                    <h3>MP en Produccion</h3>
+                    <h3>En Producción</h3>
                     <Button variant="warning" onClick={openChangeAddProduccionModal}>
                         PDF En Producción
                     </Button>
@@ -32,8 +36,9 @@ const GeneralEnProduc_Components = () => {
                             <thead>
                                 <tr>
                                     <th> MP En Produccion</th>
-                                    <th> stock</th>
-                                    <th> FECHA</th>
+                                    <th> Stock</th>
+                                    <th> Fecha</th>
+                                    <th> Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,18 +49,22 @@ const GeneralEnProduc_Components = () => {
                                 ) : (
                                     respuesta?.map((ep) => {
                                         const fecha = new Date(ep.fecha);
-                                        const fechaFormateada = fecha.toLocaleDateString('es-ES');                                        
+                                        const fechaFormateada = fecha.toLocaleDateString('es-ES');
                                         return (
                                             <tr key={ep.id}>
                                                 <td>{ep.nombre}</td>
                                                 <td>{ep.stock}</td>
                                                 <td>{fechaFormateada}</td>
-                                                {/* <td className="td_btn">
-                                                    <BtnEditarCliente
-                                                        cliente={c}
-                                                        fetchCliente={fetchDatos}
-                                                    />
-                                                </td> */}
+
+                                                {
+                                                    tieneRol("super_admin") &&
+                                                    <td className="td_btn">
+                                                        <BtnEliminarEnProduccion
+                                                            mp_prod={ep}
+                                                            fetchMateriaPrima={fetchDatos}
+                                                        />
+                                                    </td>
+                                                }
                                             </tr>
                                         );
                                     })
@@ -66,7 +75,7 @@ const GeneralEnProduc_Components = () => {
                 </section>
             </div>
 
-            <Modal_EnPorduccion
+            <Modal_EnProduccion
                 open={isOpenAddProduccionModal}
                 close={closeChangeAddProduccionModal} />
         </>

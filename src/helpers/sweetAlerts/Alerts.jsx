@@ -95,12 +95,12 @@ export function alertWarningStock(data) {
 
 
 
-export function alertWarningDelete(data) {
+export function alertWarningDelete(data, texto) {
     return new Promise((resolve) => {
         Swal.fire({
             iconColor: 'rgb(252, 113, 0)',
             title: 'Está seguro que desea eliminar ?',
-            html: `<h6>Está por eliminar la materia prima: <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.nombre}</span></h6>`,
+            html: `<h6>Está por eliminar ${texto}: <span style="color: red; font-weight: bold; text-transform: uppercase;">${data.nombre}</span></h6>`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

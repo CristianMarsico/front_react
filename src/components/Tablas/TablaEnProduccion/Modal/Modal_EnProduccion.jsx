@@ -16,7 +16,7 @@ import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnCon
  * @param {boolean} props.open - Estado que indica si el modal está abierto.
  * @param {function} props.close - Función para cerrar el modal.
  */
-const Modal_EnPorduccion = ({ open, close }) => {
+const Modal_EnProduccion = ({ open, close }) => {
     const { register, handleSubmit, formState: { errors, dirtyFields }, reset } = useForm();
     const existenModificaciones = !!Object.keys(dirtyFields).length;
 
@@ -113,4 +113,4 @@ const Modal_EnPorduccion = ({ open, close }) => {
     )
 }
 
-export default Modal_EnPorduccion
+export default Modal_EnProduccion

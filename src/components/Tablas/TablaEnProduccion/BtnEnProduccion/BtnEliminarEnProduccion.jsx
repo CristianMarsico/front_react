@@ -1,26 +1,26 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { alertWarningDelete } from '../../../../helpers/sweetAlerts/Alerts';
-import { eliminarMateriaPrima } from '../../../../services/MateriaPrimaServices';
+import { eliminarEnProduccion } from '../../../../services/EnProduccionServices';
 
-const BtnEliminarMP = ({ mp, fetchMateriaPrima }) => {
+const BtnEliminarEnProduccion = ({ mp_prod, fetchMateriaPrima }) => {
 
-    const eliminarMP = async (id) => {
+    const eliminar = async (id) => {
         try {
-            let isTrue = await alertWarningDelete(mp, "Materia Prima")
+            let isTrue = await alertWarningDelete(mp_prod, "M.P. en producción")
             if (isTrue) {
-                await eliminarMateriaPrima(id)
+                await eliminarEnProduccion(id)
                 fetchMateriaPrima();
             }
         } catch (error) {
-            console.error('Error al eliminar Materia prima: ', error);
+            console.error('Error al eliminar: ', error);
         }
     };
 
     return (
         <>
             <Button variant="outline-danger"
-                onClick={() => { eliminarMP(mp.id) }}
+                onClick={() => { eliminar(mp_prod.id) }}
                 style={{
                     fontWeight: "bold",
                     textTransform: "uppercase",
@@ -33,4 +33,4 @@ const BtnEliminarMP = ({ mp, fetchMateriaPrima }) => {
     )
 }
 
-export default BtnEliminarMP
+export default BtnEliminarEnProduccion

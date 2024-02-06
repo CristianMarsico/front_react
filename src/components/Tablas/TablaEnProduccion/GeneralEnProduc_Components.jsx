@@ -44,7 +44,7 @@ const GeneralEnProduc_Components = () => {
                             <tbody>
                                 {respuesta?.length === 0 ? (
                                     <tr>
-                                        <td colSpan="3">No se encontraron resultados</td>
+                                        <td colSpan="4">No se encontraron resultados</td>
                                     </tr>
                                 ) : (
                                     respuesta?.map((ep) => {

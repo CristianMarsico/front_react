@@ -57,8 +57,8 @@ const GeneralHilado_Components = () => {
                             <tr>
                                 <th> Nombre</th>
                                 <th> Color</th>
-                                <th> Stock Loberia</th>
-                                <th> Stock Bs. As.</th>
+                                <th> Stock Lobería</th>
+                                <th> Stock Buenos Aires</th>
                                 <th> Precio Mayorista</th>
                                 <th> Precio Minorista</th>
                                 {

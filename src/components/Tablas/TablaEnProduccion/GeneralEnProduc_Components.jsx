@@ -35,7 +35,7 @@ const GeneralEnProduc_Components = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th> MP En Produccion</th>
+                                    <th> M.P. En Producción</th>
                                     <th> Stock</th>
                                     <th> Fecha</th>
                                     <th> Acciones</th>

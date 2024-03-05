@@ -1,13 +1,14 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
-import { alertWarningDelete } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertWarning } from '../../../../helpers/sweetAlerts/Alerts';
+import { getTextDelete } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import { eliminarEnProduccion } from '../../../../services/EnProduccionServices';
 
 const BtnEliminarEnProduccion = ({ mp_prod, fetchMateriaPrima }) => {
 
     const eliminar = async (id) => {
         try {
-            let isTrue = await alertWarningDelete(mp_prod, "M.P. en producción")
+            let isTrue = await alertWarning("Seguro que desea eliminar ?",getTextDelete(mp_prod, "M.P. en producción"))
             if (isTrue) {
                 await eliminarEnProduccion(id)
                 fetchMateriaPrima();

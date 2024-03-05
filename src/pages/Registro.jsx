@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import useAuth from '../helpers/auth/useAuth';
-import { mostrarAlertSuccess, mostrarAlertError } from '../helpers/sweetAlerts/Alerts';
+import { mostrarAlertError, alertSuccess } from '../helpers/sweetAlerts/Alerts';
 import { RegistroService } from '../services/RegistroService';
 import GeneralRegistro_Components from '../components/Formularios/Registro/GeneralRegistro_Components';
 import Banner_Lateral from '../components/Banner/Banner_Lateral';
+import { getTextWelcome } from '../helpers/sweetAlerts/Texts_alerts';
 
 /**
  * Página de registro que permite a los usuarios crear nuevas cuentas.
@@ -45,7 +46,7 @@ const Registro = () => {
     let enviarDatos = async (datosEnviados) => {
         try {
             let response = await RegistroService(datosEnviados);
-            mostrarAlertSuccess(response.data);
+            alertSuccess(getTextWelcome(response.data));
             setTimeout(() => {
                 navigate("/")
             }, 1500)

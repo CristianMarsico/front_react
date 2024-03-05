@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import useAuth from '../helpers/auth/useAuth';
-import { mostrarAlertSuccess, mostrarAlertError } from '../helpers/sweetAlerts/Alerts';
+import { mostrarAlertError, alertSuccess } from '../helpers/sweetAlerts/Alerts';
 import { LoginServices } from '../services/LoginServices';
 import RUTAS from '../helpers/RutasHelpers';
 import GeneralLogin_Components from '../components/Formularios/Login/GeneralLogin_Components';
 import Banner_Lateral from '../components/Banner/Banner_Lateral';
+import { getTextWelcome } from '../helpers/sweetAlerts/Texts_alerts';
 
 /**
  * Página de inicio de sesión que permite a los usuarios autenticarse.
@@ -45,7 +46,7 @@ const Login = () => {
             let { token } = response.data;
             saveToken(token);
             saveUsuerLocal(response.data);
-            mostrarAlertSuccess(response.data.usuario);
+            alertSuccess(getTextWelcome(response.data.usuario));
             navigate(RUTAS.administracion);
             return;
         } catch (err) {

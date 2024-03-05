@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import '../../../../css/modals.css'
-import { alertWarningTransferirStock } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertWarning } from '../../../../helpers/sweetAlerts/Alerts';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import InputTypeSelect_Components from '../../../Inputs/InputTypeSelect_Components';
 import Logo from '../../../../images/swap_horiz_black_24dp.svg';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
+import { getTextTransferirStock } from '../../../../helpers/sweetAlerts/Texts_alerts';
 
 /**
  * Componente para el modal de transferir stock de un hilado.
@@ -50,7 +51,7 @@ const Modal_TransferirStock = ({ isOpen, close, hilado, transerirStock }) => {
                 origen: datos.origen,
                 destino: datos.destino
             }
-            let isTrue = await alertWarningTransferirStock(STOCK)
+            let isTrue = await alertWarning("Está seguro de mover mercaderia ?",getTextTransferirStock(STOCK))
             if (isTrue)
                 transerirStock(STOCK)
         } catch (err) {

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { alertWarningUpdateCliente } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertWarning } from '../../../../helpers/sweetAlerts/Alerts';
+import { getTextUpdateClient } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import InputEdit_Components from '../../../Inputs/InputEdit_Components';
 import InputTypeCheck_Components from '../../../Inputs/InputTypeCheck_Components';
 
@@ -55,7 +56,7 @@ const Modal_UpdateCliente = ({ isOpen, close, cliente, editarCliente }) => {
                 email: mostrarEmail ? formData.email : email,
                 telefono: mostrarTelefono ? formData.telefono : telefono,
             };
-            let isTrue = await alertWarningUpdateCliente(cliente, datos)
+            let isTrue = await alertWarning("Desea realizar modificaciones ?",getTextUpdateClient(cliente, datos))
             if (isTrue)
                 editarCliente(datos)
             setMostrarDireccion(false)

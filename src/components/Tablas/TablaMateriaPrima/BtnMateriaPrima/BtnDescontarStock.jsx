@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { useModal } from '../../../../helpers/hooks/useModal';
-import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { getText } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import { actualizarStock } from '../../../../services/MateriaPrimaServices';
 import Modal_DescontarStock from '../Modal/Modal_DescontarStock';
 
@@ -14,7 +15,7 @@ const BtnDescontarStock = ({ mp, fetchMateriaPrima }) => {
         try {
             let response = await actualizarStock(datos)
             if (response.status === 201) {
-                mostrarAlertCompraSuccess(response.data);
+                alertSuccess(getText(response.data));
                 fetchMateriaPrima();
                 closeChangeEditStockModal(true)
             }

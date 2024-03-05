@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { useModal } from '../../../../helpers/hooks/useModal';
-import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { getText } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import { vender } from '../../../../services/ProductoService';
 import Modal_Venta from '../Modal/Modal_Venta';
 
@@ -12,7 +13,7 @@ const BtnVender = ({ hilado, fetchHilado }) => {
         try {
             let response = await vender(datos)
             if (response.status === 200) {
-                mostrarAlertCompraSuccess(response.data);
+                alertSuccess(getText(response.data));
                 fetchHilado();
                 closeChangeVenderModal(true)
             }

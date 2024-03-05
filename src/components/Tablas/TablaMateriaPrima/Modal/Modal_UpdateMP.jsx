@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { alertWarningUpdate } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertWarning } from '../../../../helpers/sweetAlerts/Alerts';
+import { getTextUpdateMP } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import InputEdit_Components from '../../../Inputs/InputEdit_Components';
 import InputTypeCheck_Components from '../../../Inputs/InputTypeCheck_Components';
 
@@ -45,7 +46,7 @@ const Modal_UpdateMP = ({ isOpen, close, mp, editarMP }) => {
                 stock: mostrarStock ? formData.stock : stock,
                 precio: mostrarPrecio ? formData.precio : precio,
             };
-            let isTrue = await alertWarningUpdate(mp, datos)
+            let isTrue = await alertWarning("Desea realizar modificaciones ? ",getTextUpdateMP(mp, datos))
             if (isTrue)
                 editarMP(datos)
             setMostrarNombre(false)

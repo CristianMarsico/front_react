@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { useModal } from '../../../../helpers/hooks/useModal';
-import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { getText } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import { actualizarPrecio } from '../../../../services/ProductoService';
 import Modal_ModificarPrecio from '../Modal/Modal_ModificarPrecio';
 
@@ -12,7 +13,7 @@ const BtnModificarPrecio = ({ hilado, fetchHilado }) => {
         try {
             let response = await actualizarPrecio(datos)
             if (response.status === 201) {
-                mostrarAlertCompraSuccess(response.data);
+                alertSuccess(getText(response.data));
                 fetchHilado();
                 closeChangeEditPrecioModal(true)
             }

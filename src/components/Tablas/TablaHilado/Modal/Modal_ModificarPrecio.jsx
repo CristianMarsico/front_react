@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import '../../../../css/modals.css'
-import { alertWarningPrecio } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertWarning } from '../../../../helpers/sweetAlerts/Alerts';
+import { getTextUpdatePrecio } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import InputTypeSelect_Components from '../../../Inputs/InputTypeSelect_Components';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
@@ -50,7 +51,7 @@ const Modal_ModificarPrecio = ({ isOpen, close, hilado, modificarPrecio }) => {
                 total: datos.total,
                 tipoConsumidor: datos.tipo_consumidor,
             }
-            let isTrue = await alertWarningPrecio(PRECIO, hilado)
+            let isTrue = await alertWarning("Desea modificar el precio ?", getTextUpdatePrecio(PRECIO, hilado))
             if (isTrue)
                 modificarPrecio(PRECIO)
         } catch (err) {

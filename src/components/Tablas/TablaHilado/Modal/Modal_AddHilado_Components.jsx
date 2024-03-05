@@ -4,8 +4,9 @@ import { useForm } from 'react-hook-form'
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import '../../../../css/modals.css'
 import { addHilado } from '../../../../services/ProductoService';
-import { alertWarningAgregarHilado, mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertSuccess, alertWarning, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
+import { getText, getTextCompraHilado } from '../../../../helpers/sweetAlerts/Texts_alerts';
 
 /**
  * Componente para el modal de agregar un nuevo hilado.
@@ -50,10 +51,10 @@ const Modal_AddHilado_Components = ({ isOpen, close, fetchHilado, hilado }) => {
      */
     let enviarDatos = async (datosEnviados) => {
         try {
-            let istrue = await alertWarningAgregarHilado(datosEnviados);
+            let istrue = await alertWarning("Desea cargar el siguiete producto ?",getTextCompraHilado(datosEnviados));
             if (istrue) {
                 let response = await addHilado(datosEnviados);
-                mostrarAlertCompraSuccess(response.data);
+                alertSuccess(getText(response.data));
                 fetchHilado();
                 close(true)
             }

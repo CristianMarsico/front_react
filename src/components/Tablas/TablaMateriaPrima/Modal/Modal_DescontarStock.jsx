@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
-import { alertWarningStock } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertWarning } from '../../../../helpers/sweetAlerts/Alerts';
+import { getTextDescontarStock } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
@@ -42,7 +43,7 @@ const Modal_DescontarStock = ({ isOpen, close, mp, descontarStock }) => {
                 cantidad: datosEnviados.cantidad,
                 fecha: datosEnviados.fechaProduccion
             }
-            let isTrue = await alertWarningStock(STOCK)
+            let isTrue = await alertWarning("Enviar a produccion ?",getTextDescontarStock(STOCK))
             if (isTrue)
                 descontarStock(STOCK)
         } catch (err) {

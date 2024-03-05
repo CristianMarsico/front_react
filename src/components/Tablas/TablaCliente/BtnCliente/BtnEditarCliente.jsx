@@ -1,9 +1,10 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
-import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
 import { useModal } from '../../../../helpers/hooks/useModal';
 import Modal_UpdateCliente from '../Modal/Modal_UpdateCliente';
 import { actualizarCliente } from '../../../../services/ClienteServices';
+import { getText } from '../../../../helpers/sweetAlerts/Texts_alerts';
 
 /**
  * Componente que representa un botón para editar un cliente.
@@ -24,7 +25,7 @@ const BtnEditarCliente = ({ cliente, fetchCliente }) => {
         try {
             let response = await actualizarCliente(datos);
             if (response.status === 200) {
-                mostrarAlertCompraSuccess(response.data);
+                alertSuccess(getText(response.data));
                 fetchCliente();
                 closeChangeEditModal(true)
             }

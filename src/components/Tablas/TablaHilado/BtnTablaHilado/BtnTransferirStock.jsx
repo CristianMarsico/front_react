@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { useModal } from '../../../../helpers/hooks/useModal';
-import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { getText } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import { moverStock } from '../../../../services/ProductoService';
 import Modal_TransferirStock from '../Modal/Modal_TransferirStock';
 
@@ -13,7 +14,7 @@ const BtnTransferirStock = ({ hilado, fetchHilado }) => {
         try {
             let response = await moverStock(datos)
             if (response.status === 201) {
-                mostrarAlertCompraSuccess(response.data);
+                alertSuccess(getText(response.data));
                 fetchHilado();
                 closeChangeEditTrasnferirStockModal(true)
             }

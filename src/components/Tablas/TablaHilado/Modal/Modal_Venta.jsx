@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import '../../../../css/modals.css'
-import { alertWarningVender } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertWarning } from '../../../../helpers/sweetAlerts/Alerts';
+import { getTextVender } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 import InputTypeSelect_Components from '../../../Inputs/InputTypeSelect_Components';
@@ -67,7 +68,7 @@ const Modal_Venta = ({ isOpen, close, hilado, vender }) => {
                 telefono: datos.telefono,
                 direccion: datos.direccion
             }
-            let isTrue = await alertWarningVender(VENTA, hilado.producto_terminado)
+            let isTrue = await alertWarning("Está por registrar un venta de: ",getTextVender(VENTA, hilado.producto_terminado))
             if (isTrue)
                 vender(VENTA)
         } catch (err) {

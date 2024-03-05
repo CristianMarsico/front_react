@@ -3,6 +3,7 @@ import { getAllClientes } from '../../../services/ClienteServices';
 import useGetDatosBD from '../../../helpers/hooks/useGetDatosBD';
 import useAuth from '../../../helpers/auth/useAuth';
 import BtnEditarCliente from './BtnCliente/BtnEditarCliente';
+import BtnComentarios from './BtnCliente/BtnComentarios';
 
 /**
  * Componente que muestra una tabla de clientes y permite buscar y editar clientes.
@@ -56,7 +57,9 @@ const General_TablaCliente_Components = () => {
                                     filteredClients?.map((c) => {
                                         return (
                                             <tr key={c.id_cliente}>
-                                                <td>{c.nombre}</td>
+                                                <td >{c.nombre}
+                                                   
+                                                </td>
                                                 <td>{c.direccion == "" ? "sin definir" : c.direccion}</td>
                                                 <td>{c.email == "" ? "sin definir" : c.email}</td>
                                                 <td>{c.telefono == "" ? "sin definir" : c.telefono}</td>
@@ -65,6 +68,10 @@ const General_TablaCliente_Components = () => {
                                                         cliente={c}
                                                         fetchCliente={fetchDatos}
                                                     />
+
+                                                    <BtnComentarios
+                                                        id={c.id_cliente}
+                                                    /> 
                                                 </td>
                                             </tr>
                                         );

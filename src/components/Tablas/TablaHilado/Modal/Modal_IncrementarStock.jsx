@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import '../../../../css/modals.css'
-import { alertWarningIncrementarStock } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertWarning} from '../../../../helpers/sweetAlerts/Alerts';
+import { getTextIncrementarStock } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import InputTypeSelect_Components from '../../../Inputs/InputTypeSelect_Components';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
@@ -48,7 +49,7 @@ const Modal_IncrementarStock = ({ isOpen, close, hilado, incrementarStock }) => 
                 ciudad: datos.ciudad,
                 total: datos.total,
             }
-            let isTrue = await alertWarningIncrementarStock(STOCK, hilado)
+            let isTrue = await alertWarning(`Incrementar stock de ${STOCK.ciudad === "stock_loberia" ?"Loberia" : "Bs. As."}` ,getTextIncrementarStock(STOCK, hilado))
             if (isTrue)
                 incrementarStock(STOCK)
         } catch (err) {

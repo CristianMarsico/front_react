@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { useModal } from '../../../../helpers/hooks/useModal';
-import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { getText } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import { incrementar_stock } from '../../../../services/ProductoService';
 import Modal_IncrementarStock from '../Modal/Modal_IncrementarStock';
 
@@ -13,7 +14,7 @@ const BtnIncremetarStock = ({ hilado, fetchHilado }) => {
         try {
             let response = await incrementar_stock(datos)
             if (response.status === 201) {
-                mostrarAlertCompraSuccess(response.data);
+                alertSuccess(getText(response.data));
                 fetchHilado();
                 closeChangeEditStockModal(true)
             }

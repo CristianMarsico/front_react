@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
-import { alertWarningComprar, mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertSuccess, alertWarning, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
 import { CompraServices } from '../../../../services/CompraServices';
 import Select from 'react-select';
 import customStylesTagSelect from '../../../../helpers/customStyles/customStylesTagSelect';
@@ -9,6 +9,7 @@ import '../../../../css/modals.css'
 import InputTypeDate_Components from '../../../Inputs/InputTypeDate_Components';
 import InputBasico_Components from '../../../Inputs/InputBasico_Components';
 import BtnConfirmar_Cancelar_Components from '../../BtnConfirmar_Cancelar/BtnConfirmar_Cancelar_Components';
+import { getText, getTextAddMP } from '../../../../helpers/sweetAlerts/Texts_alerts';
 
 
 const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPrima }) => {
@@ -47,10 +48,10 @@ const ModalCompraMP_Components = ({ isOpen, close, fetchMateriaPrima, materiaPri
             if (!datosEnviados.producto)
                 datosEnviados.producto = datos.producto;
 
-            let isTrue = await alertWarningComprar(datosEnviados)
+            let isTrue = await alertWarning("Comprar Materia Prima ?",getTextAddMP(datosEnviados))
             if (isTrue) {
                 let response = await CompraServices(datosEnviados);
-                mostrarAlertCompraSuccess(response.data);
+                alertSuccess(getText(response.data));
                 fetchMateriaPrima();
                 close(true)
                 return;

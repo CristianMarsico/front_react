@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button } from "react-bootstrap";
 import { useModal } from '../../../../helpers/hooks/useModal';
-import { mostrarAlertCompraSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { alertSuccess, mostrarAlertError } from '../../../../helpers/sweetAlerts/Alerts';
+import { getText } from '../../../../helpers/sweetAlerts/Texts_alerts';
 import { actualizarMP } from '../../../../services/MateriaPrimaServices';
 import Modal_UpdateMP from '../Modal/Modal_UpdateMP';
 
@@ -12,7 +13,7 @@ const BtnEditarMP = ({ mp, fetchMateriaPrima }) => {
         try {
             let response = await actualizarMP(datos);
             if (response.status === 200) {
-                mostrarAlertCompraSuccess(response.data);
+                alertSuccess(getText(response.data));
                 fetchMateriaPrima();
                 closeChangeEditModal(true)
             }
